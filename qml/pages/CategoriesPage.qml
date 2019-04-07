@@ -150,68 +150,40 @@ Page {
                     Item {
                         //color: index % 2 ? "yellow" : "blue"
                         anchors.fill: parent
-//                        width: parent.contentWidth
-//                        height: parent.contentHeight
 
-                        Image {
+                        FramedImage {
                             source: category_thumbnail
-                            //fillMode: Image.PreserveAspectFit
-                            //anchors.fill: parent
                             anchors.centerIn: parent
                             width: parent.width
                             height: _targetImageHeight
-                            fillMode: Image.PreserveAspectFit
+                            topFrameHeight: 0
+                            bottomFrameContent: Item {
+                                width: parent.width
+                                height: nameLabel.height
 
-//                            onWidthChanged: {
-//                                console.debug("image index=" + index + " width=" + width + " height=" + height)
-//                            }
+                                Label {
+                                    id: nameLabel
+                                    x: Theme.paddingSmall
+                                    width: parent.width - 2*x
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    truncationMode: TruncationMode.Fade
+                                    text: category_name
+                                    font.bold: true
+                                }
 
-//                            onHeightChanged: {
-//                                console.debug("image index=" + index + " width=" + width + " height=" + height)
-//                            }
-
-                            Label {
-                                id: nameLabel
-                                x: Theme.paddingSmall
-                                width: parent.width - 2*x
-                                anchors.top: parent.top
-                                truncationMode: TruncationMode.Fade
-                                text: category_name
-                                font.bold: true
-                            }
-
-                            Label {
-                                id: videosLabel
-                                x: Theme.paddingSmall
-                                width: parent.width - 2*x
-                                horizontalAlignment: Text.AlignRight
-                                anchors.bottom: parent.bottom
-                                truncationMode: TruncationMode.Fade
-                                text: "(" + category_videos + ")"
-                                font.pixelSize: Theme.fontSizeExtraSmall
-                                font.bold: true
+                                Label {
+                                    x: Theme.paddingSmall
+                                    width: parent.width - 2*x
+                                    horizontalAlignment: Text.AlignRight
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    truncationMode: TruncationMode.Fade
+                                    text: "(" + category_videos + ")"
+                                    font.pixelSize: Theme.fontSizeExtraSmall
+                                    font.bold: true
+                                }
                             }
                         }
                     }
-
-//                    Component.onCompleted: {
-//                        console.debug("list item index=" + index + " width=" + width + " height=" + height)
-//                    }
-
-
-
-//                    Item {
-//                        x: Theme.paddingSmall
-//                        y: Theme.paddingSmall
-//                        width: parent.width - 2*x
-//                        height: parent.height - 2*y
-
-//                        Component.onCompleted: {
-//                            console.debug("item index=" + index + " width=" + width + " height=" + height)
-//                        }
-
-
-//                    }
 
                     onClicked: {
                         pageStack.push(Qt.resolvedUrl("VideosPage.qml"),

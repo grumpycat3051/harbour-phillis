@@ -37,6 +37,10 @@ SOURCES += src/QuickApp.cpp
 
 
 DISTFILES += \
+    rpm/harbour-phillis.changes.in \
+    rpm/harbour-phillis.changes.run.in \
+    rpm/harbour-phillis.spec \
+    rpm/harbour-phillis.yaml \
     media/*.png \
     harbour-phillis.desktop \
     qml/Constants.qml \
@@ -44,6 +48,7 @@ DISTFILES += \
     qml/qmldir \
     qml/cover/CoverPage.qml \
     qml/TopMenu.qml \
+    qml/FramedImage.qml \
     qml/FormatComboBox.qml \
     qml/pages/StartPage.qml \
     qml/pages/CategoriesPage.qml \
@@ -55,10 +60,7 @@ DISTFILES += \
     qml/pages/PornstarsPage.qml \
     qml/pages/AdultContentDisclaimerPage.qml \
     qml/pages/LockScreenPage.qml \
-    rpm/harbour-phillis.changes.in \
-    rpm/harbour-phillis.changes.run.in \
-    rpm/harbour-phillis.spec \
-    rpm/harbour-phillis.yaml
+
 
 
 

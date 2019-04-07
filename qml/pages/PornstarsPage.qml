@@ -126,24 +126,23 @@ Page {
                         //color: index % 2 ? "yellow" : "blue"
                         anchors.fill: parent
 
-                        Image {
-                            id: thumbnail
+
+                        FramedImage {
                             source: pornstar_thumbnail
                             anchors.centerIn: parent
                             fillMode: Image.PreserveAspectFit
                             width: parent.width
                             height: _targetImageHeight
-                        }
-
-                        Label {
-                            id: nameLabel
-                            x: Theme.paddingSmall
-                            width: parent.width - 2*x
-                            truncationMode: TruncationMode.Fade
-                            text: pornstar_name
-                            anchors.bottom: parent.bottom
-                            font.bold: true
-                            horizontalAlignment: Text.AlignRight
+                            topFrameHeight: 0
+                            bottomFrameContent: Label {
+                                x: Theme.paddingSmall
+                                width: parent.width - 2*x
+                                truncationMode: TruncationMode.Fade
+                                text: pornstar_name
+                                font.bold: true
+                                horizontalAlignment: Text.AlignRight
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
                         }
                     }
 

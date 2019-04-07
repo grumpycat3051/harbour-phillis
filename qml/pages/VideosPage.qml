@@ -115,93 +115,51 @@ Page {
                         }
                     }
 
-                    Image {
+                    FramedImage {
                         id: thumbnail
                         source: video_thumbnail
-                        fillMode: Image.PreserveAspectFit
                         width: parent.width
                         height: sourceSize.height * width / sourceSize.width
+                        title: video_title
+                        bottomFrameHeight: bottomFrameContent.height + Theme.paddingSmall
 
-                        Rectangle {
-                            id: fpp
-                            anchors.top: parent.top
-                            width: parent.width
-                            height: titleLabel.height
-                            color: "black"
-                            opacity: overlayOpacity
-                            layer.enabled: true
+                        bottomFrameContent: Row {
+                            id: statsRow
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: Theme.paddingMedium
 
                             Label {
-                                id: titleLabel
-                                x: Theme.paddingSmall
-                                anchors.verticalCenter: parent.verticalCenter
-                                width: parent.width - 2*x
-                                truncationMode: TruncationMode.Fade
-                                text: video_title
+                                text: video_views
+                                font.pixelSize: Theme.fontSizeExtraSmall
                                 font.bold: true
-                            }
-                        }
-
-                        Rectangle {
-                            anchors.bottom: parent.bottom
-                            width: parent.width
-                            height: statsRow.height + Theme.paddingSmall
-                            color: "black"
-                            opacity: overlayOpacity
-                            layer.enabled: true
-
-                            Row {
-                                id: statsRow
-                                anchors.right: parent.right
                                 anchors.verticalCenter: parent.verticalCenter
-                                spacing: Theme.paddingMedium
-
-                                Label {
-                                    text: video_views
-                                    font.pixelSize: Theme.fontSizeExtraSmall
-                                    font.bold: true
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-
-                                Image {
-                                    width: Theme.iconSizeExtraSmall
-                                    height: Theme.iconSizeExtraSmall
-                                    source: "file://" + App.appDir + "/media/" + (video_rating >= 50 ? "thumbs-up-filled-green.png" : "thumbs-down-filled-red.png")
-                                }
-
-                                Label {
-                                    text: video_rating + "%"
-                                    font.pixelSize: Theme.fontSizeExtraSmall
-                                    font.bold: true
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-
-                                Image {
-                                    width: Theme.iconSizeSmall
-                                    height: Theme.iconSizeSmall
-                                    visible: !!videoItem._playlist
-                                    source: "image://theme/icon-s-device-download"
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-
-                                Item {
-                                    width: Theme.paddingSmall * 0.68
-                                    height: parent.height
-                                }
                             }
-                        }
 
-                        Rectangle {
-                            color: "black"
-                            opacity: 0.68
-                            anchors.fill: parent
-                            visible: _startedMetaDataDownload
+                            Image {
+                                width: Theme.iconSizeExtraSmall
+                                height: Theme.iconSizeExtraSmall
+                                source: "file://" + App.appDir + "/media/" + (video_rating >= 50 ? "thumbs-up-filled-green.png" : "thumbs-down-filled-red.png")
+                            }
 
-                            BusyIndicator {
-                                size: BusyIndicatorSize.Medium
-                                visible: running
-                                running: parent.visible
-                                anchors.centerIn: parent
+                            Label {
+                                text: video_rating + "%"
+                                font.pixelSize: Theme.fontSizeExtraSmall
+                                font.bold: true
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Image {
+                                width: Theme.iconSizeSmall
+                                height: Theme.iconSizeSmall
+                                visible: !!videoItem._playlist
+                                source: "image://theme/icon-s-device-download"
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Item {
+                                width: Theme.paddingSmall * 0.68
+                                height: parent.height
                             }
                         }
                     }
