@@ -51,9 +51,7 @@ CoverBackground {
                 }
             }
 
-            if (window.restrictAccess && !pageStack.currentPage.isLockScreenPage) {
-                pageStack.push(Qt.resolvedUrl("../pages/LockScreenPage.qml"), {}, PageStackAction.Immediate)
-            }
+            window.pushLockScreenIfNecessary()
             break
         case PageStatus.Deactivating:
             if (_pausedVideo) {

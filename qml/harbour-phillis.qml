@@ -99,25 +99,6 @@ ApplicationWindow
                             console.debug(data)
                         }
 
-//                        var want = 2
-//                        var hasLoginToken = false
-//                        var hasLogoutToken = false
-//                        var lines = data.split('\n');
-//                        for (var i = 0; i < lines.length && want > 0; ++i) {
-//                            var line = lines[i]
-//                            if (!hasLoginToken && scanForLoginTokenInLine(line)) {
-//                                hasLoginToken = true
-//                                --want
-//                                console.debug("login token=" + loginToken)
-//                            }
-
-//                            if (!hasLogoutToken && scanForLogoutTokenInLine(line)) {
-//                                hasLogoutToken = true
-//                                --want
-//                                console.debug("logout token=" + logoutToken)
-//                            }
-//                        }
-
                         if (!isUserLoggedIn && canAutoLogin) {
                             login()
                         }
@@ -279,6 +260,7 @@ ApplicationWindow
                 if (settingPlaybackPauseOnDeviceLock.value && window.videoPlayerPage) {
                     window.videoPlayerPage.pause()
                 }
+                pushLockScreenIfNecessary()
                 break;
             case "unlocked":
                 if (settingPlaybackPauseOnDeviceLock.value && window.videoPlayerPage) {
@@ -313,6 +295,7 @@ ApplicationWindow
                     window.videoPlayerPage.pause()
                     _pausedDueToDisplayState = true
                 }
+                pushLockScreenIfNecessary()
                 break;
             }
         }
@@ -469,5 +452,11 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
     function reload() {
         _action = actionInit
         http.get(Constants.baseUrl)
+    }
+
+    function pushLockScreenIfNecessary() {
+        if (restrictAccess && !pageStack.currentPage.isLockScreenPage) {
+            pageStack.push(Qt.resolvedUrl("pages/LockScreenPage.qml"), {}, PageStackAction.Immediate)
+        }
     }
 }

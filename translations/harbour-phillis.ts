@@ -14,17 +14,17 @@
         <translation>Login success</translation>
     </message>
     <message id="error-message-initial-request-failed">
-        <location filename="../qml/harbour-phillis.qml" line="135"/>
+        <location filename="../qml/harbour-phillis.qml" line="116"/>
         <source>Initial loading of website failed</source>
         <translation>Initial loading of website failed</translation>
     </message>
     <message id="setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="244"/>
+        <location filename="../qml/harbour-phillis.qml" line="225"/>
         <source>Please enter your online trading PIN</source>
         <translation>Please enter your online trading PIN</translation>
     </message>
     <message id="error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="354"/>
+        <location filename="../qml/harbour-phillis.qml" line="337"/>
         <source>Request failed</source>
         <translation>Request failed</translation>
     </message>
