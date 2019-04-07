@@ -170,7 +170,6 @@ ApplicationWindow
             id: debugApp
             key: "/debug"
             defaultValue: false
-            onValueChanged: _setMode()
         }
 
         ConfigurationValue {
