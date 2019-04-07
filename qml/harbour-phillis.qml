@@ -45,13 +45,14 @@ ApplicationWindow
     readonly property bool isUserLoggedIn: _userIsLoggedIn
     property bool _userIsLoggedIn: false
     property string pin
-    readonly property bool restrictAccess: settingAccessRestrict.value && !!pin
+    readonly property bool restrictAccess: settingAccessRestrict.value && pin
+    readonly property bool hasLoginData: settingAccountUsername.value && settingAccountPassword.value && loginToken
+    readonly property bool canAutoLogin: settingAccountLoginOnAppStart.value && hasLoginData
 
     property int _action: -1
     readonly property int actionInit: 0
     readonly property int actionLogin: 1
     readonly property int actionLogout: 2
-
 
     Http {
         id: http
@@ -64,6 +65,7 @@ ApplicationWindow
                     switch (_action) {
                     case actionLogout:
                         _userIsLoggedIn = false
+                        loginToken = ""
                         var line = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
                         scanForLoginTokenInLine(line)
                         break
@@ -73,6 +75,13 @@ ApplicationWindow
                             if (jsonObject.success === "1") {
                                 _userIsLoggedIn = true
                                 console.debug("login success")
+                                //% "Login success"
+                                window.notify(qsTrId("login-succes-message"))
+
+                                // load a page to have logout token for menu
+                                // weirdly this doens't work if using the base page
+                                _action = actionInit
+                                http.get(Constants.baseUrl + "/categories")
                             } else {
                                 _userIsLoggedIn = false
                                 window.notify(jsonObject.message)
@@ -83,13 +92,36 @@ ApplicationWindow
                             _userIsLoggedIn = false
                         }
                         break
-                    case actionInit:
+                    case actionInit: {
                         var line = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
-                        scanForLoginTokenInLine(line)
-                        if (window.loginToken && settingAccountLoginOnAppStart.value) {
+                        updateSessionHtml(line)
+                        if (isUserLoggedIn && !logoutToken) {
+                            console.debug(data)
+                        }
+
+//                        var want = 2
+//                        var hasLoginToken = false
+//                        var hasLogoutToken = false
+//                        var lines = data.split('\n');
+//                        for (var i = 0; i < lines.length && want > 0; ++i) {
+//                            var line = lines[i]
+//                            if (!hasLoginToken && scanForLoginTokenInLine(line)) {
+//                                hasLoginToken = true
+//                                --want
+//                                console.debug("login token=" + loginToken)
+//                            }
+
+//                            if (!hasLogoutToken && scanForLogoutTokenInLine(line)) {
+//                                hasLogoutToken = true
+//                                --want
+//                                console.debug("logout token=" + logoutToken)
+//                            }
+//                        }
+
+                        if (!isUserLoggedIn && canAutoLogin) {
                             login()
                         }
-                        break
+                    } break
                     }
                 } else {
                     switch (_action) {
@@ -111,8 +143,6 @@ ApplicationWindow
                 break
             }
         }
-
-
     }
 
     ConfigurationGroup {
@@ -342,17 +372,6 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
         notification.publish()
     }
 
-    function scanForLogoutTokenInHtml(html, callback) {
-        var lines = data.split('\n');
-        for (var i = 0; i < lines.length; ++i) {
-            if (scanForLogoutTokenInLine(lines[i], callback)) {
-                return [lines, i]
-            }
-        }
-
-        return [lines, lines.length]
-    }
-
     function scanForLogoutTokenInLine(line, callback) {
         var logoutTokenMatch = logoutTokenRegex.exec(line)
         if (logoutTokenMatch) {
@@ -383,33 +402,28 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
 
     function logout() {
         _action = actionLogout
-        var token = logoutToken
-        logoutToken = ""
         cookieJar.dump()
-        http.get(Constants.baseUrl + "/user/logout?token=" + token)
+        http.get(Constants.baseUrl + "/user/logout?token=" + logoutToken)
     }
 
     function login() {
         _action = actionLogin
-        var token = loginToken
-        loginToken = ""
         cookieJar.dump()
         var postData = App.urlEncode({
                                          username: settingAccountUsername.value,
                                          password: settingAccountPassword.value,
                                          remember_me: 1,
-                                         token: token,
+                                         token: loginToken,
                                      })
         http.post(Constants.baseUrl + "/front/authenticate", postData)
     }
 
     function init() {
-        _action = actionInit
         cookieJar.clear()
         var tomorrow = new Date()
         tomorrow.setDate(tomorrow.getDate() + 1)
         cookieJar.addCookie(".pornhub.com", "/", "accessAgeDisclaimerPH", "1", tomorrow.getTime(), false)
-        http.get(Constants.baseUrl)
+        reload()
     }
 
     function updateSessionHtml(htmlLine) {
@@ -450,5 +464,10 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
 
     function savePin(pin) {
         App.settingsWrite("access", "pin", pin)
+    }
+
+    function reload() {
+        _action = actionInit
+        http.get(Constants.baseUrl)
     }
 }

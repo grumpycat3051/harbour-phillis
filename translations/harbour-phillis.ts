@@ -8,18 +8,23 @@
         <source>Format</source>
         <translation>Format</translation>
     </message>
+    <message id="login-succes-message">
+        <location filename="../qml/harbour-phillis.qml" line="79"/>
+        <source>Login success</source>
+        <translation>Login success</translation>
+    </message>
     <message id="error-message-initial-request-failed">
-        <location filename="../qml/harbour-phillis.qml" line="103"/>
+        <location filename="../qml/harbour-phillis.qml" line="135"/>
         <source>Initial loading of website failed</source>
         <translation>Initial loading of website failed</translation>
     </message>
     <message id="setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="215"/>
+        <location filename="../qml/harbour-phillis.qml" line="244"/>
         <source>Please enter your online trading PIN</source>
         <translation>Please enter your online trading PIN</translation>
     </message>
     <message id="error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="325"/>
+        <location filename="../qml/harbour-phillis.qml" line="354"/>
         <source>Request failed</source>
         <translation>Request failed</translation>
     </message>
@@ -188,17 +193,17 @@
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
-    <message id="topmenu-about">
+    <message id="top-menu-about">
         <location filename="../qml/TopMenu.qml" line="34"/>
         <source>About %1</source>
         <translation>About %1</translation>
     </message>
-    <message id="topmenu-settings">
+    <message id="top-menu-settings">
         <location filename="../qml/TopMenu.qml" line="40"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
-    <message id="topmenu-reload">
+    <message id="top-menu-reload">
         <location filename="../qml/TopMenu.qml" line="46"/>
         <source>Reload</source>
         <translation>Reload</translation>
