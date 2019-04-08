@@ -393,7 +393,6 @@ Page {
                             interval: 500
                             repeat: false
                             onTriggered: {
-                                _startSeek = false
                                 _seek(positionSlider.sliderValue)
                             }
                         }
