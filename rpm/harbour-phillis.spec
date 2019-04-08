@@ -17,7 +17,7 @@ Summary:    Unofficial Sailfish OS client for Pornhub
 Version:    0.2
 Release:    1
 Group:      Applications/Multimedia
-License:    LICENSE
+License:    MIT
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-phillis.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

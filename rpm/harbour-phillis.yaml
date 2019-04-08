@@ -6,7 +6,7 @@ Release: 1
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
 Group: Applications/Multimedia
 #URL: http://example.org/
-License: LICENSE
+License: MIT
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources:
