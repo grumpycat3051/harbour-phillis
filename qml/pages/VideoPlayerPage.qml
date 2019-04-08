@@ -185,15 +185,8 @@ Page {
                 break
             }
 
-            // apparently isPlaying isn't updated here yet, sigh
-//            console.debug("isPlaying=" + isPlaying)
-
             _preventBlanking(playbackState === MediaPlayer.PlayingState)
         }
-
-//        onVolumeChanged: {
-//            console.debug("media player volume=" + volume)
-//        }
     }
 
 
@@ -218,7 +211,6 @@ Page {
 
         Rectangle {
             id: seekRectangle
-//            color: Theme.rgba(Theme.secondaryColor, 0.5)
             color: "white"
             width: Theme.horizontalPageMargin * 2 + seekLabel.width
             height: 2*Theme.fontSizeExtraLarge
@@ -304,7 +296,6 @@ Page {
 
                 switch (seekType) {
                 case 0: { // position
-
                         var skipSeconds = computePositionSeek(dx)
                         if (Math.abs(skipSeconds) >= 3) { // prevent small skips
                             var streamPosition = Math.floor(Math.max(0, Math.min(streamPositonS + skipSeconds, streamDurationS)))
@@ -346,28 +337,11 @@ Page {
                 initialVolume = 0
             }
 
-//            onEntered: {
-//                console.debug("entered")
-//            }
-
-//            onExited: {
-//                console.debug("exited")
-//                e.accepted = true
-//            }
-
             onPressAndHold: function (e) {
                 console.debug("onPressAndHold")
                 e.accepted = true
                 held = true
             }
-
-//            onClicked: function (e) {
-//                console.debug("clicked")
-//                e.accepted = true
-
-//                seekRectangle.visible = false
-//                controlPanel.open = !controlPanel.open
-//            }
 
             function computePositionSeek(dx) {
                 var sign = dx < 0 ? -1 : 1
