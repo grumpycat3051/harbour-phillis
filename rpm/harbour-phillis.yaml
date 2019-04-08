@@ -1,6 +1,6 @@
 Name: harbour-phillis
 Summary: Unofficial Sailfish OS client for Pornhub
-Version: 0.2
+Version: 0.2.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
@@ -12,7 +12,7 @@ License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Unofficial Sailfish OS client for Pornhub
+  Unofficial Sailfish OS client for the adult content website Pornhub
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution

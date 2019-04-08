@@ -14,7 +14,7 @@ Name:       harbour-phillis
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Unofficial Sailfish OS client for Pornhub
-Version:    0.2
+Version:    0.2.1
 Release:    1
 Group:      Applications/Multimedia
 License:    MIT
@@ -32,7 +32,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Unofficial Sailfish OS client for Pornhub
+Unofficial Sailfish OS client for the adult content website Pornhub
 
 
 %prep
