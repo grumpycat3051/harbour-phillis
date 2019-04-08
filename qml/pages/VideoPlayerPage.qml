@@ -457,7 +457,7 @@ Page {
                             IconButton {
                                 icon.source: isPlaying
                                              ? "image://theme/icon-m-pause"
-                                             : (mediaplayer.playbackState === MediaPlayer.EndOfMedia
+                                             : (mediaplayer.status === MediaPlayer.EndOfMedia
                                                 ? "image://theme/icon-m-reload"
                                                 : "image://theme/icon-m-play")
                                 anchors.verticalCenter: parent.verticalCenter
