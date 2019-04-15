@@ -359,7 +359,7 @@
         <translation>worst quality (smallest)</translation>
     </message>
     <message id="lock-screen-page-pin-placeholder">
-        <location filename="../qml/pages/LockScreenPage.qml" line="64"/>
+        <location filename="../qml/pages/LockScreenPage.qml" line="65"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>

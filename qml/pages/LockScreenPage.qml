@@ -28,6 +28,7 @@ import Sailfish.Silica 1.0
 Page {
     readonly property bool isLockScreenPage: true
     backNavigation: false
+    property bool _pausedVideo: value
 
     SilicaFlickable {
         anchors.fill: parent
@@ -71,6 +72,19 @@ Page {
                     focus: true
                 }
             }
+        }
+    }
+
+    Component.onCompleted: {
+        if (window.videoPlayerPage) {
+            _pausedVideo = true
+            window.videoPlayerPage.pause()
+        }
+    }
+
+    Component.onDestruction: {
+        if (_pausedVideo && window.videoPlayerPage) {
+            window.videoPlayerPage.resume()
         }
     }
 }
