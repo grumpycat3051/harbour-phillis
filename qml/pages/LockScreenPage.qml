@@ -28,7 +28,7 @@ import Sailfish.Silica 1.0
 Page {
     readonly property bool isLockScreenPage: true
     backNavigation: false
-    property bool _pausedVideo: value
+    property bool _pausedVideo: false
 
     SilicaFlickable {
         anchors.fill: parent
