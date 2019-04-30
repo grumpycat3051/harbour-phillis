@@ -23,7 +23,6 @@
 
 #include <QtQuick>
 
-#include <QDir>
 #include <QNetworkAccessManager>
 
 #include <sailfishapp.h>
@@ -62,9 +61,6 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType<QuickApp>(PHILLIS_NAMESPACE, 1, 0, "App", appProvider);
     qmlRegisterUncreatableType<QNetworkAccessManager>(PHILLIS_NAMESPACE, 1, 0, "NAM", QStringLiteral("QML warnings"));
     qmlRegisterUncreatableType<QuickCookieJar>(PHILLIS_NAMESPACE, 1, 0, "CookieJar", QStringLiteral("QML warnings"));
-
-    // remove obsolete data
-    QDir(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QStringLiteral("/youtube-dl")).removeRecursively();
 
     QNetworkAccessManager nam;
     QuickHttp::SetNetworkAccessManager(&nam);
