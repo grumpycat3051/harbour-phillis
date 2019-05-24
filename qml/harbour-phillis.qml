@@ -40,8 +40,11 @@ ApplicationWindow
     property var videoPlayerPage
     property string loginToken
     property string logoutToken
-    readonly property var logoutTokenRegex: new RegExp("href=\"/user/logout\\?token=([^\"]+)\"")
-    readonly property var loginTokenRegex: new RegExp("<input\\s+type=\"hidden\"\\s+name=\"token\"\\s+value=\"([^\"]+)\"\\s*/>")
+    readonly property string username: _username
+    property string _username
+    readonly property var logoutTokenRegex: new RegExp("href=[\"']/user/logout\\?token=([^\"']+)[\"']")
+    readonly property var loginTokenRegex: new RegExp("<input\\s+type=[\"']hidden[\"']\\s+name=[\"']token[\"']\\s+value=[\"']([^\"']+)[\"']\\s*/>")
+    readonly property var usernameRegex: new RegExp("<li\\s+class=[\"']profile[\"'].*?>\\s*<a\\s+.*?href=[\"']/users/([^\"']+)(/[^\"']*)?[\"'].*?>")
     readonly property bool isUserLoggedIn: _userIsLoggedIn
     property bool _userIsLoggedIn: false
     property string pin
@@ -66,6 +69,7 @@ ApplicationWindow
                     case actionLogout:
                         _userIsLoggedIn = false
                         loginToken = ""
+                        _username = ""
                         var line = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
                         scanForLoginTokenInLine(line)
                         break
@@ -381,7 +385,15 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
         return false
     }
 
+    function scanForUsernameInLine(line) {
+        var usernameMatch = usernameRegex.exec(line)
+        if (usernameMatch) {
+            _username = usernameMatch[1]
+            return true
+        }
 
+        return false
+    }
 
     function logout() {
         _action = actionLogout
@@ -415,6 +427,14 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
                 console.debug("logout token=" + logoutToken)
             } else {
                 console.debug("logout token not found despite being logged in")
+            }
+
+            if (!_username) {
+                if (scanForUsernameInLine(htmlLine)) {
+                    console.debug("username=" + _username)
+                } else {
+                    console.debug("username not found despite being logged in")
+                }
             }
         } else {
             if (scanForLoginTokenInLine(htmlLine)) {

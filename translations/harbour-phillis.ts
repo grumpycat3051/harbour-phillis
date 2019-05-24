@@ -4,27 +4,27 @@
 <context>
     <name></name>
     <message id="format-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="86"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
         <source>Format</source>
         <translation>Format</translation>
     </message>
     <message id="login-succes-message">
-        <location filename="../qml/harbour-phillis.qml" line="79"/>
+        <location filename="../qml/harbour-phillis.qml" line="83"/>
         <source>Login success</source>
         <translation>Login success</translation>
     </message>
     <message id="error-message-initial-request-failed">
-        <location filename="../qml/harbour-phillis.qml" line="116"/>
+        <location filename="../qml/harbour-phillis.qml" line="120"/>
         <source>Initial loading of website failed</source>
         <translation>Initial loading of website failed</translation>
     </message>
     <message id="setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="225"/>
+        <location filename="../qml/harbour-phillis.qml" line="229"/>
         <source>Please enter your online trading PIN</source>
         <translation>Please enter your online trading PIN</translation>
     </message>
     <message id="error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="337"/>
+        <location filename="../qml/harbour-phillis.qml" line="341"/>
         <source>Request failed</source>
         <translation>Request failed</translation>
     </message>
@@ -69,127 +69,127 @@
         <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="settings-page-network-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="53"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="56"/>
         <source>Network</source>
         <translation>Network</translation>
     </message>
     <message id="settings-page-network-connection-type">
-        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
         <source>Network connection type</source>
         <translation>Network connection type</translation>
     </message>
     <message id="settings-page-network-connection-autodetect">
-        <location filename="../qml/pages/SettingsPage.qml" line="64"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
         <source>Autodetect</source>
         <translation>Autodetect</translation>
     </message>
     <message id="settings-page-network-connection-broadband">
-        <location filename="../qml/pages/SettingsPage.qml" line="68"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>Broadband</source>
         <translation>Broadband</translation>
     </message>
     <message id="settings-page-network-connection-mobile">
-        <location filename="../qml/pages/SettingsPage.qml" line="72"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
         <source>Mobile</source>
         <translation>Mobile</translation>
     </message>
     <message id="settings-page-network-broadband-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="94"/>
         <source>Broadband</source>
         <translation>Broadband</translation>
     </message>
     <message id="settings-page-network-mobile-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="98"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="101"/>
         <source>Mobile</source>
         <translation>Mobile</translation>
     </message>
     <message id="settings-page-content-preferences-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="105"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="108"/>
         <source>Content Preferences</source>
         <translation>Content Preferences</translation>
     </message>
     <message id="settings-page-content-preferences-gay-only-switch-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="114"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="117"/>
         <source>Gay Only</source>
         <translation>Gay Only</translation>
     </message>
     <message id="settings-page-content-preferences-gay-only-switch-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="116"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="119"/>
         <source>Only show gay categories and videos</source>
         <translation>Only show gay categories and videos</translation>
     </message>
     <message id="settings-page-playback-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="133"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="136"/>
         <source>Playback</source>
         <translation>Playback</translation>
     </message>
     <message id="settings-page-playback-pause-on-device-lock-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="138"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="141"/>
         <source>Pause playback on device lock</source>
         <translation>Pause playback on device lock</translation>
     </message>
     <message id="settings-page-playback-pause-if-cover-page-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="148"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="151"/>
         <source>Pause playback when the cover page is shown</source>
         <translation>Pause playback when the cover page is shown</translation>
     </message>
     <message id="settings-page-display">
-        <location filename="../qml/pages/SettingsPage.qml" line="158"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
         <source>Display</source>
         <translation>Display</translation>
     </message>
     <message id="settings-page-display-categories-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="165"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="168"/>
         <source>Categories per row</source>
         <translation>Categories per row</translation>
     </message>
     <message id="settings-page-display-pornstars-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="190"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="193"/>
         <source>Pornstars per row</source>
         <translation>Pornstars per row</translation>
     </message>
     <message id="settings-page-access">
-        <location filename="../qml/pages/SettingsPage.qml" line="213"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="216"/>
         <source>Access</source>
         <translation>Access</translation>
     </message>
     <message id="settings-page-access-restrict-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="218"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="221"/>
         <source>Require a PIN to access the app</source>
         <translation>Require a PIN to access the application</translation>
     </message>
     <message id="settings-page-access-restrict-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="220"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="223"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
         <translation>Protect against accidently accessing the application. The PIN will be stored as plain text the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</translation>
     </message>
     <message id="settings-page-access-require-pin-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="239"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="settings-page-access-require-pin-placeholder">
-        <location filename="../qml/pages/SettingsPage.qml" line="238"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="241"/>
         <source>Enter four or more digits</source>
         <translation>Enter four or more digits</translation>
     </message>
     <message id="settings-page-access-lock-screen-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="254"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="257"/>
         <source>Lock screen text</source>
         <translation>Lock screen text</translation>
     </message>
     <message id="settings-page-account-username">
-        <location filename="../qml/pages/SettingsPage.qml" line="272"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="275"/>
         <source>Username</source>
         <translation>Username</translation>
     </message>
     <message id="settings-page-account-auto-login">
-        <location filename="../qml/pages/SettingsPage.qml" line="298"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="301"/>
         <source>Login on application start</source>
         <translation>Login on application start</translation>
     </message>
     <message id="settings-page-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
@@ -249,7 +249,7 @@
         <translation>Accept</translation>
     </message>
     <message id="settings-page-account">
-        <location filename="../qml/pages/SettingsPage.qml" line="267"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="270"/>
         <source>Account</source>
         <translation>Account</translation>
     </message>

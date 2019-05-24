@@ -144,8 +144,8 @@ Page {
     }
 
     Connections {
-        target: settingAccountUsername
-        onValueChanged: _updateUserModel()
+        target: window
+        onUsernameChanged: _updateUserModel()
     }
 
 
@@ -290,11 +290,11 @@ Page {
 
     function _updateUserModel() {
         userModel.clear()
-        if (settingAccountUsername.value) {
+        if (window.username) {
             userModel.append({
                                  //% "Favorites"
                                  title: qsTrId("start-page-user-videos-favorites"),
-                                 relativeUrl: "/users/" + settingAccountUsername.value + "/videos/favorites",
+                                 relativeUrl: "/users/" + encodeURIComponent(window.username) + "/videos/favorites",
                                  iconName: "heart-filled-white.png",
                              })
         }
