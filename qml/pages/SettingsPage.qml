@@ -30,6 +30,9 @@ import ".."
 Page {
     id: root
 
+    Component.onDestruction: {
+        settings.sync()
+    }
 
     SilicaFlickable {
         anchors.fill: parent
