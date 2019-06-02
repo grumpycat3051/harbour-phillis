@@ -51,10 +51,13 @@ Page {
     property bool _isFavorite: false
     property int _action: -1
     property string _ratingToken
+
     readonly property int actionVoteUp: 0
     readonly property int actionVoteDown: 1
     readonly property int actionToggleFavorite: 2
 
+    property string _modelUrl
+    property string _modelName
 
 
     Http {
@@ -507,6 +510,23 @@ Page {
                             spacing: Theme.paddingLarge
 
                             IconButton {
+                                visible: _modelName && _modelUrl
+                                icon.width: Theme.iconSizeSmallPlus
+                                icon.height: Theme.iconSizeSmallPlus
+                                icon.source: "image://theme/icon-m-person"
+                                anchors.verticalCenter: parent.verticalCenter
+                                onClicked: {
+                                    pageStack.replace(
+                                                Qt.resolvedUrl("VideosPage.qml"),
+                                                {
+                                                    //% "%1's Videos"
+                                                    videosUrl: Constants.baseUrl + _modelUrl + "/videos",
+                                                    title: qsTrId("model-videos-page-title").arg(_modelName)
+                                                })
+                                }
+                            }
+
+                            IconButton {
                                 visible: false && window.isUserLoggedIn && _ratingToken
                                 icon.width: Theme.iconSizeSmallPlus
                                 icon.height: Theme.iconSizeSmallPlus
@@ -684,11 +704,21 @@ Page {
         var videoFormatsRegex = new RegExp("^\\s*var\\s+flashvars_\\d+\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
         var ratingRegex = new RegExp("^\\s*var\\s+WIDGET_RATINGS_LIKE_FAV\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
         var ratingTokenRegex = new RegExp("^\\s*WIDGET_RATINGS_LIKE_FAV.token\\s*=\\s*\"(.+?)\"")
+        var modelRegex = new RegExp("<a\\s+.*?href=[\"']([^\"']+)[\"']\\s+class=[\"']bolded[\"'][^>]*>([^<]+)</a>")
+        /*class="bolded"
+                <div class="usernameWrap clearfix" data-type="user" data-userid="313532711" data-liu-user="0" data-json-url="/user/box?id=313532711&amp;token=MTU1OTQ5NzExMi0HQ8Bu2IQ-Df8mIbhL2eVzXWjtLcwn66zG4l5w1MOT7zo7-UuNfgcmdIgPrInEUHMYGsk-SQZ-WxR0KWR_KI4." data-disable-popover="0">
+                    <a rel="" href="/model/yummy-couple"  class="bolded">Yummy Couple</a>
+                <div class="avatarPosition"></div>
+
+                <a rel="" href="/pornstar/leolulu"  class="bolded">Leolulu</a>
+        */
         var hasFoundSessionInfo = false
         // WIDGET_RATINGS_LIKE_FAV.token = "MTU1NDM4MTkwNB_j3wXL9yAhG4cE4CAfoYXshRU63e1Q14DWT8QqCmcgcRjqdwcmutv0HXoEuUowLgHVkxptmjxQ3Ep60i8qbYc." </script>
         _ratingToken = ""
         _isFavorite = false
-        var want = 4
+        _modelUrl = ""
+        _modelName = ""
+        var want = 5
         var lines = data.split('\n');
         for (var i = 0; i < lines.length && want > 0; ++i) {
             var videoFormatsMatch = videoFormatsRegex.exec(lines[i])
@@ -764,6 +794,14 @@ Page {
                         if (!hasFoundSessionInfo && window.updateSessionLine(lines[i])) {
                             --want
                             hasFoundSessionInfo = true
+                        }
+
+                        var modelMatch = modelRegex.exec(lines[i])
+                        if (modelMatch) {
+                            --want
+                            _modelUrl = modelMatch[1]
+                            _modelName = modelMatch[2]
+                            console.debug("model name=" + _modelName + " model url=" + _modelUrl)
                         }
                     }
                 }

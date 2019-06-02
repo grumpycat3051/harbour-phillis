@@ -363,5 +363,10 @@
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
+    <message id="model-videos-page-title">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="524"/>
+        <source>%1&apos;s Videos</source>
+        <translation>%1&apos;s Videos</translation>
+    </message>
 </context>
 </TS>
