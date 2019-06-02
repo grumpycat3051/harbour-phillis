@@ -219,7 +219,7 @@ Page {
             TextSwitch {
                 //% "Require a PIN to access the app"
                 text: qsTrId("settings-page-access-restrict-text")
-                //% "Protect against accidently accessing the application. The PIN will be stored as plain text the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application."
+                //% "Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application."
                 description: qsTrId("settings-page-access-restrict-description")
                 checked: settingAccessRestrict.value
                 onClicked: {

@@ -160,8 +160,8 @@
     </message>
     <message id="settings-page-access-restrict-description">
         <location filename="../qml/pages/SettingsPage.qml" line="223"/>
-        <source>Protect against accidently accessing the application. The PIN will be stored as plain text the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
-        <translation>Protect against accidently accessing the application. The PIN will be stored as plain text the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</translation>
+        <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
+        <translation>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</translation>
     </message>
     <message id="settings-page-access-require-pin-label">
         <location filename="../qml/pages/SettingsPage.qml" line="239"/>
