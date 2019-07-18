@@ -43,7 +43,6 @@ CoverBackground {
             // NOTE: the cover page will be active if the app menu is open
             // NOTE: the cover page will go though an activating->active->deactivating->inactive
             //       cycle if the device comes out of lock
-            //sqlModel.select = ""
             if (settingPlaybackPauseInCoverMode.value) {
                 if (window.videoPlayerPage) {
                     _pausedVideo = true
