@@ -124,12 +124,12 @@ Page {
             iconName: "rss.png"
         }
 
-        ListElement {
-            //% "Alphabetical"
-            title: qsTrId("start-page-pornstars-alphabetical")
-            relativeUrl: "/pornstars?o=a"
-            iconName: "sort.png"
-        }
+//        ListElement {
+//            //% "Alphabetical"
+//            title: qsTrId("start-page-pornstars-alphabetical")
+//            relativeUrl: "/pornstars?o=a"
+//            iconName: "sort.png"
+//        }
 
         ListElement {
             //% "Number of Videos"
@@ -153,6 +153,23 @@ Page {
     Connections {
         target: window
         onUsernameChanged: _updateUserModel()
+    }
+
+    Http {
+        id: http
+
+        onStatusChanged: {
+            switch (status) {
+            case Http.StatusCompleted:
+                console.debug("completed error=" + error)
+                if (Http.ErrorNone === error) {
+                    _parseCategories(data, true)
+                } else {
+                    window.downloadError(url, error, errorMessage)
+                }
+                break
+            }
+        }
     }
 
 
@@ -197,6 +214,34 @@ Page {
                                 }
                             }
                         }
+
+                        SearchField {
+                            width: parent.width
+                            //% "Search"
+                            placeholderText: qsTrId("start-page-search-placeholder")
+                            EnterKey.onClicked: {
+                                if (text) {
+                                    pageStack.push(Qt.resolvedUrl("VideosPage.qml"),
+                                                   {
+                                                       title: text,
+                                                       videosUrl: Constants.baseUrl + "/video/search?search=" + encodeURIComponent(text.toLowerCase())
+                                                   })
+                                }
+                            }
+                        }
+
+//                        SearchField {
+//                            width: parent.width
+//                            //% "Search"
+//                            placeholderText: qsTrId("start-page-search-placeholder")
+//                            EnterKey.onClicked: {
+//                                if (text) {
+//                                    var url = Constants.baseUrl + "/video/search_autocomplete?pornstars=true&orientation=straight&alt=0&" + App.urlEncode({ q: text })
+//                                    http.get(url)
+//                                    //https://www.pornhub.com/video/search_autocomplete?pornstars=true&token=MTU2MzU1NDI5NVwIsVxo8VXICaCvKzKvQQ6N0KmPJipybpveKwVAB1vu0zIJTA0ZB1Dwg5_vLDe4cRNJG-jkXw1vikaHZIEgjwE.&orientation=straight&q=ab&alt=0
+//                                }
+//                            }
+//                        }
                     }
                 }
 
@@ -245,6 +290,21 @@ Page {
                                 }
                             }
                         }
+
+                        SearchField {
+                            width: parent.width
+                            //% "Search"
+                            placeholderText: qsTrId("start-page-search-placeholder")
+                            EnterKey.onClicked: {
+                                if (text) {
+                                    pageStack.push(Qt.resolvedUrl("PornstarsPage.qml"),
+                                                   {
+                                                       pornstarsUrl: Constants.baseUrl + "/pornstars/search?search=" + encodeURIComponent(text.toLowerCase()),
+                                                       title: text
+                                                   })
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -271,22 +331,6 @@ Page {
                                 }
                             }
                         }
-                    }
-                }
-            }
-
-
-            SearchField {
-                width: parent.width
-                //% "Search
-                placeholderText: qsTrId("start-page-search-placeholder")
-                EnterKey.onClicked: {
-                    if (text) {
-                        pageStack.push(Qt.resolvedUrl("VideosPage.qml"),
-                                       {
-                                           title: text,
-                                           videosUrl: Constants.baseUrl + "/video/search?search=" + encodeURIComponent(text.toLowerCase())
-                                       })
                     }
                 }
             }

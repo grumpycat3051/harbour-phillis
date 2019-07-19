@@ -313,23 +313,19 @@
         <source>Most Subscribed</source>
         <translation>Most Subscribed</translation>
     </message>
-    <message id="start-page-pornstars-alphabetical">
-        <location filename="../qml/pages/StartPage.qml" line="129"/>
-        <source>Alphabetical</source>
-        <translation>Alphabetical</translation>
-    </message>
     <message id="start-page-pornstars-no-videos">
         <location filename="../qml/pages/StartPage.qml" line="136"/>
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
     <message id="start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="282"/>
+        <location filename="../qml/pages/StartPage.qml" line="221"/>
+        <location filename="../qml/pages/StartPage.qml" line="297"/>
         <source>Search</source>
         <translation>Search</translation>
     </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="303"/>
+        <location filename="../qml/pages/StartPage.qml" line="347"/>
         <source>Favorites</source>
         <translation>Favorites</translation>
     </message>
@@ -339,7 +335,7 @@
         <translation>Filter</translation>
     </message>
     <message id="bottom-menu-load-more">
-        <location filename="../qml/pages/PornstarsPage.qml" line="101"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="102"/>
         <source>Load more</source>
         <translation>Load more</translation>
     </message>

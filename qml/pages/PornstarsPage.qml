@@ -35,6 +35,7 @@ Page {
     property int _page: 0
     property real _targetImageHeight: Theme.itemSizeHuge
     readonly property real _targetCellWidth: width / settingDisplayPornstarsPerRow.value
+    property var _pornstars: []
 
     ListModel {
         id: model
@@ -88,8 +89,8 @@ Page {
         VerticalScrollDecorator {}
         TopMenu {
             reloadCallback: function () {
+                _pornstars = []
                 _reload = true
-                model.clear()
                 load()
             }
         }
@@ -240,7 +241,7 @@ Page {
         window.updateSessionHtml(data)
         var pornstars = []
         var pornstarsRegex = new RegExp("<li>\\s*<div class=\"wrap\">\\s*<div class=\"subscribe-to-pornstar-icon display-none\">(.+?)</li>", "g")
-        var pornstarDataRegex = new RegExp("<a\\s+.*?href=\"/pornstar/(.+?)\".*?>.*?<span\\s+class=\"rank_number\">\\s*(\\d+)\\s*</span>.*?<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<span\\s+class=\"videosNumber\">\\s*(\\d+)\\s*Videos\\s+(\\S+)\\s+views\\s*</span>")
+        var pornstarDataRegex = new RegExp("<a\\s+.*?href=\"/pornstar/(.+?)\".*?>.*?<span\\s+class=\"rank_number\">\\s*(\\d+)\\s*</span>.*?<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<span\\s+class=\"videosNumber\">\\s*(\\d+)\\s*Videos(?:\\s+(\\S+)\\s+views\\s*</span>|.*?</span>.*?<span class=\"pstarViews\">\\s*(\\S+)\\s+views\\s*</span>)")
         var junkRegex = new RegExp("\\(|\\)|,|\\.|<.+?>|\\s+", "g")
 
         var nextRegex = new RegExp("<li\\s+class=\"page_next\">\\s*<a href=\"(.+?)\".*?>.*?</li>")
@@ -270,6 +271,8 @@ Page {
 
         var hasNextPage = !!nextRegex.exec(data)
 
+        _pornstars = _pornstars.concat(pornstars)
+
         if (pornstars.length > 0) {
 
             if (storeInCache) {
@@ -285,13 +288,14 @@ Page {
 
 //            console.debug("adding " + (videos.length-videosToSkip) + " videos")
             thumbnailSizeDetector.source = pornstars[0].pornstar_thumbnail
-
-            for (var i = 0; i < pornstars.length; ++i) {
-                var item = pornstars[i]
-                model.append(item)
-            }
         } else {
             console.debug(data)
+        }
+
+        model.clear()
+        for (var i = 0; i < _pornstars.length; ++i) {
+            var item = _pornstars[i]
+            model.append(item)
         }
     }
 
