@@ -733,20 +733,14 @@ Page {
                     for (var j = 0; j < mediaDefinitions.length; ++j) {
                         var def = mediaDefinitions[j]
                         if (def.videoUrl) {
-                            var height = parseInt(def.quality)
-                            var width = _selectFormatWidthFromHeight(height)
-                            var formatId = _selectFormatIdFromHeight(height)
                             var format = {
-                                format_quality: def.quality,
+                                format_quality: parseInt(def.quality),
                                 format_url: def.videoUrl,
-                                format_extension: def.format,
-                                format_height: height,
-                                format_width: width,
-                                format_id: formatId,
+                                format_extension: def.format
                             }
 
                             formats.push(format)
-                            console.debug("added quality=" + format.format_quality + " height=" + format.format_height + " ext=" + format.format_extension + " url=" + format.format_url)
+                            console.debug("added quality=" + format.format_quality + " ext=" + format.format_extension + " url=" + format.format_url)
                         }
                     }
 
@@ -881,20 +875,21 @@ Page {
         return Constants.formatUnknown
     }
 
-    function _selectFormatWidthFromHeight(height) {
-        if (height <= 240) {
-            return 320
+    function _getAreaFromFormatQuality(q) {
+        var targetArea = 1080*1920
+        switch (q) {
+        case 720:
+            targetArea = 720*1280
+            break
+        case 480:
+            targetArea = 480*640
+            break
+        case 240:
+            targetArea = 240*320
+            break
         }
 
-        if (height <= 480) {
-            return 640
-        }
-
-        if (height <= 720) {
-            return 1280
-        }
-
-        return 1920
+        return targetArea
     }
 
     function _findBestFormat(formatId) {
@@ -904,7 +899,7 @@ Page {
             formatIndex = 0
             for (var i = 1; i < _formats.length; ++i) {
                 var f = _formats[i]
-                if (f.format_height < best.format_height) {
+                if (f.format_quality < best.format_quality) {
                     best = f;
                     formatIndex = i;
                 }
@@ -914,7 +909,7 @@ Page {
             formatIndex = 0
             for (var i = 1; i < _formats.length; ++i) {
                 var f = _formats[i]
-                if (f.format_height > best.format_height) {
+                if (f.format_quality > best.format_quality) {
                     best = f;
                     formatIndex = i;
                 }
@@ -923,35 +918,21 @@ Page {
             // try to find exact match
             for (var i = 0; i < _formats.length; ++i) {
                 var f = _formats[i]
-                if (f.format_id === formatId) {
+                if (f.format_quality === formatId) {
                     formatIndex = i
                     break
                 }
             }
 
             if (formatIndex === -1) {
-                var targetArea = 1080*1920
-                switch (formatId) {
-                case Constants.format1080:
-                    targetArea = 1080*1920
-                    break
-                case Constants.format720:
-                    targetArea = 720*1280
-                    break
-                case Constants.format480:
-                    targetArea = 480*640
-                    break
-                case Constants.format240:
-                    targetArea = 240*320
-                    break
-                }
+                var targetArea = _getAreaFromFormatQuality(formatId)
 
                 formatIndex = 0
                 var f = _formats[0]
-                var bestdelta = Math.abs(f.format_width * f.format_height * - targetArea)
+                var bestdelta = Math.abs(_getAreaFromFormatQuality(f.format_quality) - targetArea)
                 for (var i = 1; i < _formats.length; ++i) {
                     f = _formats[i]
-                    var delta = Math.abs(f.format_width * f.format_height * - targetArea)
+                    var delta = Math.abs(_getAreaFromFormatQuality(f.format_quality) - targetArea)
                     if (delta < bestdelta) {
                         bestdelta = delta;
                         formatIndex = i;
