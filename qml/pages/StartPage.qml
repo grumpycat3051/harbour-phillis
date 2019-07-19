@@ -61,6 +61,13 @@ Page {
             relativeUrl: "/video?o=tr"
             iconName: "thumbs-up-outlined.png"
         }
+
+        ListElement {
+            //% "Popular Homemade"
+            title: qsTrId("start-page-videos-popular-homemade")
+            relativeUrl: "/video?p=homemade&o=tr"
+            iconName: "video-player.png"
+        }
     }
 
     ListModel {

@@ -273,58 +273,63 @@
         <source>Top Rated</source>
         <translation>Top Rated</translation>
     </message>
+    <message id="start-page-videos-popular-homemade">
+        <location filename="../qml/pages/StartPage.qml" line="67"/>
+        <source>Popular Homemade</source>
+        <translation>Popular Homemade</translation>
+    </message>
     <message id="start-page-categories-popular">
-        <location filename="../qml/pages/StartPage.qml" line="70"/>
+        <location filename="../qml/pages/StartPage.qml" line="77"/>
         <source>Popular</source>
         <translation>Popular</translation>
     </message>
     <message id="start-page-categories-alphabetical">
-        <location filename="../qml/pages/StartPage.qml" line="77"/>
+        <location filename="../qml/pages/StartPage.qml" line="84"/>
         <source>Alphabetical</source>
         <translation>Alphabetical</translation>
     </message>
     <message id="start-page-categories-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="84"/>
+        <location filename="../qml/pages/StartPage.qml" line="91"/>
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
     <message id="start-page-pornstars-most-popular">
-        <location filename="../qml/pages/StartPage.qml" line="94"/>
+        <location filename="../qml/pages/StartPage.qml" line="101"/>
         <source>Most Popular</source>
         <translation>Most Popular</translation>
     </message>
     <message id="start-page-pornstars-top-trending">
-        <location filename="../qml/pages/StartPage.qml" line="101"/>
+        <location filename="../qml/pages/StartPage.qml" line="108"/>
         <source>Top Trending</source>
         <translation>Top Trending</translation>
     </message>
     <message id="start-page-pornstars-most-viewed">
-        <location filename="../qml/pages/StartPage.qml" line="108"/>
+        <location filename="../qml/pages/StartPage.qml" line="115"/>
         <source>Most Viewed</source>
         <translation>Most Viewed</translation>
     </message>
     <message id="start-page-pornstars-most-subscribed">
-        <location filename="../qml/pages/StartPage.qml" line="115"/>
+        <location filename="../qml/pages/StartPage.qml" line="122"/>
         <source>Most Subscribed</source>
         <translation>Most Subscribed</translation>
     </message>
     <message id="start-page-pornstars-alphabetical">
-        <location filename="../qml/pages/StartPage.qml" line="122"/>
+        <location filename="../qml/pages/StartPage.qml" line="129"/>
         <source>Alphabetical</source>
         <translation>Alphabetical</translation>
     </message>
     <message id="start-page-pornstars-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="129"/>
+        <location filename="../qml/pages/StartPage.qml" line="136"/>
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
     <message id="start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="275"/>
+        <location filename="../qml/pages/StartPage.qml" line="282"/>
         <source>Search</source>
         <translation>Search</translation>
     </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="296"/>
+        <location filename="../qml/pages/StartPage.qml" line="303"/>
         <source>Favorites</source>
         <translation>Favorites</translation>
     </message>
