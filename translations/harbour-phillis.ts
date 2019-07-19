@@ -318,11 +318,6 @@
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
-    <message id="start-page-pornstars-male">
-        <location filename="../qml/pages/StartPage.qml" line="136"/>
-        <source>Male Pornstars</source>
-        <translation>Male Pornstars</translation>
-    </message>
     <message id="start-page-search-placeholder">
         <location filename="../qml/pages/StartPage.qml" line="275"/>
         <source>Search</source>

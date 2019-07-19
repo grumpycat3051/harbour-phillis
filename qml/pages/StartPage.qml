@@ -131,12 +131,12 @@ Page {
             iconName: "video-camera.png"
         }
 
-        ListElement {
-            //% "Male Pornstars"
-            title: qsTrId("start-page-pornstars-male")
-            relativeUrl: "/pornstars?gender=male"
-            iconName: "penis.png"
-        }
+//        ListElement {
+//            //% "Male Pornstars"
+//            title: qsTrId("start-page-pornstars-male")
+//            relativeUrl: "/pornstars?gender=male"
+//            iconName: "penis.png"
+//        }
     }
 
     ListModel {
@@ -232,7 +232,7 @@ Page {
                                     pageStack.push(
                                                 Qt.resolvedUrl("PornstarsPage.qml"),
                                                 {
-                                                    pornstarsUrl: Constants.baseUrl + pornstarModel.get(index).relativeUrl,
+                                                    pornstarsUrl: Constants.baseUrl + root.prefix + pornstarModel.get(index).relativeUrl,
                                                     title: title
                                                 })
                                 }
