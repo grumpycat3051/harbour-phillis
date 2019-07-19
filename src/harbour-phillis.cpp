@@ -24,6 +24,7 @@
 #include <QtQuick>
 
 #include <QNetworkAccessManager>
+#include <QSettings>
 
 #include <sailfishapp.h>
 
@@ -31,7 +32,7 @@
 #include "QuickDownloadCache.h"
 #include "QuickApp.h"
 #include "QuickCookieJar.h"
-
+#include "QuickConfigurationValue.h"
 
 
 
@@ -51,18 +52,19 @@ static QObject *appProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
     return new QuickApp();
 }
 
-
-
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     qmlRegisterType<QuickHttp>(PHILLIS_NAMESPACE, 1, 0, "Http");
+    qmlRegisterType<QuickConfigurationValue>(PHILLIS_NAMESPACE, 1, 0, "ConfigurationValue");
     qmlRegisterSingletonType<QuickDownloadCache>(PHILLIS_NAMESPACE, 1, 0, "DownloadCache", downloadCacheProvider);
     qmlRegisterSingletonType<QuickApp>(PHILLIS_NAMESPACE, 1, 0, "App", appProvider);
     qmlRegisterUncreatableType<QNetworkAccessManager>(PHILLIS_NAMESPACE, 1, 0, "NAM", QStringLiteral("QML warnings"));
     qmlRegisterUncreatableType<QuickCookieJar>(PHILLIS_NAMESPACE, 1, 0, "CookieJar", QStringLiteral("QML warnings"));
 
     QNetworkAccessManager nam;
+    QSettings settings;
+
     QuickHttp::SetNetworkAccessManager(&nam);
     //QuickHttp::SetUserAgent("Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0");
     QuickHttp::SetUserAgent(QStringLiteral("PHillis " QT_STRINGIFY(PHILLIS_VERSION_MAJOR) "." QT_STRINGIFY(PHILLIS_VERSION_MINOR)));
@@ -70,6 +72,8 @@ int main(int argc, char *argv[])
     nam.setCookieJar(&cookieJar);
     // clear owner, else QNetworkAccessManager will delete
     cookieJar.setParent(nullptr);
+
+    QuickConfigurationValue::SetSettings(&settings);
 
 
     int result = 0;

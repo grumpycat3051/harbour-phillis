@@ -24,7 +24,6 @@
 #pragma once
 
 #include <QObject>
-#include <QVariant>
 #include <QNetworkConfigurationManager>
 
 class QuickApp : public QObject
@@ -55,8 +54,6 @@ public:
     Q_INVOKABLE bool isDir(const QString& str) const;
     Q_INVOKABLE QString replaceHtmlEntities(const QString& input);
     Q_INVOKABLE QString urlEncode(const QVariantMap& kv);
-    Q_INVOKABLE QVariant settingsRead(const QString& section, const QString& key, const QVariant& defaultValue = QVariant());
-    Q_INVOKABLE bool settingsWrite(const QString& section, const QString& key, const QVariant& value = QVariant());
 
 signals:
     void isOnBroadbandChanged();

@@ -31,7 +31,6 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QUrlQuery>
-#include <QSettings>
 
 namespace
 {
@@ -188,25 +187,4 @@ QString QuickApp::urlEncode(const QVariantMap& kv)
     }
 
     return q.toString(QUrl::FullyEncoded);
-}
-
-QVariant QuickApp::settingsRead(const QString& section, const QString& key, const QVariant& defaultValue)
-{
-    QSettings settings;
-    settings.beginGroup(section);
-    return settings.value(key, defaultValue);
-}
-
-bool QuickApp::settingsWrite(const QString& section, const QString& key, const QVariant& value)
-{
-    QSettings settings;
-    settings.beginGroup(section);
-    if (value.isValid()) {
-        settings.setValue(key, value);
-    } else {
-        settings.remove(key);
-    }
-    settings.endGroup();
-    settings.sync();
-    return QSettings::NoError == settings.status();
 }

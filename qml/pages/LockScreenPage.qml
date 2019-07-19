@@ -64,7 +64,7 @@ Page {
                     //% "PIN"
                     placeholderText: qsTrId("lock-screen-page-pin-placeholder")
                     onTextChanged: {
-                        if (text === window.pin) {
+                        if (text === settingLockScreenPin.value) {
                             pageStack.pop()
                         }
                     }

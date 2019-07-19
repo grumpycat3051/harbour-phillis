@@ -23,7 +23,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Nemo.Configuration 1.0
 import Nemo.DBus 2.0
 import Nemo.Notifications 1.0
 import grumpycat 1.0
@@ -47,8 +46,7 @@ ApplicationWindow
     readonly property var usernameRegex: new RegExp("<li\\s+class=[\"']profile[\"'].*?>\\s*<a\\s+.*?href=[\"']/users/([^\"']+)(/[^\"']*)?[\"'].*?>")
     readonly property bool isUserLoggedIn: _userIsLoggedIn
     property bool _userIsLoggedIn: false
-    property string pin
-    readonly property bool restrictAccess: settingAccessRestrict.value && pin
+    readonly property bool restrictAccess: settingAccessRestrict.value && settingLockScreenPin.value
     readonly property bool hasLoginData: settingAccountUsername.value && settingAccountPassword.value && loginToken
     readonly property bool canAutoLogin: settingAccountLoginOnAppStart.value && hasLoginData
 
@@ -130,109 +128,115 @@ ApplicationWindow
         }
     }
 
-    ConfigurationGroup {
-        id: settings
 
-        ConfigurationValue {
-            id: settingBroadbandDefaultFormat
-            defaultValue: Constants.formatBest
-            key: "/format/broadband"
+
+    ConfigurationValue {
+        id: settingBroadbandDefaultFormat
+        defaultValue: Constants.formatBest
+        key: "/format/broadband"
+    }
+
+    ConfigurationValue {
+        id: settingMobileDefaultFormat
+        defaultValue: Constants.formatWorst
+        key: "/format/mobile"
+    }
+
+    ConfigurationValue {
+        id: settingBearerMode
+        defaultValue: Constants.bearerModeAutoDetect
+        key: "/bearer/mode"
+    }
+
+    ConfigurationValue {
+        id: settingGayOnly
+        defaultValue: false
+        key: "/gay_only"
+        onValueChanged: {
+            console.debug("gay only=" + value)
         }
+    }
 
-        ConfigurationValue {
-            id: settingMobileDefaultFormat
-            defaultValue: Constants.formatWorst
-            key: "/format/mobile"
-        }
+    ConfigurationValue {
+        id: settingDisplayCategoriesPerRow
+        defaultValue: 1
+        key: "/display/categories/items_per_grid_row"
+    }
 
-        ConfigurationValue {
-            id: settingBearerMode
-            defaultValue: Constants.bearerModeAutoDetect
-            key: "/bearer/mode"
-        }
+    ConfigurationValue {
+        id: settingDisplayPornstarsPerRow
+        defaultValue: 2
+        key: "/display/pornstars/items_per_grid_row"
+    }
 
-        ConfigurationValue {
-            id: settingGayOnly
-            defaultValue: false
-            key: "/gay_only"
-        }
+    ConfigurationValue {
+        id: settingPlaybackPauseInCoverMode
+        key: "/playback/pause_in_cover_mode"
+        defaultValue: false
+    }
 
-        ConfigurationValue {
-            id: settingDisplayCategoriesPerRow
-            defaultValue: 1
-            key: "/display/categories/items_per_grid_row"
-        }
+    ConfigurationValue {
+        id: settingPlaybackPauseOnDeviceLock
+        key: "/playback/pause_on_device_lock"
+        defaultValue: true
+    }
 
-        ConfigurationValue {
-            id: settingDisplayPornstarsPerRow
-            defaultValue: 2
-            key: "/display/pornstars/items_per_grid_row"
-        }
+    ConfigurationValue {
+        id: debugApp
+        key: "/debug"
+        defaultValue: false
+    }
 
-        ConfigurationValue {
-            id: settingPlaybackPauseInCoverMode
-            key: "/playback/pause_in_cover_mode"
-            defaultValue: false
-        }
-
-        ConfigurationValue {
-            id: settingPlaybackPauseOnDeviceLock
-            key: "/playback/pause_on_device_lock"
-            defaultValue: true
-        }
-
-        ConfigurationValue {
-            id: debugApp
-            key: "/debug"
-            defaultValue: false
-        }
-
-        ConfigurationValue {
-            id: disclaimerAccepted
-            key: "/disclaimer_accepted"
-            defaultValue: false
-            onValueChanged: {
-                if (value) {
-                    pageStack.pop()
-                }
+    ConfigurationValue {
+        id: disclaimerAccepted
+        key: "/disclaimer_accepted"
+        defaultValue: false
+        onValueChanged: {
+            if (value) {
+                pageStack.pop()
             }
         }
+    }
 
-        ConfigurationValue {
-            id: settingAccountUsername
-            key: "/account/username"
-            defaultValue: ""
-        }
+    ConfigurationValue {
+        id: settingAccountUsername
+        key: "/account/username"
+        defaultValue: ""
+    }
 
-        ConfigurationValue {
-            id: settingAccountPassword
-            key: "/account/password"
-            defaultValue: ""
-        }
+    ConfigurationValue {
+        id: settingAccountPassword
+        key: "/account/password"
+        defaultValue: ""
+    }
 
-        ConfigurationValue {
-            id: settingAccountLoginOnAppStart
-            key: "/account/login_on_app_start"
-            defaultValue: true
-        }
+    ConfigurationValue {
+        id: settingAccountLoginOnAppStart
+        key: "/account/login_on_app_start"
+        defaultValue: true
+    }
 
-        ConfigurationValue {
-            id: settingAccessRestrict
-            key: "/access/restrict"
-            defaultValue: false
-        }
+    ConfigurationValue {
+        id: settingAccessRestrict
+        key: "/access/restrict"
+        defaultValue: false
+    }
 
-        ConfigurationValue {
-            id: settingAccessLockscreenText
-            key: "/access/lock_screen_text"
-            //% "Please enter your online trading PIN"
-            defaultValue: qsTrId("setting-lock-screen-text")
-        }
+    ConfigurationValue {
+        id: settingAccessLockscreenText
+        key: "/access/lock_screen/text"
+        //% "Please enter your online trading PIN"
+        defaultValue: qsTrId("setting-lock-screen-text")
+    }
+
+    ConfigurationValue {
+        id: settingLockScreenPin
+        key: "/access/lock_screen/pin"
+        defaultValue: ""
     }
 
     Component.onCompleted: {
         DownloadCache.cacheDirectory = StandardPaths.cache
-        pin = loadPin()
 
         if (!disclaimerAccepted.value) {
             pageStack.push(Qt.resolvedUrl("pages/AdultContentDisclaimerPage.qml"), {}, PageStackAction.Immediate)
@@ -459,14 +463,6 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
         }
 
         return false
-    }
-
-    function loadPin() {
-        return "" + App.settingsRead("access", "pin", "")
-    }
-
-    function savePin(pin) {
-        App.settingsWrite("access", "pin", pin)
     }
 
     function reload() {

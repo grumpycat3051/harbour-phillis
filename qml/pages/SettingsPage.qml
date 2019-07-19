@@ -30,10 +30,6 @@ import ".."
 Page {
     id: root
 
-    Component.onDestruction: {
-        settings.sync()
-    }
-
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
@@ -93,14 +89,28 @@ Page {
                 //% "Broadband"
                 label: qsTrId("settings-page-network-broadband-label")
                 format: settingBroadbandDefaultFormat.value
-                onFormatChanged: settingBroadbandDefaultFormat.value = format
+                onFormatChanged: {
+                    console.debug("broadband format=" + format)
+                    if (format !== Constants.formatUnknown) {
+                        settingBroadbandDefaultFormat.value = format
+                    }
+                }
+
+                Component.onCompleted: console.debug("broadband format=" + format)
             }
 
             FormatComboBox {
                 //% "Mobile"
                 label: qsTrId("settings-page-network-mobile-label")
                 format: settingMobileDefaultFormat.value
-                onFormatChanged: settingMobileDefaultFormat.value = format
+                onFormatChanged: {
+                    console.debug("mobile format=" + format)
+                    if (format !== Constants.formatUnknown) {
+                        settingMobileDefaultFormat.value = format
+                    }
+                }
+
+                Component.onCompleted: console.debug("mobile format=" + format)
             }
 
             SectionHeader {
@@ -117,7 +127,6 @@ Page {
                     text: qsTrId("settings-page-content-preferences-gay-only-switch-text")
                     //% "Only show gay categories and videos"
                     description: qsTrId("settings-page-content-preferences-gay-only-switch-description")
-                    automaticCheck: false
                     icon.source: "file://" + App.appDir + "/media/gay.png"
                     icon.width: Theme.iconSizeSmall
                     icon.height: Theme.iconSizeSmall
@@ -140,9 +149,9 @@ Page {
                 //% "Pause playback on device lock"
                 text: qsTrId("settings-page-playback-pause-on-device-lock-switch")
                 checked: settingPlaybackPauseOnDeviceLock.value
-                onCheckedChanged: {
+                onClicked: {
+                    settingPlaybackPauseOnDeviceLock.value = !settingPlaybackPauseOnDeviceLock.value
                     console.debug("continue playback on device lock=" + checked)
-                    settingPlaybackPauseOnDeviceLock.value = checked
                 }
             }
 
@@ -150,9 +159,9 @@ Page {
                 //% "Pause playback when the cover page is shown"
                 text: qsTrId("settings-page-playback-pause-if-cover-page-switch")
                 checked: settingPlaybackPauseInCoverMode.value
-                onCheckedChanged: {
+                onClicked: {
+                    settingPlaybackPauseInCoverMode.value = !settingPlaybackPauseInCoverMode.value
                     console.debug("continue playback in cover mode=" + checked)
-                    settingPlaybackPauseInCoverMode.value = checked
                 }
             }
 
@@ -166,7 +175,7 @@ Page {
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Categories per row"
                 label: qsTrId("settings-page-display-categories-per-grid-row")
-                text: settingDisplayCategoriesPerRow.value.toFixed(0)
+                text: settingDisplayCategoriesPerRow.value
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
                 EnterKey.onClicked: focus = false
@@ -191,7 +200,7 @@ Page {
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Pornstars per row"
                 label: qsTrId("settings-page-display-pornstars-per-grid-row")
-                text: settingDisplayPornstarsPerRow.value.toFixed(0)
+                text: settingDisplayPornstarsPerRow.value
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
                 EnterKey.onClicked: focus = false
@@ -240,13 +249,12 @@ Page {
                 //% "Enter four or more digits"
                 placeholderText: qsTrId("settings-page-access-require-pin-placeholder")
                 validator: RegExpValidator { regExp: /^\d{4,}$/ }
-                text: window.pin
+                text: settingLockScreenPin.value
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
                 EnterKey.onClicked: {
                     focus = false
-                    window.pin = text
-                    window.savePin(text)
+                    settingLockScreenPin.value = text
                 }
             }
 

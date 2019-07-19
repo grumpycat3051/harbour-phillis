@@ -22,14 +22,16 @@ CONFIG += sailfishapp
 
 HEADERS += \
     src/QuickCookieJar.h \
-    src/QuickHttp.h
+    src/QuickHttp.h \
+    src/QuickConfigurationValue.h
 HEADERS += src/QuickDownloadCache.h
 HEADERS += src/QuickApp.h
 
 
 SOURCES += src/harbour-phillis.cpp \
     src/QuickCookieJar.cpp \
-    src/QuickHttp.cpp
+    src/QuickHttp.cpp \
+    src/QuickConfigurationValue.cpp
 SOURCES +=
 SOURCES += src/QuickDownloadCache.cpp
 SOURCES += src/QuickApp.cpp
@@ -59,7 +61,7 @@ DISTFILES += \
     qml/pages/NavigationItem.qml \
     qml/pages/PornstarsPage.qml \
     qml/pages/AdultContentDisclaimerPage.qml \
-    qml/pages/LockScreenPage.qml \
+    qml/pages/LockScreenPage.qml
 
 
 
