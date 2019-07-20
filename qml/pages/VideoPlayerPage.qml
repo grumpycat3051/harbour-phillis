@@ -23,6 +23,7 @@
 
 import QtQuick 2.0
 import QtMultimedia 5.0
+import QtGraphicalEffects 1.0
 import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
@@ -58,6 +59,12 @@ Page {
 
     property string _modelUrl
     property string _modelName
+    property int _upVotes: -1
+    property int _downVotes: -1
+    property var _categories: []
+    property var _pornstars: []
+    property var _tags: []
+
 
 
     Http {
@@ -493,6 +500,8 @@ Page {
                         Row {
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: leftMargin2.right
+                            spacing: Theme.paddingMedium
+
 
                             Label {
                                 visible: videoOutput.sourceRect.width > 0 && videoOutput.sourceRect.height > 0
@@ -501,7 +510,47 @@ Page {
                                 color: Theme.highlightColor
                             }
 
+                            Row {
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: Theme.paddingSmall
+                                visible: _upVotes >= 0 && _downVotes >= 0
 
+                                Image {
+                                    width: Theme.iconSizeExtraSmall
+                                    height: Theme.iconSizeExtraSmall
+                                    source: "file://" + App.appDir + "/media/thumbs-up-filled-green.png"
+
+                                    ColorOverlay {
+                                        anchors.fill: parent
+                                        source: parent
+                                        color: Theme.primaryColor
+                                    }
+                                }
+
+                                Label {
+                                    text: _upVotes.toFixed(0)
+                                    font.pixelSize: Theme.fontSizeExtraSmall
+                                    color: Theme.highlightColor
+                                }
+
+                                Image {
+                                    width: Theme.iconSizeExtraSmall
+                                    height: Theme.iconSizeExtraSmall
+                                    source: "file://" + App.appDir + "/media/thumbs-down-filled-red.png"
+
+                                    ColorOverlay {
+                                        anchors.fill: parent
+                                        source: parent
+                                        color: Theme.primaryColor
+                                    }
+                                }
+
+                                Label {
+                                    text: _downVotes.toFixed(0)
+                                    font.pixelSize: Theme.fontSizeExtraSmall
+                                    color: Theme.highlightColor
+                                }
+                            }
                         }
 
                         Row {
@@ -509,11 +558,31 @@ Page {
                             anchors.right: rightMargin2.left
                             spacing: Theme.paddingLarge
 
+
+
+                            IconButton {
+                                visible: _categories.length > 0
+                                icon.width: Theme.iconSizeSmallPlus
+                                icon.height: Theme.iconSizeSmallPlus
+                                icon.source: "image://theme/icon-m-about"
+                                anchors.verticalCenter: parent.verticalCenter
+                                onClicked: {
+                                    pageStack.replace(
+                                                Qt.resolvedUrl("VideosPage.qml"),
+                                                {
+                                                    //% "%1's Videos"
+                                                    videosUrl: Constants.baseUrl + _modelUrl + "/videos",
+                                                    title: qsTrId("model-videos-page-title").arg(_modelName)
+                                                })
+                                }
+                            }
+
                             IconButton {
                                 visible: _modelName && _modelUrl
                                 icon.width: Theme.iconSizeSmallPlus
                                 icon.height: Theme.iconSizeSmallPlus
-                                icon.source: "image://theme/icon-m-person"
+                                //icon.source: "image://theme/icon-m-person"
+                                icon.source: "image://theme/icon-m-media-artists"
                                 anchors.verticalCenter: parent.verticalCenter
                                 onClicked: {
                                     pageStack.replace(
@@ -712,12 +781,98 @@ Page {
 
                 <a rel="" href="/pornstar/leolulu"  class="bolded">Leolulu</a>
         */
+
+
+
+        var categoriesRegex = new RegExp("<div\\s+id=\"category-box\"\\s+class=\"suggest-mini-box\">(.+?)</ul>")
+        var categoryRegex = new RegExp("<li>\\s*<button\\s+.*?data-categoryid=\"(\\d+)\".*?>\\s*</button>\\s*<button\\s+.*?>\\s*</button>([^<]+)</li>", "g")
+
+//                <div class="pornstarsWrapper">
+//                    Pornstars:&nbsp;
+//                                                        <a class="pstar-list-btn js-mxp" data-mxptype="Pornstar" data-mxptext="Ada Sanchez" data-id="64801" data-login="1" href="/pornstar/ada-sanchez">Ada Sanchez				<span class="psbox-link-container display-none"></span>
+//                            </a>
+//                                        , 					<a class="pstar-list-btn js-mxp" data-mxptype="Pornstar" data-mxptext="Ralph Long" data-id="3401" data-login="1" href="/pornstar/ralph-long">Ralph Long				<span class="psbox-link-container display-none"></span>
+//                            </a>
+//                                                                <div class="tooltipTrig suggestBtn" data-title="Add a pornstar">
+//                            <a class="add-btn-small add-pornstar-btn-2" >+ <span>Suggest</span></a>
+//                        </div>
+
+        var pornstarsRegex = new RegExp("<div\\s+class=\"pornstarsWrapper\">(.*?)</div>")
+        var pornstarRegex = new RegExp("<a\\s+.*?data-mxptext=\"(.+?)\".+?href=\"(.+?)\".*?>.+?</a>", "g")
+
+
+//                <div class="tagsWrapper">
+//                               Tags:&nbsp;
+//                               <a href="/video?c=7">big dick</a>, <a href="/video?c=26">latina</a>, <a href="/video/search?search=teengonzo">teengonzo</a>, <a href="/categories/teen">teen</a>, <a href="/video/search?search=hispanic">hispanic</a>, <a href="/video/search?search=thick">thick</a>, <a href="/video/search?search=chubby">chubby</a>, <a href="/video?c=8">big tits</a>, <a href="/video/search?search=cumshot">cumshot</a>, <a href="/video/search?search=facial">facial</a>, <a href="/categories/teen">teenager</a>, <a href="/video/search?search=young">young</a>, <a href="/video/search?search=latin">latin</a>, <a href="/video/search?search=big+boobs">big boobs</a>, <a href="/video/search?search=busty">busty</a>, <a href="/video/search?search=shaved">shaved</a>                <div class="tooltipTrig suggestBtn" data-title="Suggest Tags" >
+//                                   <a id="tagLink" class="add-btn-small">+ <span>Suggest</span></a>
+//                               </div>
+//                           </div>
+
+        var tagsRegex = new RegExp("<div\\s+class=\"tagsWrapper\">(.*?)</div>")
+        var tagRegex = new RegExp("<a\\s+href=\"(.+?)\">([^<]+)</a>", "g")
+        /*
+          <li>                                         <button type="button" class="upVote" data-categoryid="7" data-suggestcategory-url="/video/rate_category?current=7&id=206039581&value=1&token=MTU1OTU5MDIzMIy2CCnncc2t9i9ewj0WDwtEEPYZdXWI7XWtzkSc7dPVbJ1_3cxidde9lAPjk7WVwvrP4KHt2iIRwcjlVC8Hy-o."></button>                                         <button type="button" class="downVote" data-categoryid="7" data-suggestcategory-url="/video/rate_category?current=7&id=206039581&value=0&token=MTU1OTU5MDIzMIy2CCnncc2t9i9ewj0WDwtEEPYZdXWI7XWtzkSc7dPVbJ1_3cxidde9lAPjk7WVwvrP4KHt2iIRwcjlVC8Hy-o."></button>                                         Big Dick                                    </li>
+          */
         var hasFoundSessionInfo = false
         // WIDGET_RATINGS_LIKE_FAV.token = "MTU1NDM4MTkwNB_j3wXL9yAhG4cE4CAfoYXshRU63e1Q14DWT8QqCmcgcRjqdwcmutv0HXoEuUowLgHVkxptmjxQ3Ep60i8qbYc." </script>
         _ratingToken = ""
         _isFavorite = false
         _modelUrl = ""
         _modelName = ""
+        _upVotes = -1
+        _downVotes = -1
+        _categories = []
+        _pornstars = []
+        _tags = []
+
+        var oneline = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
+
+        var categoriesMatch = categoriesRegex.exec(oneline)
+        if (categoriesMatch) {
+            var categoriesData = categoriesMatch[1]
+//            console.debug(categoriesData)
+            for (var categoryMatch; (categoryMatch = categoryRegex.exec(categoriesData)) !== null; ) {
+                var categoryId = parseInt(categoryMatch[1])
+                var category = {
+                    category_id: categoryId,
+                    category_title: categoryMatch[2].trim(),
+                    category_url: Constants.baseUrl + "/video?c=" + categoryId,
+                }
+
+                _categories.push(category)
+                console.debug("adding category id=" + category.category_id)
+            }
+        }
+
+        var pornstarsMatch = pornstarsRegex.exec(oneline)
+        if (pornstarsMatch) {
+            var pornstarsData = pornstarsMatch[1]
+            for (var pornstarMatch; (pornstarMatch = pornstarRegex.exec(pornstarsData)) !== null; ) {
+                var pornstar = {
+                    pornstar_name: pornstarMatch[1],
+                    pornstar_url: Constants.baseUrl + pornstarMatch[2],
+                }
+
+                _pornstars.push(pornstar)
+                console.debug("adding pornstar name=" + pornstar.pornstar_name)
+            }
+        }
+
+        var tagsMatch = tagsRegex.exec(oneline)
+        if (tagsMatch) {
+            var tagsData = tagsMatch[1]
+            for (var tagMatch; (tagMatch = tagRegex.exec(tagsData)) !== null; ) {
+                var tag = {
+                    tag_name: tagMatch[2].trim(),
+                    tag_url: Constants.baseUrl + tagMatch[1],
+                }
+
+                _tags.push(tag)
+                console.debug("adding tag name=" + tag.tag_name)
+            }
+        }
+
+
         var want = 5
         var lines = data.split('\n');
         for (var i = 0; i < lines.length && want > 0; ++i) {
@@ -774,6 +929,10 @@ Page {
                         }
 
                         console.debug("isFavorite=" + _isFavorite)
+
+                        _upVotes = jsonObject.currentUp
+                        _downVotes = jsonObject.currentDown
+                        console.debug("upVotes=" + _upVotes + " downVotes=" + _downVotes)
 
                     } catch (error) {
                         console.debug(error)
