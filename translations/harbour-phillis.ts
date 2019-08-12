@@ -360,8 +360,8 @@
         <translation>PIN</translation>
     </message>
     <message id="model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="575"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="593"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="578"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
     </message>

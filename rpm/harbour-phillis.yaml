@@ -38,6 +38,7 @@ Requires:
   # QML Nemo plugins used
   - nemo-qml-plugin-notifications-qt5
   - nemo-qml-plugin-dbus-qt5
+  - libkeepalive
 
 # All installed files
 Files:

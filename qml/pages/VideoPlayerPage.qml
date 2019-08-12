@@ -25,6 +25,7 @@ import QtQuick 2.0
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import Sailfish.Silica 1.0
+import Nemo.KeepAlive 1.2
 import grumpycat 1.0
 import ".."
 
@@ -65,7 +66,9 @@ Page {
     property var _pornstars: []
     property var _tags: []
 
-
+    DisplayBlanking {
+        id: displayBlanking
+    }
 
     Http {
         id: http
@@ -195,7 +198,7 @@ Page {
                 break
             }
 
-            _preventBlanking(playbackState === MediaPlayer.PlayingState)
+            displayBlanking.preventBlanking = playbackState === MediaPlayer.PlayingState
         }
     }
 
@@ -662,7 +665,7 @@ Page {
 
     Component.onDestruction: {
         console.debug("destruction")
-        _preventBlanking(false)
+        displayBlanking.preventBlanking = false
         mediaplayer.pause()
         window.videoPlayerPage = null
     }
@@ -757,15 +760,6 @@ Page {
         console.debug("_forceBusyIndicator=true")
         busyTimer.restart()
         mediaplayer.seek(position)
-    }
-
-    function _preventBlanking(b) {
-        try {
-            KeepAlive.preventBlanking = b
-            console.debug("prevent blank="+KeepAlive.preventBlanking)
-        } catch (e) {
-            console.debug("prevent blanking not available")
-        }
     }
 
     function _parseVideoData(data) {

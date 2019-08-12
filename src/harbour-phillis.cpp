@@ -79,44 +79,13 @@ int main(int argc, char *argv[])
     int result = 0;
     {
         QScopedPointer<QQuickView> view(SailfishApp::createView());
-
         view->engine()->rootContext()->setContextProperty("cookieJar", &cookieJar);
-
-        QQmlComponent keepAlive(view->engine());
-        keepAlive.setData(
-"import QtQuick 2.0\n"
-"import Nemo.KeepAlive 1.1\n"
-"Item {\n"
-"   property bool preventBlanking: false\n"
-"   onPreventBlankingChanged: DisplayBlanking.preventBlanking = preventBlanking\n"
-"}\n",
-                    QString());
-        QScopedPointer<QQuickItem> item(qobject_cast<QQuickItem*>(keepAlive.create()));
-        if (item) {
-            view->engine()->rootContext()->setContextProperty("KeepAlive", item.data());
-        }
-
-        switch (keepAlive.status()) {
-        case QQmlComponent::Ready:
-            qInfo("Using Nemo.KeepAlive 1.1 DisplayBlanking.\n");
-            break;
-        default:
-            qInfo("Nemo.KeepAlive 1.1 DisplayBlanking not available.\n");
-            qDebug() << keepAlive.errors();
-            break;
-        }
-
         view->setSource(SailfishApp::pathToMainQml());
         view->requestActivate();
         view->show();
         result = app->exec();
     }
-//    QObject::connect(app.data(), &QCoreApplication::aboutToQuit, [&] {
-//        auto item = view->rootObject();
-//        if (item) {
-//            QMetaObject::invokeMethod(item, "aboutToQuit");
-//        }
-//    });
+
     return result;
 }
 

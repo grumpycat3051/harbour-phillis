@@ -24,6 +24,7 @@ Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
 Requires:   nemo-qml-plugin-notifications-qt5
 Requires:   nemo-qml-plugin-dbus-qt5
+Requires:   libkeepalive
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
