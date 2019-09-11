@@ -161,7 +161,7 @@
     <message id="settings-page-access-restrict-description">
         <location filename="../qml/pages/SettingsPage.qml" line="232"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
-        <translation>防止意外访问应用程序。  PIN 将以纯文本形式存储在应用程序配置目录中。 如果你忘记了PIN，只需删除该文件即可恢复对该应用程序的访问权限。/translation>
+        <translation>防止意外访问应用程序。  PIN 将以纯文本形式存储在应用程序配置目录中。 如果你忘记了PIN，只需删除该文件即可恢复对该应用程序的访问权限。</translation>
     </message>
     <message id="settings-page-access-require-pin-label">
         <location filename="../qml/pages/SettingsPage.qml" line="248"/>
@@ -236,7 +236,8 @@
     <message id="disclaimer-page-text1">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="62"/>
         <source>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</source>
-        <translation>此应用程序提供的内容仅适用于成年人，可能包含一些观众会觉得冒犯的图片和材料。 如果你未满18岁或者此类材料冒犯您或者您所在社区查看此类材料是非法的，请退出该网站。 以下条款和条件适用于本网站。 使用本网站即表示您同意以下条款和条件:
+        <translation>此应用程序提供的内容仅适用于成年人，可能包含一些观众会觉得冒犯的图片和材料。 如果你未满18岁或者此类材料冒犯您或者您所在社区查看此类材料是非法的，请退出该网站。 以下条款和条件适用于本网站。 使用本网站即表示您同意以下条款和条件:</translation>
+    </message>
     <message id="disclaimer-page-text2">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="75"/>
         <source>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</source>
