@@ -79,7 +79,7 @@ TRANSLATION_SOURCES += $$PWD/qml
 TRANSLATION_SOURCES += $$PWD/src
 
 TRANSLATIONS += translations/harbour-phillis.ts
-#TRANSLATIONS += translations/harbour-phillis-zh_cn.ts
+TRANSLATIONS += translations/harbour-phillis-zh_CN.ts
 
 DISTFILES += $$TRANSLATIONS
 
