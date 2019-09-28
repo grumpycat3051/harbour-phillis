@@ -119,8 +119,6 @@ Page {
                 pornstarModel.clear()
                 categoryModel.clear()
                 _reload = true
-                _pornstarThumbnailLoaded = false
-                _categoryThumbnailLoaded = false
                 load()
             }
         }
