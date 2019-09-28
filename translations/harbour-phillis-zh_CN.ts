@@ -51,7 +51,7 @@
     <message id="about-page-description-text">
         <location filename="../qml/pages/AboutPage.qml" line="114"/>
         <source>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation> %1 是一个非官方旗鱼系统 Pornhub客户端&lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
+        <translation>%1 是一个非官方旗鱼系统 Pornhub客户端&lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-privacy-text">
         <location filename="../qml/pages/AboutPage.qml" line="130"/>
@@ -254,7 +254,7 @@
         <translation>账户</translation>
     </message>
     <message id="start-page-videos-recommended">
-        <location filename="../qml/pages/StartPage.qml" line="39"/>
+        <location filename="../qml/pages/StartPage.qml" line="197"/>
         <source>Recommended</source>
         <translation>推荐</translation>
     </message>
@@ -318,34 +318,39 @@
         <source>Number of Videos</source>
         <translation>视频编号</translation>
     </message>
+    <message id="start-page-header">
+        <location filename="../qml/pages/StartPage.qml" line="192"/>
+        <source>Pornhub</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="start-page-videos-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="198"/>
+        <location filename="../qml/pages/StartPage.qml" line="210"/>
         <source>Videos</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="222"/>
-        <location filename="../qml/pages/StartPage.qml" line="300"/>
+        <location filename="../qml/pages/StartPage.qml" line="234"/>
+        <location filename="../qml/pages/StartPage.qml" line="312"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message id="start-page-categories-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="251"/>
+        <location filename="../qml/pages/StartPage.qml" line="263"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-pornstars-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="276"/>
+        <location filename="../qml/pages/StartPage.qml" line="288"/>
         <source>Pornstars</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-my-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="316"/>
+        <location filename="../qml/pages/StartPage.qml" line="328"/>
         <source>My</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="351"/>
+        <location filename="../qml/pages/StartPage.qml" line="363"/>
         <source>Favorites</source>
         <translation>收藏</translation>
     </message>
@@ -384,6 +389,21 @@
         <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s 视频</translation>
+    </message>
+    <message id="recommended-page-header">
+        <location filename="../qml/pages/RecommendedPage.qml" line="135"/>
+        <source>Recommended</source>
+        <translation type="unfinished">推荐</translation>
+    </message>
+    <message id="recommended-page-pornstars-section-header">
+        <location filename="../qml/pages/RecommendedPage.qml" line="141"/>
+        <source>Pornstars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="recommended-page-categories-section-header">
+        <location filename="../qml/pages/RecommendedPage.qml" line="197"/>
+        <source>Categories</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

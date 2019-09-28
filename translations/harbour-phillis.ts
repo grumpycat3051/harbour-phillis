@@ -254,7 +254,7 @@
         <translation>Account</translation>
     </message>
     <message id="start-page-videos-recommended">
-        <location filename="../qml/pages/StartPage.qml" line="39"/>
+        <location filename="../qml/pages/StartPage.qml" line="197"/>
         <source>Recommended</source>
         <translation>Recommended</translation>
     </message>
@@ -318,34 +318,39 @@
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
+    <message id="start-page-header">
+        <location filename="../qml/pages/StartPage.qml" line="192"/>
+        <source>Pornhub</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="start-page-videos-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="198"/>
+        <location filename="../qml/pages/StartPage.qml" line="210"/>
         <source>Videos</source>
         <translation>Videos</translation>
     </message>
     <message id="start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="222"/>
-        <location filename="../qml/pages/StartPage.qml" line="300"/>
+        <location filename="../qml/pages/StartPage.qml" line="234"/>
+        <location filename="../qml/pages/StartPage.qml" line="312"/>
         <source>Search</source>
         <translation>Search</translation>
     </message>
     <message id="start-page-categories-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="251"/>
+        <location filename="../qml/pages/StartPage.qml" line="263"/>
         <source>Categories</source>
         <translation>Categories</translation>
     </message>
     <message id="start-page-pornstars-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="276"/>
+        <location filename="../qml/pages/StartPage.qml" line="288"/>
         <source>Pornstars</source>
         <translation>Pornstars</translation>
     </message>
     <message id="start-page-my-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="316"/>
+        <location filename="../qml/pages/StartPage.qml" line="328"/>
         <source>My</source>
         <translation>My</translation>
     </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="351"/>
+        <location filename="../qml/pages/StartPage.qml" line="363"/>
         <source>Favorites</source>
         <translation>Favorites</translation>
     </message>
@@ -384,6 +389,21 @@
         <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
+    </message>
+    <message id="recommended-page-header">
+        <location filename="../qml/pages/RecommendedPage.qml" line="135"/>
+        <source>Recommended</source>
+        <translation>Recommended</translation>
+    </message>
+    <message id="recommended-page-pornstars-section-header">
+        <location filename="../qml/pages/RecommendedPage.qml" line="141"/>
+        <source>Pornstars</source>
+        <translation>Pornstars</translation>
+    </message>
+    <message id="recommended-page-categories-section-header">
+        <location filename="../qml/pages/RecommendedPage.qml" line="197"/>
+        <source>Categories</source>
+        <translation>Categories</translation>
     </message>
 </context>
 </TS>

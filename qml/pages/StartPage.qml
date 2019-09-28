@@ -34,12 +34,12 @@ Page {
 
     ListModel {
         id: videoModel
-        ListElement {
-            //% "Recommended"
-            title: qsTrId("start-page-videos-recommended")
-            relativeUrl: "/recommended"
-            iconName: "idea.png"
-        }
+//        ListElement {
+//            //% "Recommended"
+//            title: qsTrId("start-page-videos-recommended")
+//            relativeUrl: "/recommended"
+//            iconName: "idea.png"
+//        }
 
         ListElement {
             //% "Hottest"
@@ -187,6 +187,18 @@ Page {
             id: column
             width: parent.width
 
+            PageHeader {
+                //% "Pornhub"
+                title: qsTrId("start-page-header")
+            }
+
+            NavigationItem {
+                //% "Recommended"
+                title: qsTrId("start-page-videos-recommended")
+                iconName: "idea.png"
+
+                onClicked: pageStack.push(Qt.resolvedUrl("RecommendedPage.qml"))
+            }
 
             ExpandingSectionGroup {
                 currentIndex: -1

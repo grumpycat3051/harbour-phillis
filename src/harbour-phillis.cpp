@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     QSettings settings;
 
     QuickHttp::SetNetworkAccessManager(&nam);
-    //QuickHttp::SetUserAgent("Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0");
+//    QuickHttp::SetUserAgent("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0");
     QuickHttp::SetUserAgent(QStringLiteral("PHillis " QT_STRINGIFY(PHILLIS_VERSION_MAJOR) "." QT_STRINGIFY(PHILLIS_VERSION_MINOR)));
     QuickCookieJar cookieJar;
     nam.setCookieJar(&cookieJar);

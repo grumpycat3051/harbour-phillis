@@ -61,7 +61,9 @@ DISTFILES += \
     qml/pages/NavigationItem.qml \
     qml/pages/PornstarsPage.qml \
     qml/pages/AdultContentDisclaimerPage.qml \
-    qml/pages/LockScreenPage.qml
+    qml/pages/LockScreenPage.qml \
+    qml/pages/RecommendedPage.qml \
+
 
 
 
