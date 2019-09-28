@@ -190,6 +190,11 @@ Page {
                 }
             }
 
+            Item {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+
             SectionHeader {
                 //% "Categories"
                 text: qsTrId("recommended-page-categories-section-header")

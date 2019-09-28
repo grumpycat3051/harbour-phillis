@@ -401,7 +401,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message id="recommended-page-categories-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="195"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="200"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
