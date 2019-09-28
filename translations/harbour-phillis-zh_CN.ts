@@ -355,7 +355,7 @@
         <translation>收藏</translation>
     </message>
     <message id="categories-page-filter-placeholder">
-        <location filename="../qml/pages/CategoriesPage.qml" line="114"/>
+        <location filename="../qml/pages/CategoriesPage.qml" line="115"/>
         <source>Filter</source>
         <translation>筛选</translation>
     </message>

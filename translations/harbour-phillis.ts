@@ -321,7 +321,7 @@
     <message id="start-page-header">
         <location filename="../qml/pages/StartPage.qml" line="192"/>
         <source>Pornhub</source>
-        <translation type="unfinished"></translation>
+        <translation>Pornhub</translation>
     </message>
     <message id="start-page-videos-section-title">
         <location filename="../qml/pages/StartPage.qml" line="210"/>
@@ -355,7 +355,7 @@
         <translation>Favorites</translation>
     </message>
     <message id="categories-page-filter-placeholder">
-        <location filename="../qml/pages/CategoriesPage.qml" line="114"/>
+        <location filename="../qml/pages/CategoriesPage.qml" line="115"/>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
