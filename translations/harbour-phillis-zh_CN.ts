@@ -355,12 +355,12 @@
         <translation>收藏</translation>
     </message>
     <message id="categories-page-filter-placeholder">
-        <location filename="../qml/pages/CategoriesPage.qml" line="112"/>
+        <location filename="../qml/pages/CategoriesPage.qml" line="114"/>
         <source>Filter</source>
         <translation>筛选</translation>
     </message>
     <message id="bottom-menu-load-more">
-        <location filename="../qml/pages/PornstarsPage.qml" line="102"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="104"/>
         <source>Load more</source>
         <translation>加载更多</translation>
     </message>
@@ -391,17 +391,17 @@
         <translation>%1&apos;s 视频</translation>
     </message>
     <message id="recommended-page-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="135"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="133"/>
         <source>Recommended</source>
         <translation type="unfinished">推荐</translation>
     </message>
     <message id="recommended-page-pornstars-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="141"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="139"/>
         <source>Pornstars</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="recommended-page-categories-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="197"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="195"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>

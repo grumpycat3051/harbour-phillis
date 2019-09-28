@@ -33,10 +33,21 @@ Page {
     property string prefix
     property string categoriesUrl
     property string title
+    readonly property int itemPerRow: settingDisplayCategoriesPerRow.value
     property real _targetImageHeight: Theme.itemSizeHuge
-    readonly property real _targetCellWidth: width / settingDisplayCategoriesPerRow.value
+    readonly property real _targetCellWidth: width / itemPerRow
+    property bool _thumbnailLoaded: false
     property var _filter: new RegExp(".*")
     property var _categories: []
+
+    on_TargetCellWidthChanged: _updateTargetImageHeight()
+    on_ThumbnailLoadedChanged: _updateTargetImageHeight()
+
+    function _updateTargetImageHeight() {
+        if (_thumbnailLoaded) {
+            _targetImageHeight = _targetCellWidth * thumbnailSizeDetector.sourceSize.height / thumbnailSizeDetector.sourceSize.width
+        }
+    }
 
     ListModel {
         id: model
@@ -59,21 +70,12 @@ Page {
         }
     }
 
-    Connections {
-        target: settingDisplayCategoriesPerRow
-        onValueChanged: {
-            gridView.model = null
-            gridView.model = model
-        }
-    }
-
     Image {
         id: thumbnailSizeDetector
         visible: false
         onStatusChanged: {
             if (Image.Ready === status) {
-//                console.debug("image height: " + sourceSize.height)
-                _targetImageHeight = _targetCellWidth * sourceSize.height / sourceSize.width
+                _thumbnailLoaded = true
             }
         }
     }
@@ -90,6 +92,7 @@ Page {
         VerticalScrollDecorator {}
         TopMenu {
             reloadCallback: function () {
+                _categories = []
                 _reload = true
                 load()
             }
@@ -146,41 +149,33 @@ Page {
 //                    height: GridView.view.cellHeight
 
 
-
-                    Item {
-                        //color: index % 2 ? "yellow" : "blue"
+                    FramedImage {
+                        source: category_thumbnail
                         anchors.fill: parent
-
-                        FramedImage {
-                            source: category_thumbnail
-                            anchors.centerIn: parent
+                        topFrameHeight: 0
+                        bottomFrameContent: Item {
                             width: parent.width
-                            height: _targetImageHeight
-                            topFrameHeight: 0
-                            bottomFrameContent: Item {
-                                width: parent.width
-                                height: nameLabel.height
+                            height: nameLabel.height
 
-                                Label {
-                                    id: nameLabel
-                                    x: Theme.paddingSmall
-                                    width: parent.width - 2*x
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    truncationMode: TruncationMode.Fade
-                                    text: category_name
-                                    font.bold: true
-                                }
+                            Label {
+                                id: nameLabel
+                                x: Theme.paddingSmall
+                                width: parent.width - 2*x
+                                anchors.verticalCenter: parent.verticalCenter
+                                truncationMode: TruncationMode.Fade
+                                text: category_name
+                                font.bold: true
+                            }
 
-                                Label {
-                                    x: Theme.paddingSmall
-                                    width: parent.width - 2*x
-                                    horizontalAlignment: Text.AlignRight
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    truncationMode: TruncationMode.Fade
-                                    text: "(" + category_videos + ")"
-                                    font.pixelSize: Theme.fontSizeExtraSmall
-                                    font.bold: true
-                                }
+                            Label {
+                                x: Theme.paddingSmall
+                                width: parent.width - 2*x
+                                horizontalAlignment: Text.AlignRight
+                                anchors.verticalCenter: parent.verticalCenter
+                                truncationMode: TruncationMode.Fade
+                                text: "(" + category_videos + ")"
+                                font.pixelSize: Theme.fontSizeExtraSmall
+                                font.bold: true
                             }
                         }
                     }

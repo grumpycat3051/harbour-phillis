@@ -355,12 +355,12 @@
         <translation>Favorites</translation>
     </message>
     <message id="categories-page-filter-placeholder">
-        <location filename="../qml/pages/CategoriesPage.qml" line="112"/>
+        <location filename="../qml/pages/CategoriesPage.qml" line="114"/>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
     <message id="bottom-menu-load-more">
-        <location filename="../qml/pages/PornstarsPage.qml" line="102"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="104"/>
         <source>Load more</source>
         <translation>Load more</translation>
     </message>
@@ -391,17 +391,17 @@
         <translation>%1&apos;s Videos</translation>
     </message>
     <message id="recommended-page-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="135"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="133"/>
         <source>Recommended</source>
         <translation>Recommended</translation>
     </message>
     <message id="recommended-page-pornstars-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="141"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="139"/>
         <source>Pornstars</source>
         <translation>Pornstars</translation>
     </message>
     <message id="recommended-page-categories-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="197"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="195"/>
         <source>Categories</source>
         <translation>Categories</translation>
     </message>

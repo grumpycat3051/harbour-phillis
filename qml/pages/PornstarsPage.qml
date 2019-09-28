@@ -33,9 +33,20 @@ Page {
     property string title
     property bool _reload: false
     property int _page: 0
+    readonly property int itemPerRow: settingDisplayPornstarsPerRow.value
     property real _targetImageHeight: Theme.itemSizeHuge
-    readonly property real _targetCellWidth: width / settingDisplayPornstarsPerRow.value
+    readonly property real _targetCellWidth: width / itemPerRow
+    property bool _thumbnailLoaded: false
     property var _pornstars: []
+
+    on_TargetCellWidthChanged: _updateTargetImageHeight()
+    on_ThumbnailLoadedChanged: _updateTargetImageHeight()
+
+    function _updateTargetImageHeight() {
+        if (_thumbnailLoaded) {
+            _targetImageHeight = _targetCellWidth * thumbnailSizeDetector.sourceSize.height / thumbnailSizeDetector.sourceSize.width
+        }
+    }
 
     ListModel {
         id: model
@@ -59,21 +70,12 @@ Page {
         }
     }
 
-    Connections {
-        target: settingDisplayPornstarsPerRow
-        onValueChanged: {
-            gridView.model = null
-            gridView.model = model
-        }
-    }
-
     Image {
         id: thumbnailSizeDetector
         visible: false
         onStatusChanged: {
             if (Image.Ready === status) {
-//                console.debug("image height: " + sourceSize.height)
-                _targetImageHeight = _targetCellWidth * sourceSize.height / sourceSize.width
+                _thumbnailLoaded = true
             }
         }
     }
@@ -123,27 +125,19 @@ Page {
                     contentHeight: GridView.view.cellHeight
                     width: GridView.view.cellWidth
 
-                    Item {
-                        //color: index % 2 ? "yellow" : "blue"
+                    FramedImage {
+                        source: pornstar_thumbnail
                         anchors.fill: parent
-
-
-                        FramedImage {
-                            source: pornstar_thumbnail
-                            anchors.centerIn: parent
-                            fillMode: Image.PreserveAspectFit
-                            width: parent.width
-                            height: _targetImageHeight
-                            topFrameHeight: 0
-                            bottomFrameContent: Label {
-                                x: Theme.paddingSmall
-                                width: parent.width - 2*x
-                                truncationMode: TruncationMode.Fade
-                                text: pornstar_name
-                                font.bold: true
-                                horizontalAlignment: Text.AlignRight
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
+                        fillMode: Image.PreserveAspectFit
+                        topFrameHeight: 0
+                        bottomFrameContent: Label {
+                            x: Theme.paddingSmall
+                            width: parent.width - 2*x
+                            truncationMode: TruncationMode.Fade
+                            text: pornstar_name
+                            font.bold: true
+                            horizontalAlignment: Text.AlignRight
+                            anchors.verticalCenter: parent.verticalCenter
                         }
                     }
 
