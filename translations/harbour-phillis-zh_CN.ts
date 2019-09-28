@@ -318,14 +318,34 @@
         <source>Number of Videos</source>
         <translation>视频编号</translation>
     </message>
+    <message id="start-page-videos-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="198"/>
+        <source>Videos</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="221"/>
-        <location filename="../qml/pages/StartPage.qml" line="297"/>
+        <location filename="../qml/pages/StartPage.qml" line="222"/>
+        <location filename="../qml/pages/StartPage.qml" line="300"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
+    <message id="start-page-categories-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="251"/>
+        <source>Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="start-page-pornstars-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="276"/>
+        <source>Pornstars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="start-page-my-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="316"/>
+        <source>My</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="347"/>
+        <location filename="../qml/pages/StartPage.qml" line="351"/>
         <source>Favorites</source>
         <translation>收藏</translation>
     </message>

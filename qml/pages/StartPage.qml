@@ -194,7 +194,8 @@ Page {
                 width: parent.width
 
                 ExpandingSection {
-                    title: "Videos"
+                    //% "Videos"
+                    title: qsTrId("start-page-videos-section-title")
 
                     content.sourceComponent: Column {
                         width: expandingGroup.width
@@ -246,7 +247,8 @@ Page {
                 }
 
                 ExpandingSection {
-                    title: "Categories"
+                    //% "Categories"
+                    title: qsTrId("start-page-categories-section-title")
 
                     content.sourceComponent: Column {
                         width: expandingGroup.width
@@ -270,7 +272,8 @@ Page {
                 }
 
                 ExpandingSection {
-                    title: "Pornstars"
+                    //% "Pornstars"
+                    title: qsTrId("start-page-pornstars-section-title")
 
                     content.sourceComponent: Column {
                         width: expandingGroup.width
@@ -309,7 +312,8 @@ Page {
                 }
 
                 ExpandingSection {
-                    title: "My"
+                    //% "My"
+                    title: qsTrId("start-page-my-section-title")
                     visible: userModel.count > 0
 
 

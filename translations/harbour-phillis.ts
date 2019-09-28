@@ -21,7 +21,7 @@
     <message id="setting-lock-screen-text">
         <location filename="../qml/harbour-phillis.qml" line="229"/>
         <source>Please enter your online trading PIN</source>
-        <translation type="unfinished"></translation>
+        <translation>Please enter your online trading PIN</translation>
     </message>
     <message id="error-request-failed-summary">
         <location filename="../qml/harbour-phillis.qml" line="345"/>
@@ -318,14 +318,34 @@
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
+    <message id="start-page-videos-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="198"/>
+        <source>Videos</source>
+        <translation>Videos</translation>
+    </message>
     <message id="start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="221"/>
-        <location filename="../qml/pages/StartPage.qml" line="297"/>
+        <location filename="../qml/pages/StartPage.qml" line="222"/>
+        <location filename="../qml/pages/StartPage.qml" line="300"/>
         <source>Search</source>
         <translation>Search</translation>
     </message>
+    <message id="start-page-categories-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="251"/>
+        <source>Categories</source>
+        <translation>Categories</translation>
+    </message>
+    <message id="start-page-pornstars-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="276"/>
+        <source>Pornstars</source>
+        <translation>Pornstars</translation>
+    </message>
+    <message id="start-page-my-section-title">
+        <location filename="../qml/pages/StartPage.qml" line="316"/>
+        <source>My</source>
+        <translation>My</translation>
+    </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="347"/>
+        <location filename="../qml/pages/StartPage.qml" line="351"/>
         <source>Favorites</source>
         <translation>Favorites</translation>
     </message>
