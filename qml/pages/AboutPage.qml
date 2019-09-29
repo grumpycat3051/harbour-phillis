@@ -39,7 +39,7 @@ Page {
 
             PageHeader {
                 //% "About %1"
-                title: qsTrId("about-page-header").arg(App.displayName)
+                title: qsTrId("ph-about-page-header").arg(App.displayName)
             }
 
             Column {
@@ -87,7 +87,7 @@ Page {
 
                     Label {
                         //% "%1 %2"
-                        text: qsTrId("about-page-version-text").arg(App.displayName).arg(App.version)
+                        text: qsTrId("ph-about-page-version-text").arg(App.displayName).arg(App.version)
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.pixelSize: Theme.fontSizeLarge
                         color: Theme.highlightColor
@@ -104,14 +104,14 @@ Page {
 
                 SectionHeader {
                     //% "Description"
-                    text: qsTrId("about-page-description-header")
+                    text: qsTrId("ph-about-page-description-header")
                 }
 
                 LinkedLabel {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
                     //% "%1 is an unofficial Sailfish OS client for the adult content website <a href='https://www.pornhub.com/'>Pornhub</a>."
-                    text: qsTrId("about-page-description-text").arg(App.displayName)
+                    text: qsTrId("ph-about-page-description-text").arg(App.displayName)
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.secondaryHighlightColor
@@ -120,14 +120,14 @@ Page {
 
                 SectionHeader {
                     //% "Privacy"
-                    text: qsTrId("about-privacy-header")
+                    text: qsTrId("ph-about-privacy-header")
                 }
 
                 LinkedLabel {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
                     //% "This application does not collect or save any personal data aside from possibly those credentials required to sign into <a href='https://www.pornhub.com/'>Pornhub</a>."
-                    text: qsTrId("about-page-privacy-text").arg(App.displayName)
+                    text: qsTrId("ph-about-page-privacy-text").arg(App.displayName)
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.secondaryHighlightColor
@@ -143,7 +143,7 @@ Page {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
                     //% "Copyright © 2019 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>.<br/><br/>The content provided through %1 is the property and sole responsibility of <a href='https://www.pornhub.com/'>Pornhub</a>."
-                    text: qsTrId("about-page-licensing-text").arg(App.displayName)
+                    text: qsTrId("ph-about-page-licensing-text").arg(App.displayName)
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.secondaryHighlightColor

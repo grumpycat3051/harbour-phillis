@@ -78,7 +78,7 @@ ApplicationWindow
                                 _userIsLoggedIn = true
                                 console.debug("login success")
                                 //% "Login success"
-                                window.notify(qsTrId("login-succes-message"))
+                                window.notify(qsTrId("ph-login-succes-message"))
 
                                 // load a page to have logout token for menu
                                 // weirdly this doens't work if using the base page
@@ -115,7 +115,7 @@ ApplicationWindow
                         break
                     case actionInit:
                         //% "Initial loading of website failed"
-                        var str = qsTrId("error-message-initial-request-failed")
+                        var str = qsTrId("ph-error-message-initial-request-failed")
                         downloadError(url, error, str)
                         break
                     default:
@@ -226,7 +226,7 @@ ApplicationWindow
         id: settingAccessLockscreenText
         key: "/access/lock_screen/text"
         //% "Please enter your online trading PIN"
-        defaultValue: qsTrId("setting-lock-screen-text")
+        defaultValue: qsTrId("ph-setting-lock-screen-text")
     }
 
     ConfigurationValue {
@@ -342,7 +342,7 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
 
     function downloadError(url, errorCode, errorMessage) {
         //% "Request failed"
-        notification.previewSummary = notification.summary = qsTrId("error-request-failed-summary")
+        notification.previewSummary = notification.summary = qsTrId("ph-error-request-failed-summary")
         notification.previewBody = notification.body = errorMessage
         switch (errorCode) {
         case Http.ErrorUrlEmpty:

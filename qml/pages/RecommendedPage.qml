@@ -130,13 +130,13 @@ Page {
             PageHeader {
                 id: header
                 //% "Recommended"
-                title: qsTrId("recommended-page-header")
+                title: qsTrId("ph-recommended-page-header")
             }
 
 
             SectionHeader {
                 //% "Pornstars"
-                text: qsTrId("recommended-page-pornstars-section-header")
+                text: qsTrId("ph-recommended-page-pornstars-section-header")
                 visible: pornstarModel.count > 0
             }
 
@@ -197,7 +197,7 @@ Page {
 
             SectionHeader {
                 //% "Categories"
-                text: qsTrId("recommended-page-categories-section-header")
+                text: qsTrId("ph-recommended-page-categories-section-header")
                 visible: categoryModel.count > 0
             }
 

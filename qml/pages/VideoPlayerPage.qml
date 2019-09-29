@@ -575,7 +575,7 @@ Page {
                                                 {
                                                     //% "%1's Videos"
                                                     videosUrl: Constants.baseUrl + _modelUrl + "/videos",
-                                                    title: qsTrId("model-videos-page-title").arg(_modelName)
+                                                    title: qsTrId("ph-model-videos-page-title").arg(_modelName)
                                                 })
                                 }
                             }
@@ -593,7 +593,7 @@ Page {
                                                 {
                                                     //% "%1's Videos"
                                                     videosUrl: Constants.baseUrl + _modelUrl + "/videos",
-                                                    title: qsTrId("model-videos-page-title").arg(_modelName)
+                                                    title: qsTrId("ph-model-videos-page-title").arg(_modelName)
                                                 })
                                 }
                             }

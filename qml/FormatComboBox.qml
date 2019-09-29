@@ -32,17 +32,17 @@ ComboBox {
     property int format: Constants.formatUnknown
     currentIndex: -1
     //% "Format"
-    label: qsTrId("format-combobox-format-label")
+    label: qsTrId("ph-format-combobox-format-label")
 
     menu: ContextMenu {
         id: menu
         MenuItem {
             //% "best quality (largest)"
-            text: qsTrId("format-combobox-format-best")
+            text: qsTrId("ph-format-combobox-format-best")
         }
         MenuItem {
             //% "worst quality (smallest)"
-            text: qsTrId("format-combobox-format-worst")
+            text: qsTrId("ph-format-combobox-format-worst")
         }
         MenuItem { text: "1080" }
         MenuItem { text: "720" }

@@ -44,31 +44,31 @@ Page {
             PageHeader {
                 id: header
                 //% "Settings"
-                title: qsTrId("settings-page-header")
+                title: qsTrId("ph-settings-page-header")
             }
 
             SectionHeader {
                 //% "Network"
-                text: qsTrId("settings-page-network-header")
+                text: qsTrId("ph-settings-page-network-header")
             }
 
             ComboBox {
                 id: bearerModeComboBox
                 width: parent.width
                 //% "Network connection type"
-                label: qsTrId("settings-page-network-connection-type")
+                label: qsTrId("ph-settings-page-network-connection-type")
                 menu: ContextMenu {
                     MenuItem {
                         //% "Autodetect"
-                        text: qsTrId("settings-page-network-connection-autodetect")
+                        text: qsTrId("ph-settings-page-network-connection-autodetect")
                     }
                     MenuItem {
                         //% "Broadband"
-                        text: qsTrId("settings-page-network-connection-broadband")
+                        text: qsTrId("ph-settings-page-network-connection-broadband")
                     }
                     MenuItem {
                         //% "Mobile"
-                        text: qsTrId("settings-page-network-connection-mobile")
+                        text: qsTrId("ph-settings-page-network-connection-mobile")
                     }
                 }
 
@@ -82,12 +82,12 @@ Page {
 
             SectionHeader {
                 //% "Format"
-                text: qsTrId("format-label")
+                text: qsTrId("ph-format-label")
             }
 
             FormatComboBox {
                 //% "Broadband"
-                label: qsTrId("settings-page-network-broadband-label")
+                label: qsTrId("ph-settings-page-network-broadband-label")
                 format: settingBroadbandDefaultFormat.value
                 onFormatChanged: {
                     console.debug("broadband format=" + format)
@@ -101,7 +101,7 @@ Page {
 
             FormatComboBox {
                 //% "Mobile"
-                label: qsTrId("settings-page-network-mobile-label")
+                label: qsTrId("ph-settings-page-network-mobile-label")
                 format: settingMobileDefaultFormat.value
                 onFormatChanged: {
                     console.debug("mobile format=" + format)
@@ -115,7 +115,7 @@ Page {
 
             SectionHeader {
                 //% "Content Preferences"
-                text: qsTrId("settings-page-content-preferences-section-header")
+                text: qsTrId("ph-settings-page-content-preferences-section-header")
             }
 
             Column {
@@ -124,9 +124,9 @@ Page {
 
                 IconTextSwitch {
                     //% "Gay Only"
-                    text: qsTrId("settings-page-content-preferences-gay-only-switch-text")
+                    text: qsTrId("ph-settings-page-content-preferences-gay-only-switch-text")
                     //% "Only show gay categories and videos"
-                    description: qsTrId("settings-page-content-preferences-gay-only-switch-description")
+                    description: qsTrId("ph-settings-page-content-preferences-gay-only-switch-description")
                     icon.source: "file://" + App.appDir + "/media/gay.png"
                     icon.width: Theme.iconSizeSmall
                     icon.height: Theme.iconSizeSmall
@@ -142,12 +142,12 @@ Page {
 
             SectionHeader {
                 //% "Playback"
-                text: qsTrId("settings-page-playback-section-header")
+                text: qsTrId("ph-settings-page-playback-section-header")
             }
 
             TextSwitch {
                 //% "Pause playback on device lock"
-                text: qsTrId("settings-page-playback-pause-on-device-lock-switch")
+                text: qsTrId("ph-settings-page-playback-pause-on-device-lock-switch")
                 checked: settingPlaybackPauseOnDeviceLock.value
                 onClicked: {
                     settingPlaybackPauseOnDeviceLock.value = !settingPlaybackPauseOnDeviceLock.value
@@ -157,7 +157,7 @@ Page {
 
             TextSwitch {
                 //% "Pause playback when the cover page is shown"
-                text: qsTrId("settings-page-playback-pause-if-cover-page-switch")
+                text: qsTrId("ph-settings-page-playback-pause-if-cover-page-switch")
                 checked: settingPlaybackPauseInCoverMode.value
                 onClicked: {
                     settingPlaybackPauseInCoverMode.value = !settingPlaybackPauseInCoverMode.value
@@ -167,14 +167,14 @@ Page {
 
             SectionHeader {
                 //% "Display"
-                text: qsTrId("settings-page-display")
+                text: qsTrId("ph-settings-page-display")
             }
 
             TextField {
                 width: root.width
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Categories per row"
-                label: qsTrId("settings-page-display-categories-per-grid-row")
+                label: qsTrId("ph-settings-page-display-categories-per-grid-row")
                 text: settingDisplayCategoriesPerRow.value
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
@@ -199,7 +199,7 @@ Page {
                 width: root.width
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Pornstars per row"
-                label: qsTrId("settings-page-display-pornstars-per-grid-row")
+                label: qsTrId("ph-settings-page-display-pornstars-per-grid-row")
                 text: settingDisplayPornstarsPerRow.value
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
@@ -222,14 +222,14 @@ Page {
 
             SectionHeader {
                 //% "Access"
-                text: qsTrId("settings-page-access")
+                text: qsTrId("ph-settings-page-access")
             }
 
             TextSwitch {
                 //% "Require a PIN to access the app"
-                text: qsTrId("settings-page-access-restrict-text")
+                text: qsTrId("ph-settings-page-access-restrict-text")
                 //% "Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application."
-                description: qsTrId("settings-page-access-restrict-description")
+                description: qsTrId("ph-settings-page-access-restrict-description")
                 checked: settingAccessRestrict.value
                 onClicked: {
                     settingAccessRestrict.value = !settingAccessRestrict.value
@@ -245,9 +245,9 @@ Page {
                 enabled: settingAccessRestrict.value
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "PIN"
-                label: qsTrId("settings-page-access-require-pin-label")
+                label: qsTrId("ph-settings-page-access-require-pin-label")
                 //% "Enter four or more digits"
-                placeholderText: qsTrId("settings-page-access-require-pin-placeholder")
+                placeholderText: qsTrId("ph-settings-page-access-require-pin-placeholder")
                 validator: RegExpValidator { regExp: /^\d{4,}$/ }
                 text: settingLockScreenPin.value
                 EnterKey.enabled: acceptableInput
@@ -262,7 +262,7 @@ Page {
                 width: root.width
                 enabled: settingAccessRestrict.value
                 //% "Lock screen text"
-                label: qsTrId("settings-page-access-lock-screen-text")
+                label: qsTrId("ph-settings-page-access-lock-screen-text")
                 validator: RegExpValidator { regExp: /^.+$/ }
                 text: settingAccessLockscreenText.value
                 EnterKey.enabled: acceptableInput
@@ -275,12 +275,12 @@ Page {
 
             SectionHeader {
                 //% "Account"
-                text: qsTrId("settings-page-account")
+                text: qsTrId("ph-settings-page-account")
             }
 
             TextField {
                 //% "Username"
-                label: qsTrId("settings-page-account-username")
+                label: qsTrId("ph-settings-page-account-username")
                 placeholderText: label
                 width: parent.width
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
@@ -306,7 +306,7 @@ Page {
 
             TextSwitch {
                 //% "Login on application start"
-                text: qsTrId("settings-page-account-auto-login")
+                text: qsTrId("ph-settings-page-account-auto-login")
                 checked: settingAccountLoginOnAppStart.value
                 onClicked: {
                     settingAccountLoginOnAppStart.value = !settingAccountLoginOnAppStart.value

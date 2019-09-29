@@ -31,19 +31,19 @@ PullDownMenu {
 
     MenuItem {
         //% "About %1"
-        text: qsTrId("top-menu-about").arg(App.displayName)
+        text: qsTrId("ph-top-menu-about").arg(App.displayName)
         onClicked: pageStack.push(Qt.resolvedUrl("pages/AboutPage.qml"))
     }
 
     MenuItem {
         //% "Settings"
-        text: qsTrId("top-menu-settings")
+        text: qsTrId("ph-top-menu-settings")
         onClicked: pageStack.push(Qt.resolvedUrl("pages/SettingsPage.qml"))
     }
 
     MenuItem {
         //% "Reload"
-        text: qsTrId("top-menu-reload")
+        text: qsTrId("ph-top-menu-reload")
         visible: !!reloadCallback
         onClicked: reloadCallback()
     }
@@ -56,14 +56,14 @@ PullDownMenu {
 
     MenuItem {
         //% "Logout"
-        text: qsTrId("top-menu-logout")
+        text: qsTrId("ph-top-menu-logout")
         visible: window.isUserLoggedIn && window.logoutToken
         onClicked: window.logout()
     }
 
     MenuItem {
         //% "Login"
-        text: qsTrId("top-menu-login")
+        text: qsTrId("ph-top-menu-login")
         visible: !window.isUserLoggedIn && window.hasLoginData
         onClicked: window.login()
     }

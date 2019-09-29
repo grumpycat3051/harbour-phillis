@@ -112,7 +112,7 @@ Page {
             anchors.top: header.bottom
             visible: !parent.flicking
             //% "Filter"
-            placeholderText: qsTrId("categories-page-filter-placeholder")
+            placeholderText: qsTrId("ph-categories-page-filter-placeholder")
             onTextChanged: {
                 if (text) {
                     var filter = text.replace(new RegExp("\\s+", "g"), ".*")
@@ -196,7 +196,8 @@ Page {
                 text: {
                     if (http.status === Http.StatusRunning) {
                         if (http.url === categoriesUrl) {
-                            return "Categories are being loaded"
+                            //% "Categories are being loaded"
+                            return qsTrId("ph-categories-page-view-placeholder-text-loading")
                         }
                     }
 

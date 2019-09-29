@@ -43,28 +43,28 @@ Page {
 
         ListElement {
             //% "Hottest"
-            title: qsTrId("start-page-videos-hottest")
+            title: qsTrId("ph-start-page-videos-hottest")
             relativeUrl: "/video?o=ht"
             iconName: "fire.png"
         }
 
         ListElement {
             //% "Most Viewed"
-            title: qsTrId("start-page-videos-most-viewed")
+            title: qsTrId("ph-start-page-videos-most-viewed")
             relativeUrl: "/video?o=mv"
             iconName: "graph.png"
         }
 
         ListElement {
             //% "Top Rated"
-            title: qsTrId("start-page-videos-top-ratedmost-viewed")
+            title: qsTrId("ph-start-page-videos-top-ratedmost-viewed")
             relativeUrl: "/video?o=tr"
             iconName: "thumbs-up-outlined.png"
         }
 
         ListElement {
             //% "Popular Homemade"
-            title: qsTrId("start-page-videos-popular-homemade")
+            title: qsTrId("ph-start-page-videos-popular-homemade")
             relativeUrl: "/video?p=homemade&o=tr"
             iconName: "video-player.png"
         }
@@ -74,21 +74,21 @@ Page {
         id: categoryModel
         ListElement {
             //% "Popular"
-            title: qsTrId("start-page-categories-popular")
+            title: qsTrId("ph-start-page-categories-popular")
             relativeUrl: "/categories"
             iconName: "heart-filled-white.png"
         }
 
         ListElement {
             //% "Alphabetical"
-            title: qsTrId("start-page-categories-alphabetical")
+            title: qsTrId("ph-start-page-categories-alphabetical")
             relativeUrl: "/categories?o=al"
             iconName: "sort.png"
         }
 
         ListElement {
             //% "Number of Videos"
-            title: qsTrId("start-page-categories-no-videos")
+            title: qsTrId("ph-start-page-categories-no-videos")
             relativeUrl: "/categories?o=mv"
             iconName: "video-camera.png"
         }
@@ -98,28 +98,28 @@ Page {
         id: pornstarModel
         ListElement {
             //% "Most Popular"
-            title: qsTrId("start-page-pornstars-most-popular")
+            title: qsTrId("ph-start-page-pornstars-most-popular")
             relativeUrl: "/pornstars"
             iconName: "heart-filled-white.png"
         }
 
         ListElement {
             //% "Top Trending"
-            title: qsTrId("start-page-pornstars-top-trending")
+            title: qsTrId("ph-start-page-pornstars-top-trending")
             relativeUrl: "/pornstars?o=t"
             iconName: "up-arrow.png"
         }
 
         ListElement {
             //% "Most Viewed"
-            title: qsTrId("start-page-pornstars-most-viewed")
+            title: qsTrId("ph-start-page-pornstars-most-viewed")
             relativeUrl: "/pornstars?o=mv"
             iconName: "graph.png"
         }
 
         ListElement {
             //% "Most Subscribed"
-            title: qsTrId("start-page-pornstars-most-subscribed")
+            title: qsTrId("ph-start-page-pornstars-most-subscribed")
             relativeUrl: "/pornstars?o=ms"
             iconName: "rss.png"
         }
@@ -133,7 +133,7 @@ Page {
 
         ListElement {
             //% "Number of Videos"
-            title: qsTrId("start-page-pornstars-no-videos")
+            title: qsTrId("ph-start-page-pornstars-no-videos")
             relativeUrl: "/pornstars?o=nv"
             iconName: "video-camera.png"
         }
@@ -189,12 +189,12 @@ Page {
 
             PageHeader {
                 //% "Pornhub"
-                title: qsTrId("start-page-header")
+                title: qsTrId("ph-start-page-header")
             }
 
             NavigationItem {
                 //% "Recommended"
-                title: qsTrId("start-page-videos-recommended")
+                title: qsTrId("ph-start-page-videos-recommended")
                 iconName: "idea.png"
 
                 onClicked: pageStack.push(Qt.resolvedUrl("RecommendedPage.qml"))
@@ -207,7 +207,7 @@ Page {
 
                 ExpandingSection {
                     //% "Videos"
-                    title: qsTrId("start-page-videos-section-title")
+                    title: qsTrId("ph-start-page-videos-section-title")
 
                     content.sourceComponent: Column {
                         width: expandingGroup.width
@@ -231,7 +231,7 @@ Page {
                         SearchField {
                             width: parent.width
                             //% "Search"
-                            placeholderText: qsTrId("start-page-search-placeholder")
+                            placeholderText: qsTrId("ph-start-page-search-placeholder")
                             EnterKey.onClicked: {
                                 if (text) {
                                     pageStack.push(Qt.resolvedUrl("VideosPage.qml"),
@@ -248,7 +248,7 @@ Page {
 
                 ExpandingSection {
                     //% "Categories"
-                    title: qsTrId("start-page-categories-section-title")
+                    title: qsTrId("ph-start-page-categories-section-title")
 
                     content.sourceComponent: Column {
                         width: expandingGroup.width
@@ -273,7 +273,7 @@ Page {
 
                 ExpandingSection {
                     //% "Pornstars"
-                    title: qsTrId("start-page-pornstars-section-title")
+                    title: qsTrId("ph-start-page-pornstars-section-title")
 
                     content.sourceComponent: Column {
                         width: expandingGroup.width
@@ -297,7 +297,7 @@ Page {
                         SearchField {
                             width: parent.width
                             //% "Search"
-                            placeholderText: qsTrId("start-page-search-placeholder")
+                            placeholderText: qsTrId("ph-start-page-search-placeholder")
                             EnterKey.onClicked: {
                                 if (text) {
                                     pageStack.push(Qt.resolvedUrl("PornstarsPage.qml"),
@@ -314,7 +314,7 @@ Page {
 
                 ExpandingSection {
                     //% "My"
-                    title: qsTrId("start-page-my-section-title")
+                    title: qsTrId("ph-start-page-my-section-title")
                     visible: userModel.count > 0
 
 
@@ -349,7 +349,7 @@ Page {
         if (window.username) {
             userModel.append({
                                  //% "Favorites"
-                                 title: qsTrId("start-page-user-videos-favorites"),
+                                 title: qsTrId("ph-start-page-user-videos-favorites"),
                                  relativeUrl: "/users/" + encodeURIComponent(window.username) + "/videos/favorites",
                                  iconName: "heart-filled-white.png",
                              })

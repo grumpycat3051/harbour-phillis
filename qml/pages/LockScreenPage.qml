@@ -62,7 +62,7 @@ Page {
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
                     EnterKey.iconSource: "image://theme/icon-m-enter-close"
                     //% "PIN"
-                    placeholderText: qsTrId("lock-screen-page-pin-placeholder")
+                    placeholderText: qsTrId("ph-lock-screen-page-pin-placeholder")
                     onTextChanged: {
                         if (text === settingLockScreenPin.value) {
                             pageStack.pop()

@@ -46,7 +46,7 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.Wrap
                     //% "Adult Content Disclaimer"
-                    text: qsTrId("disclaimer-page-title")
+                    text: qsTrId("ph-disclaimer-page-title")
                     font {
                         pixelSize: Theme.fontSizeExtraLarge
                         family: Theme.fontFamilyHeading
@@ -59,7 +59,7 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.Wrap
                     //% "The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:"
-                    text: qsTrId("disclaimer-page-text1")
+                    text: qsTrId("ph-disclaimer-page-text1")
                     font {
                         pixelSize: Theme.fontSizeSmall
                     }
@@ -72,7 +72,7 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.Wrap
                     //% "1.) I am 18 years of age or older<br/>2.) I accept all responsibility for my own actions; and<br/>3.) I agree that I am legally bound to these Terms and Conditions"
-                    text: qsTrId("disclaimer-page-text2")
+                    text: qsTrId("ph-disclaimer-page-text2")
                     font {
                         pixelSize: Theme.fontSizeMedium
                         bold: true
@@ -86,7 +86,7 @@ Page {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //% "Accept"
-                text: qsTrId("disclaimer-page-accept-button")
+                text: qsTrId("ph-disclaimer-page-accept-button")
                 onClicked: disclaimerAccepted.value = true
             }
         }
