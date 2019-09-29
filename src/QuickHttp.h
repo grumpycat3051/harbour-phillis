@@ -38,6 +38,7 @@ class QuickHttp : public QObject
     Q_PROPERTY(QString userAgent READ userAgent WRITE setUserAgent NOTIFY userAgentChanged)
     Q_PROPERTY(QString url READ url /*WRITE setUrl */NOTIFY urlChanged)
     Q_PROPERTY(QNetworkAccessManager* networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager NOTIFY networkAccessManagerChanged)
+    Q_PROPERTY(int httpStatusCode READ httpStatusCode NOTIFY httpStatusCodeChanged)
 
 public:
     enum Status
@@ -76,6 +77,7 @@ public:
     QNetworkAccessManager* networkAccessManager() const;
     void setNetworkAccessManager(QNetworkAccessManager* value);
     QString url() const { return m_Url; }
+    int httpStatusCode() const { return m_HttpStatusCode; }
 
     Q_INVOKABLE void post(const QString& url, const QString& urlEncodedPostData = QString());
     Q_INVOKABLE void post(const QString& url, const QVariantMap& customHeaders, const QString& urlEncodedPostData = QString());
@@ -88,6 +90,7 @@ signals:
     void urlChanged();
     void userAgentChanged();
     void networkAccessManagerChanged();
+    void httpStatusCodeChanged();
 
 private slots:
     void requestFinished();
@@ -99,6 +102,7 @@ private: // methods
     void setStatus(Status value);
     void setError(Error value);
     void setErrorMessage(const QString& value);
+    void setHttpStatusCode(int value);
     QNetworkRequest makeRequest(const QUrl& url);
 
 private: // member vars
@@ -106,6 +110,7 @@ private: // member vars
     QNetworkReply* m_Reply;
     Status m_Status;
     Error m_Error;
+    int m_HttpStatusCode;
     QString m_Data;
     QString m_UserAgent;
     QString m_Url;

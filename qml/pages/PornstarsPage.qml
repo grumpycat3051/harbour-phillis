@@ -38,6 +38,7 @@ Page {
     readonly property real _targetCellWidth: width / itemPerRow
     property bool _thumbnailLoaded: false
     property var _pornstars: []
+    property bool isSearch: false
 
     on_TargetCellWidthChanged: _updateTargetImageHeight()
     on_ThumbnailLoadedChanged: _updateTargetImageHeight()
@@ -59,11 +60,20 @@ Page {
         onStatusChanged: {
             switch (status) {
             case Http.StatusCompleted:
-                console.debug("completed error=" + error)
+                console.debug("completed error=" + error + " http status=" + httpStatusCode)
                 if (Http.ErrorNone === error) {
                     _parse(data, url, true)
                 } else {
-                    window.downloadError(url, error, errorMessage)
+                    switch (httpStatusCode) {
+                    case 404:
+                        if (!isSearch) {
+                            window.downloadError(url, error, errorMessage)
+                        }
+                        break
+                    default:
+                        window.downloadError(url, error, errorMessage)
+                        break
+                    }
                 }
                 break
             }
@@ -101,7 +111,7 @@ Page {
             enabled: root._page >= 1
             MenuItem {
                 //% "Load more"
-                text: qsTrId("bottom-menu-load-more")
+                text: qsTrId("ph-push-up-menu-load-more")
                 onClicked: http.get(_makeUrl(pornstarsUrl, "page=" + (root._page + 1)))
             }
         }
@@ -156,7 +166,13 @@ Page {
                 enabled: gridView.count === 0
                 text: {
                     if (http.status === Http.StatusRunning) {
-                        return "Pornstars are being loaded"
+                        //% "Pornstars are being loaded"
+                        return qsTrId("ph-pornstars-page-view-placeholder-text-loading")
+                    }
+
+                    if (isSearch) {
+                        //% "Search yielded no results"
+                        return qsTrId("ph-view-placeholder-text-no-results")
                     }
 
                     return ":/"
@@ -186,7 +202,7 @@ Page {
 
     function load() {
         _page = 0
-        var url = _makeUrl(pornstarsUrl, "page=" + (_page + 1))
+        var url = pornstarsUrl
         if (_reload) {
             http.get(url)
         } else {

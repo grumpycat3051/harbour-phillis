@@ -218,16 +218,6 @@
         <source>Login</source>
         <translation>登录</translation>
     </message>
-    <message id="videos-page-load-more">
-        <location filename="../qml/pages/VideosPage.qml" line="83"/>
-        <source>Load more</source>
-        <translation>加载更多</translation>
-    </message>
-    <message id="videos-page-context-menu-copy-url-to-clipboard">
-        <location filename="../qml/pages/VideosPage.qml" line="113"/>
-        <source>Copy URL to clipboard</source>
-        <translation>复制链接到剪切板</translation>
-    </message>
     <message id="disclaimer-page-title">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="49"/>
         <source>Adult Content Disclaimer</source>
@@ -330,27 +320,27 @@
     </message>
     <message id="start-page-search-placeholder">
         <location filename="../qml/pages/StartPage.qml" line="234"/>
-        <location filename="../qml/pages/StartPage.qml" line="312"/>
+        <location filename="../qml/pages/StartPage.qml" line="300"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message id="start-page-categories-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="263"/>
+        <location filename="../qml/pages/StartPage.qml" line="251"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-pornstars-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="288"/>
+        <location filename="../qml/pages/StartPage.qml" line="276"/>
         <source>Pornstars</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-my-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="328"/>
+        <location filename="../qml/pages/StartPage.qml" line="317"/>
         <source>My</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="363"/>
+        <location filename="../qml/pages/StartPage.qml" line="352"/>
         <source>Favorites</source>
         <translation>收藏</translation>
     </message>
@@ -358,11 +348,6 @@
         <location filename="../qml/pages/CategoriesPage.qml" line="115"/>
         <source>Filter</source>
         <translation>筛选</translation>
-    </message>
-    <message id="bottom-menu-load-more">
-        <location filename="../qml/pages/PornstarsPage.qml" line="104"/>
-        <source>Load more</source>
-        <translation>加载更多</translation>
     </message>
     <message id="format-combobox-format-label">
         <location filename="../qml/FormatComboBox.qml" line="35"/>
@@ -403,6 +388,33 @@
     <message id="recommended-page-categories-section-header">
         <location filename="../qml/pages/RecommendedPage.qml" line="200"/>
         <source>Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-push-up-menu-load-more">
+        <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
+        <location filename="../qml/pages/VideosPage.qml" line="93"/>
+        <source>Load more</source>
+        <translation type="unfinished">加载更多</translation>
+    </message>
+    <message id="ph-pornstars-page-view-placeholder-text-loading">
+        <location filename="../qml/pages/PornstarsPage.qml" line="170"/>
+        <source>Pornstars are being loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-view-placeholder-text-no-results">
+        <location filename="../qml/pages/PornstarsPage.qml" line="175"/>
+        <location filename="../qml/pages/VideosPage.qml" line="198"/>
+        <source>Search yielded no results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
+        <location filename="../qml/pages/VideosPage.qml" line="123"/>
+        <source>Copy URL to clipboard</source>
+        <translation type="unfinished">复制链接到剪切板</translation>
+    </message>
+    <message id="ph-videos-page-view-placeholder-text-loading">
+        <location filename="../qml/pages/VideosPage.qml" line="193"/>
+        <source>Videos are being loaded</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

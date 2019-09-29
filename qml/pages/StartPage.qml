@@ -237,7 +237,8 @@ Page {
                                     pageStack.push(Qt.resolvedUrl("VideosPage.qml"),
                                                    {
                                                        title: text,
-                                                       videosUrl: Constants.baseUrl + "/video/search?search=" + encodeURIComponent(text.toLowerCase())
+                                                       videosUrl: Constants.baseUrl + "/video/search?search=" + encodeURIComponent(text.toLowerCase()),
+                                                       isSearch: true
                                                    })
                                 }
                             }
@@ -302,7 +303,8 @@ Page {
                                     pageStack.push(Qt.resolvedUrl("PornstarsPage.qml"),
                                                    {
                                                        pornstarsUrl: Constants.baseUrl + "/pornstars/search?search=" + encodeURIComponent(text.toLowerCase()),
-                                                       title: text
+                                                       title: text,
+                                                       isSearch: true
                                                    })
                                 }
                             }

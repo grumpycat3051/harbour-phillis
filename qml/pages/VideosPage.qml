@@ -35,6 +35,7 @@ Page {
     property int _page: 0
     readonly property int videosToSkip: 4
     property bool cache: false
+    property bool isSearch: false
     readonly property real overlayOpacity: 0.68
 
     ListModel {
@@ -48,11 +49,20 @@ Page {
         onStatusChanged: {
             switch (status) {
             case Http.StatusCompleted:
-                console.debug("completed error=" + error)
+                console.debug("completed error=" + error + " http status=" + httpStatusCode)
                 if (Http.ErrorNone === error) {
                     _parseVideos(data, url, root.cache)
                 } else {
-                    window.downloadError(url, error, errorMessage)
+                    switch (httpStatusCode) {
+                    case 404:
+                        if (!isSearch) {
+                            window.downloadError(url, error, errorMessage)
+                        }
+                        break
+                    default:
+                        window.downloadError(url, error, errorMessage)
+                        break
+                    }
                 }
                 break
             }
@@ -80,7 +90,7 @@ Page {
             enabled: root._page >= 1
             MenuItem {
                 //% "Load more"
-                text: qsTrId("videos-page-load-more")
+                text: qsTrId("ph-push-up-menu-load-more")
                 onClicked: http.get(_makeUrl(videosUrl, "page=" + (root._page + 1)))
             }
         }
@@ -110,7 +120,7 @@ Page {
                     menu: ContextMenu {
                         MenuItem {
                             //% "Copy URL to clipboard"
-                            text: qsTrId("videos-page-context-menu-copy-url-to-clipboard")
+                            text: qsTrId("ph-videos-page-context-menu-copy-url-to-clipboard")
                             onClicked: Clipboard.text = video_url
                         }
                     }
@@ -179,7 +189,13 @@ Page {
                 enabled: view.count === 0
                 text: {
                     if (http.status === Http.StatusRunning) {
-                        return "Videos are being loaded"
+                        //% "Videos are being loaded"
+                        return qsTrId("ph-videos-page-view-placeholder-text-loading")
+                    }
+
+                    if (isSearch) {
+                        //% "Search yielded no results"
+                        return qsTrId("ph-view-placeholder-text-no-results")
                     }
 
                     return ":/"
@@ -209,7 +225,7 @@ Page {
 
     function load() {
         _page = 0
-        var url = _makeUrl(videosUrl, "page=" + (_page + 1))
+        var url = videosUrl
         if (_reload) {
             http.get(url)
         } else {

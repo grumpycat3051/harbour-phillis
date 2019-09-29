@@ -46,6 +46,7 @@ QuickHttp::QuickHttp(QObject* parent)
     , m_Reply(nullptr)
     , m_Status(StatusNone)
     , m_Error(ErrorNone)
+    , m_HttpStatusCode(0)
 {
 
 }
@@ -61,6 +62,7 @@ void QuickHttp::get(const QString& url)
     }
 
     setUrl(url);
+    setHttpStatusCode(-1);
 
     if (m_Url.isEmpty()) {
         qWarning() << "empty url";
@@ -143,6 +145,14 @@ void QuickHttp::setError(Error value)
     }
 }
 
+void QuickHttp::setHttpStatusCode(int value)
+{
+    if (m_HttpStatusCode != value) {
+        m_HttpStatusCode = value;
+        emit httpStatusCodeChanged();
+    }
+}
+
 void QuickHttp::setErrorMessage(const QString& value)
 {
     if (m_ErrorMessage != value) {
@@ -158,6 +168,9 @@ void QuickHttp::requestFinished()
     m_Reply = nullptr;
     reply->deleteLater();
 
+    int httpStatusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    setHttpStatusCode(httpStatusCode);
+
     switch (reply->error()) {
     case QNetworkReply::OperationCanceledError:
         setError(ErrorCanceled);
@@ -165,12 +178,11 @@ void QuickHttp::requestFinished()
         break;
     case QNetworkReply::NoError: {
         // Get the http status code
-        int v = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (v >= 200 && v < 300) { // success
+        if (httpStatusCode >= 200 && httpStatusCode < 300) { // success
             // Here we got the final reply
             setData(QString::fromUtf8(reply->readAll()));
             setStatus(StatusCompleted);
-        } else if (v >= 300 && v < 400) { // redirection
+        } else if (httpStatusCode >= 300 && httpStatusCode < 400) { // redirection
             // Get the redirection url
             auto newUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
             // Because the redirection url can be relative,
@@ -186,14 +198,14 @@ void QuickHttp::requestFinished()
                 setStatus(StatusCompleted);
             }
         } else  {
-            qDebug() << "http status code:" << v;
+            qDebug() << "http status code:" << httpStatusCode;
             setError(ErrorRequestFailed);
             setErrorMessage(reply->errorString());
             setStatus(StatusCompleted);
         }
     } break;
     default: {
-        qDebug() << "request failed: " << reply->errorString() << reply->url();
+        qDebug() << "request failed: " << httpStatusCode << reply->errorString() << reply->url();
         setError(ErrorRequestFailed);
         setErrorMessage(reply->errorString());
         setStatus(StatusCompleted);
