@@ -242,19 +242,6 @@ Page {
                                 }
                             }
                         }
-
-//                        SearchField {
-//                            width: parent.width
-//                            //% "Search"
-//                            placeholderText: qsTrId("start-page-search-placeholder")
-//                            EnterKey.onClicked: {
-//                                if (text) {
-//                                    var url = Constants.baseUrl + "/video/search_autocomplete?pornstars=true&orientation=straight&alt=0&" + App.urlEncode({ q: text })
-//                                    http.get(url)
-//                                    //https://www.pornhub.com/video/search_autocomplete?pornstars=true&token=MTU2MzU1NDI5NVwIsVxo8VXICaCvKzKvQQ6N0KmPJipybpveKwVAB1vu0zIJTA0ZB1Dwg5_vLDe4cRNJG-jkXw1vikaHZIEgjwE.&orientation=straight&q=ab&alt=0
-//                                }
-//                            }
-//                        }
                     }
                 }
 
