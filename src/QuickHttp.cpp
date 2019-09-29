@@ -210,28 +210,6 @@ QNetworkRequest QuickHttp::makeRequest(const QUrl& url)
     return request;
 }
 
-//void QuickHttp::login(const QString& username, const QString& password, const QString& redirect, const QString& token)
-//{
-//    QUrlQuery postData;
-//    postData.addQueryItem("username", username);
-//    postData.addQueryItem("password", password);
-//    postData.addQueryItem("remember_me", "1");
-//    postData.addQueryItem("token", token);
-//    postData.addQueryItem("redirect", redirect);
-
-//    setUrl(QStringLiteral("https://www.pornhub.com/front/authenticate"));
-
-//    auto req = makeRequest(m_Url);
-//    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-
-//    setError(ErrorNone);
-//    setErrorMessage(QString());
-//    setStatus(StatusRunning);
-//    m_Reply = networkAccessManager()->post(req, postData.toString(QUrl::FullyEncoded).toUtf8());
-//    connect(m_Reply, &QNetworkReply::finished, this, &QuickHttp::requestFinished);
-//}
-
 void QuickHttp::post(const QString& url, const QString& urlEncodedPostData)
 {
     post(url, QVariantMap(), urlEncodedPostData);
