@@ -160,6 +160,7 @@ Page {
 
 
                         FramedImage {
+                            id: thumbnail
                             source: pornstar_thumbnail
                             fillMode: Image.PreserveAspectFit
                             anchors.fill: parent
@@ -172,6 +173,7 @@ Page {
                                 font.bold: true
                                 horizontalAlignment: Text.AlignRight
                                 anchors.verticalCenter: parent.verticalCenter
+                                color: thumbnail.textColor
                             }
                         }
 
@@ -219,6 +221,7 @@ Page {
                         width: GridView.view.cellWidth
 
                         FramedImage {
+                            id: thumbnail
                             source: category_thumbnail
                             fillMode: Image.PreserveAspectFit
                             anchors.fill: parent
@@ -231,6 +234,7 @@ Page {
                                 font.bold: true
                                 horizontalAlignment: Text.AlignRight
                                 anchors.verticalCenter: parent.verticalCenter
+                                color: thumbnail.textColor
                             }
                         }
 

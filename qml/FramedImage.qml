@@ -32,6 +32,7 @@ Image {
     property real topFrameHeight: titleLabel.height
     property real bottomFrameHeight: bottomFrameContent ? bottomFrameContent.height : 0
     property Item bottomFrameContent
+    property alias textColor: titleLabel.color
 
 
     Rectangle {
@@ -50,6 +51,7 @@ Image {
             width: parent.width - 2*x
             truncationMode: TruncationMode.Fade
             font.bold: true
+            color: "white"
         }
     }
 

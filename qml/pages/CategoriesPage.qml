@@ -150,6 +150,7 @@ Page {
 
 
                     FramedImage {
+                        id: thumbnail
                         source: category_thumbnail
                         anchors.fill: parent
                         topFrameHeight: 0
@@ -165,6 +166,7 @@ Page {
                                 truncationMode: TruncationMode.Fade
                                 text: category_name
                                 font.bold: true
+                                color: thumbnail.textColor
                             }
 
                             Label {
@@ -176,6 +178,7 @@ Page {
                                 text: "(" + category_videos + ")"
                                 font.pixelSize: Theme.fontSizeExtraSmall
                                 font.bold: true
+                                color: thumbnail.textColor
                             }
                         }
                     }

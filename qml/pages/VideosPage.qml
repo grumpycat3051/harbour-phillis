@@ -144,6 +144,7 @@ Page {
                                 font.pixelSize: Theme.fontSizeExtraSmall
                                 font.bold: true
                                 anchors.verticalCenter: parent.verticalCenter
+                                color: thumbnail.textColor
                             }
 
                             Image {
@@ -157,6 +158,7 @@ Page {
                                 font.pixelSize: Theme.fontSizeExtraSmall
                                 font.bold: true
                                 anchors.verticalCenter: parent.verticalCenter
+                                color: thumbnail.textColor
                             }
 
                             Image {

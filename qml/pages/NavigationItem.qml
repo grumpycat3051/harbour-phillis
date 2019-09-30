@@ -37,7 +37,7 @@ ListItem {
         width: parent.width - 2*x
         height: parent.height
 
-        Image {
+        Icon {
             id: icon
             visible: !!iconName
             source: visible? "file://" + App.appDir + "/media/" + iconName : ""

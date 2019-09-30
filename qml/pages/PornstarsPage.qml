@@ -136,6 +136,7 @@ Page {
                     width: GridView.view.cellWidth
 
                     FramedImage {
+                        id: thumbnail
                         source: pornstar_thumbnail
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectFit
@@ -148,6 +149,7 @@ Page {
                             font.bold: true
                             horizontalAlignment: Text.AlignRight
                             anchors.verticalCenter: parent.verticalCenter
+                            color: thumbnail.textColor
                         }
                     }
 

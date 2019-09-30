@@ -204,7 +204,7 @@
         <translation>Filter</translation>
     </message>
     <message id="ph-categories-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/CategoriesPage.qml" line="200"/>
+        <location filename="../qml/pages/CategoriesPage.qml" line="203"/>
         <source>Categories are being loaded</source>
         <translation>Categories are being loaded</translation>
     </message>
@@ -215,13 +215,13 @@
         <translation>Load more</translation>
     </message>
     <message id="ph-pornstars-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/PornstarsPage.qml" line="170"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="172"/>
         <source>Pornstars are being loaded</source>
         <translation>Pornstars are being loaded</translation>
     </message>
     <message id="ph-view-placeholder-text-no-results">
-        <location filename="../qml/pages/PornstarsPage.qml" line="175"/>
-        <location filename="../qml/pages/VideosPage.qml" line="198"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
+        <location filename="../qml/pages/VideosPage.qml" line="200"/>
         <source>Search yielded no results</source>
         <translation>Search yielded no results</translation>
     </message>
@@ -231,7 +231,7 @@
         <translation>Copy URL to clipboard</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/VideosPage.qml" line="193"/>
+        <location filename="../qml/pages/VideosPage.qml" line="195"/>
         <source>Videos are being loaded</source>
         <translation>Videos are being loaded</translation>
     </message>
@@ -271,7 +271,7 @@
         <translation>Pornstars</translation>
     </message>
     <message id="ph-recommended-page-categories-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="200"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="202"/>
         <source>Categories</source>
         <translation>Categories</translation>
     </message>

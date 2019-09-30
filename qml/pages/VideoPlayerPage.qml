@@ -518,16 +518,16 @@ Page {
                                 spacing: Theme.paddingSmall
                                 visible: _upVotes >= 0 && _downVotes >= 0
 
-                                Image {
+                                Icon {
                                     width: Theme.iconSizeExtraSmall
                                     height: Theme.iconSizeExtraSmall
-                                    source: "file://" + App.appDir + "/media/thumbs-up-filled-green.png"
+                                    source: "file://" + App.appDir + "/media/thumbs-up-filled-white.png"
 
-                                    ColorOverlay {
-                                        anchors.fill: parent
-                                        source: parent
-                                        color: Theme.primaryColor
-                                    }
+//                                    ColorOverlay {
+//                                        anchors.fill: parent
+//                                        source: parent
+//                                        color: Theme.primaryColor
+//                                    }
                                 }
 
                                 Label {
@@ -536,16 +536,16 @@ Page {
                                     color: Theme.highlightColor
                                 }
 
-                                Image {
+                                Icon {
                                     width: Theme.iconSizeExtraSmall
                                     height: Theme.iconSizeExtraSmall
-                                    source: "file://" + App.appDir + "/media/thumbs-down-filled-red.png"
+                                    source: "file://" + App.appDir + "/media/thumbs-down-filled-white.png"
 
-                                    ColorOverlay {
-                                        anchors.fill: parent
-                                        source: parent
-                                        color: Theme.primaryColor
-                                    }
+//                                    ColorOverlay {
+//                                        anchors.fill: parent
+//                                        source: parent
+//                                        color: Theme.primaryColor
+//                                    }
                                 }
 
                                 Label {
@@ -638,7 +638,7 @@ Page {
                                 icon.width: Theme.iconSizeSmallPlus
                                 icon.height: Theme.iconSizeSmallPlus
                                 icon.source: _isFavorite
-                                             ? "file://" + App.appDir + "/media/heart-filled-red.png"
+                                             ? "file://" + App.appDir + "/media/heart-filled-white.png"
                                              : "file://" + App.appDir + "/media/heart-outlined.png"
                                 anchors.verticalCenter: parent.verticalCenter
                                 onClicked: {
