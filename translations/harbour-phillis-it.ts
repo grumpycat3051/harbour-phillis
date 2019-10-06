@@ -81,7 +81,7 @@
     <message id="ph-settings-page-display">
         <location filename="../qml/pages/SettingsPage.qml" line="170"/>
         <source>Display</source>
-        <translation>Schermo</translation>
+        <translation>Mostra</translation>
     </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
         <location filename="../qml/pages/SettingsPage.qml" line="177"/>
@@ -116,12 +116,12 @@
     <message id="ph-settings-page-access-require-pin-placeholder">
         <location filename="../qml/pages/SettingsPage.qml" line="250"/>
         <source>Enter four or more digits</source>
-        <translation>Enter four or more digits</translation>
+        <translation>Inserisci almeno quattro cifre</translation>
     </message>
     <message id="ph-settings-page-access-lock-screen-text">
         <location filename="../qml/pages/SettingsPage.qml" line="265"/>
         <source>Lock screen text</source>
-        <translation>Lock screen text</translation>
+        <translation>Testo blocco schermo</translation>
     </message>
     <message id="ph-settings-page-account">
         <location filename="../qml/pages/SettingsPage.qml" line="278"/>
@@ -131,37 +131,37 @@
     <message id="ph-settings-page-account-username">
         <location filename="../qml/pages/SettingsPage.qml" line="283"/>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation>Nome utente</translation>
     </message>
     <message id="ph-settings-page-account-auto-login">
         <location filename="../qml/pages/SettingsPage.qml" line="309"/>
         <source>Login on application start</source>
-        <translation>Login on application start</translation>
+        <translation>Accedi all&apos;avvio dell&apos;app</translation>
     </message>
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="81"/>
         <source>Login success</source>
-        <translation>Login success</translation>
+        <translation>Accesso effettuato</translation>
     </message>
     <message id="ph-error-message-initial-request-failed">
         <location filename="../qml/harbour-phillis.qml" line="118"/>
         <source>Initial loading of website failed</source>
-        <translation>Initial loading of website failed</translation>
+        <translation>Caricamento del sito fallito</translation>
     </message>
     <message id="ph-setting-lock-screen-text">
         <location filename="../qml/harbour-phillis.qml" line="229"/>
         <source>Please enter your online trading PIN</source>
-        <translation>Please enter your online trading PIN</translation>
+        <translation>Inserisci il tuo PIN online</translation>
     </message>
     <message id="ph-error-request-failed-summary">
         <location filename="../qml/harbour-phillis.qml" line="345"/>
         <source>Request failed</source>
-        <translation>Request failed</translation>
+        <translation>Richiesta fallita</translation>
     </message>
     <message id="ph-about-page-header">
         <location filename="../qml/pages/AboutPage.qml" line="42"/>
         <source>About %1</source>
-        <translation>About %1</translation>
+        <translation>Info su %1</translation>
     </message>
     <message id="ph-about-page-version-text">
         <location filename="../qml/pages/AboutPage.qml" line="90"/>
@@ -171,12 +171,12 @@
     <message id="ph-about-page-description-header">
         <location filename="../qml/pages/AboutPage.qml" line="107"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation>Descrizione</translation>
     </message>
     <message id="ph-about-page-description-text">
         <location filename="../qml/pages/AboutPage.qml" line="114"/>
         <source>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
+        <translation>%1 è un client non ufficiale Sailfish OS del sito web per adulti &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="123"/>
@@ -186,74 +186,74 @@
     <message id="ph-about-page-privacy-text">
         <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
+        <translation>Quest&apos;app non salva né raccoglie nessun dato personale. Se effettui l&apos;accesso, l&apos;app salverà le credenziali di &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-licensing-header">
         <location filename="../qml/pages/AboutPage.qml" line="139"/>
         <source>Licensing</source>
-        <translation>Licensing</translation>
+        <translation>Licenza</translation>
     </message>
     <message id="ph-about-page-licensing-text">
         <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
+        <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;Quest&apos;app è rilasciata sotto licenza MIT su &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 utilizza le icone di Smashicons da &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Il contenuto fruito attraverso %1 è proprietà e responsabilità di &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="ph-categories-page-filter-placeholder">
         <location filename="../qml/pages/CategoriesPage.qml" line="115"/>
         <source>Filter</source>
-        <translation>Filter</translation>
+        <translation>Filtri</translation>
     </message>
     <message id="ph-categories-page-view-placeholder-text-loading">
         <location filename="../qml/pages/CategoriesPage.qml" line="200"/>
         <source>Categories are being loaded</source>
-        <translation>Categories are being loaded</translation>
+        <translation>Caricamento categorie</translation>
     </message>
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
         <location filename="../qml/pages/VideosPage.qml" line="93"/>
         <source>Load more</source>
-        <translation>Load more</translation>
+        <translation>Carica altro</translation>
     </message>
     <message id="ph-pornstars-page-view-placeholder-text-loading">
         <location filename="../qml/pages/PornstarsPage.qml" line="170"/>
         <source>Pornstars are being loaded</source>
-        <translation>Pornstars are being loaded</translation>
+        <translation>Caricamento pornostar</translation>
     </message>
     <message id="ph-view-placeholder-text-no-results">
         <location filename="../qml/pages/PornstarsPage.qml" line="175"/>
         <location filename="../qml/pages/VideosPage.qml" line="198"/>
         <source>Search yielded no results</source>
-        <translation>Search yielded no results</translation>
+        <translation>La ricerca non ha fornito risultati</translation>
     </message>
     <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
         <location filename="../qml/pages/VideosPage.qml" line="123"/>
         <source>Copy URL to clipboard</source>
-        <translation>Copy URL to clipboard</translation>
+        <translation>Copia URL negli appunti</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
         <location filename="../qml/pages/VideosPage.qml" line="193"/>
         <source>Videos are being loaded</source>
-        <translation>Videos are being loaded</translation>
+        <translation>Caricamento video</translation>
     </message>
     <message id="ph-disclaimer-page-title">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="49"/>
         <source>Adult Content Disclaimer</source>
-        <translation>Adult Content Disclaimer</translation>
+        <translation>Clausola di esclusione della responsabilità</translation>
     </message>
     <message id="ph-disclaimer-page-text1">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="62"/>
         <source>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</source>
-        <translation>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</translation>
+        <translation>Il contenuto fruito attraverso quest&apos;app è destinato soltanto ad ADULTI e potrebbe includere immagini e materiale che alcuni utenti potrebbero trovare offensivo. Se sei minorenne, se questo materiale ti offende o se ti trovi in paesi nei quali guardare questo materiale è illegale, esci da questo sito. L&apos;utilizzo del sito costituisce l&apos;accettazione dei seguenti termini e condizioni:</translation>
     </message>
     <message id="ph-disclaimer-page-text2">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="75"/>
         <source>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</source>
-        <translation>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</translation>
+        <translation>1) Sono maggiorenne&lt;br/&gt;2) Accetto la responsabilità delle mie azioni&lt;br/&gt;3) Accetto che questi termini e condizioni abbiano valore legale</translation>
     </message>
     <message id="ph-disclaimer-page-accept-button">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="89"/>
         <source>Accept</source>
-        <translation>Accept</translation>
+        <translation>Accetto</translation>
     </message>
     <message id="ph-lock-screen-page-pin-placeholder">
         <location filename="../qml/pages/LockScreenPage.qml" line="65"/>
@@ -263,77 +263,77 @@
     <message id="ph-recommended-page-header">
         <location filename="../qml/pages/RecommendedPage.qml" line="133"/>
         <source>Recommended</source>
-        <translation>Recommended</translation>
+        <translation>Raccomandati</translation>
     </message>
     <message id="ph-recommended-page-pornstars-section-header">
         <location filename="../qml/pages/RecommendedPage.qml" line="139"/>
         <source>Pornstars</source>
-        <translation>Pornstars</translation>
+        <translation>Pornostar</translation>
     </message>
     <message id="ph-recommended-page-categories-section-header">
         <location filename="../qml/pages/RecommendedPage.qml" line="200"/>
         <source>Categories</source>
-        <translation>Categories</translation>
+        <translation>Categorie</translation>
     </message>
     <message id="ph-start-page-videos-hottest">
         <location filename="../qml/pages/StartPage.qml" line="46"/>
         <source>Hottest</source>
-        <translation>Hottest</translation>
+        <translation>Più caldi</translation>
     </message>
     <message id="ph-start-page-videos-most-viewed">
         <location filename="../qml/pages/StartPage.qml" line="53"/>
         <source>Most Viewed</source>
-        <translation>Most Viewed</translation>
+        <translation>Più visti</translation>
     </message>
     <message id="ph-start-page-videos-top-ratedmost-viewed">
         <location filename="../qml/pages/StartPage.qml" line="60"/>
         <source>Top Rated</source>
-        <translation>Top Rated</translation>
+        <translation>Valuitazione positiva</translation>
     </message>
     <message id="ph-start-page-videos-popular-homemade">
         <location filename="../qml/pages/StartPage.qml" line="67"/>
         <source>Popular Homemade</source>
-        <translation>Popular Homemade</translation>
+        <translation>Fatti in casa popolari</translation>
     </message>
     <message id="ph-start-page-categories-popular">
         <location filename="../qml/pages/StartPage.qml" line="77"/>
         <source>Popular</source>
-        <translation>Popular</translation>
+        <translation>Popolari</translation>
     </message>
     <message id="ph-start-page-categories-alphabetical">
         <location filename="../qml/pages/StartPage.qml" line="84"/>
         <source>Alphabetical</source>
-        <translation>Alphabetical</translation>
+        <translation>Alfabetico</translation>
     </message>
     <message id="ph-start-page-categories-no-videos">
         <location filename="../qml/pages/StartPage.qml" line="91"/>
         <source>Number of Videos</source>
-        <translation>Number of Videos</translation>
+        <translation>Numero di video</translation>
     </message>
     <message id="ph-start-page-pornstars-most-popular">
         <location filename="../qml/pages/StartPage.qml" line="101"/>
         <source>Most Popular</source>
-        <translation>Most Popular</translation>
+        <translation>Più popolari</translation>
     </message>
     <message id="ph-start-page-pornstars-top-trending">
         <location filename="../qml/pages/StartPage.qml" line="108"/>
         <source>Top Trending</source>
-        <translation>Top Trending</translation>
+        <translation>Di tendenza</translation>
     </message>
     <message id="ph-start-page-pornstars-most-viewed">
         <location filename="../qml/pages/StartPage.qml" line="115"/>
         <source>Most Viewed</source>
-        <translation>Most Viewed</translation>
+        <translation>Più visti</translation>
     </message>
     <message id="ph-start-page-pornstars-most-subscribed">
         <location filename="../qml/pages/StartPage.qml" line="122"/>
         <source>Most Subscribed</source>
-        <translation>Most Subscribed</translation>
+        <translation>Più sottoscritti</translation>
     </message>
     <message id="ph-start-page-pornstars-no-videos">
         <location filename="../qml/pages/StartPage.qml" line="136"/>
         <source>Number of Videos</source>
-        <translation>Number of Videos</translation>
+        <translation>Numero di video</translation>
     </message>
     <message id="ph-start-page-header">
         <location filename="../qml/pages/StartPage.qml" line="192"/>
@@ -343,53 +343,53 @@
     <message id="ph-start-page-videos-recommended">
         <location filename="../qml/pages/StartPage.qml" line="197"/>
         <source>Recommended</source>
-        <translation>Recommended</translation>
+        <translation>Raccomandati</translation>
     </message>
     <message id="ph-start-page-videos-section-title">
         <location filename="../qml/pages/StartPage.qml" line="210"/>
         <source>Videos</source>
-        <translation>Videos</translation>
+        <translation>Video</translation>
     </message>
     <message id="ph-start-page-search-placeholder">
         <location filename="../qml/pages/StartPage.qml" line="234"/>
         <location filename="../qml/pages/StartPage.qml" line="300"/>
         <source>Search</source>
-        <translation>Search</translation>
+        <translation>Cerca</translation>
     </message>
     <message id="ph-start-page-categories-section-title">
         <location filename="../qml/pages/StartPage.qml" line="251"/>
         <source>Categories</source>
-        <translation>Categories</translation>
+        <translation>Categorie</translation>
     </message>
     <message id="ph-start-page-pornstars-section-title">
         <location filename="../qml/pages/StartPage.qml" line="276"/>
         <source>Pornstars</source>
-        <translation>Pornstars</translation>
+        <translation>Pornostar</translation>
     </message>
     <message id="ph-start-page-my-section-title">
         <location filename="../qml/pages/StartPage.qml" line="317"/>
         <source>My</source>
-        <translation>My</translation>
+        <translation>I miei</translation>
     </message>
     <message id="ph-start-page-user-videos-favorites">
         <location filename="../qml/pages/StartPage.qml" line="352"/>
         <source>Favorites</source>
-        <translation>Favorites</translation>
+        <translation>Preferiti</translation>
     </message>
     <message id="ph-format-combobox-format-label">
         <location filename="../qml/FormatComboBox.qml" line="35"/>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation>Formato</translation>
     </message>
     <message id="ph-format-combobox-format-best">
         <location filename="../qml/FormatComboBox.qml" line="41"/>
         <source>best quality (largest)</source>
-        <translation>best quality (largest)</translation>
+        <translation>qualità migliore (più grandi)</translation>
     </message>
     <message id="ph-format-combobox-format-worst">
         <location filename="../qml/FormatComboBox.qml" line="45"/>
         <source>worst quality (smallest)</source>
-        <translation>worst quality (smallest)</translation>
+        <translation>qualità peggiore (più piccoli)</translation>
     </message>
     <message id="ph-top-menu-about">
         <location filename="../qml/TopMenu.qml" line="34"/>
@@ -399,28 +399,28 @@
     <message id="ph-top-menu-settings">
         <location filename="../qml/TopMenu.qml" line="40"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message id="ph-top-menu-reload">
         <location filename="../qml/TopMenu.qml" line="46"/>
         <source>Reload</source>
-        <translation>Reload</translation>
+        <translation>Ricarica</translation>
     </message>
     <message id="ph-top-menu-logout">
         <location filename="../qml/TopMenu.qml" line="59"/>
         <source>Logout</source>
-        <translation>Logout</translation>
+        <translation>Esci</translation>
     </message>
     <message id="ph-top-menu-login">
         <location filename="../qml/TopMenu.qml" line="66"/>
         <source>Login</source>
-        <translation>Login</translation>
+        <translation>Accedi</translation>
     </message>
     <message id="ph-model-videos-page-title">
         <location filename="../qml/pages/VideoPlayerPage.qml" line="578"/>
         <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
-        <translation>%1&apos;s Videos</translation>
+        <translation>Video di %1</translation>
     </message>
 </context>
 </TS>
