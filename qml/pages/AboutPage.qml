@@ -119,6 +119,22 @@ Page {
                 }
 
                 SectionHeader {
+                    //% "Licenses & Sources"
+                    text: qsTrId("about-page-licenses-sources-header")
+                }
+
+                LinkedLabel {
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2*x
+                    //% "Copyright © 2019 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>.<br/><br/>The content provided through %1 is the property and sole responsibility of <a href='https://www.pornhub.com/'>Pornhub</a>."
+                    text: qsTrId("ph-about-page-licensing-text").arg(App.displayName)
+                    wrapMode: Text.WordWrap
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.secondaryHighlightColor
+                    linkColor: Theme.secondaryColor
+                }
+
+                SectionHeader {
                     //% "Privacy"
                     text: qsTrId("ph-about-privacy-header")
                 }
@@ -134,25 +150,22 @@ Page {
                     linkColor: Theme.secondaryColor
                 }
 
-                SectionHeader {
-                    //% "Licensing"
-                    text: qsTrId("about-page-licensing-header")
+                Item {
+                    width: parent.width
+                    height: Theme.paddingLarge
                 }
 
-                LinkedLabel {
-                    x: Theme.horizontalPageMargin
-                    width: parent.width - 2*x
-                    //% "Copyright © 2019 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>.<br/><br/>The content provided through %1 is the property and sole responsibility of <a href='https://www.pornhub.com/'>Pornhub</a>."
-                    text: qsTrId("ph-about-page-licensing-text").arg(App.displayName)
-                    wrapMode: Text.WordWrap
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.secondaryHighlightColor
-                    linkColor: Theme.secondaryColor
+                ButtonLayout {
+                    Button {
+                        //% "Translations"
+                        text: qsTrId("about-page-translations-button")
+                        onClicked: pageStack.push(Qt.resolvedUrl("TranslationsPage.qml"))
+                    }
                 }
 
                 Item {
                     width: parent.width
-                    height: Theme.paddingLarge
+                    height: Theme.paddingMedium
                 }
             }
         }

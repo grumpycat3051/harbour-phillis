@@ -178,23 +178,28 @@
         <source>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>%1 是一个非官方旗鱼系统 Pornhub客户端&lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
-    <message id="ph-about-privacy-header">
+    <message id="about-page-licenses-sources-header">
         <location filename="../qml/pages/AboutPage.qml" line="123"/>
+        <source>Licenses &amp; Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-about-privacy-header">
+        <location filename="../qml/pages/AboutPage.qml" line="139"/>
         <source>Privacy</source>
         <translation>隐私政策</translation>
     </message>
     <message id="ph-about-page-privacy-text">
-        <location filename="../qml/pages/AboutPage.qml" line="130"/>
+        <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>该软件不会收集及储存你的任何个人信息，尽管需要凭证以登录到  &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
-    <message id="about-page-licensing-header">
-        <location filename="../qml/pages/AboutPage.qml" line="139"/>
-        <source>Licensing</source>
-        <translation>许可协议</translation>
+    <message id="about-page-translations-button">
+        <location filename="../qml/pages/AboutPage.qml" line="161"/>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
     </message>
     <message id="ph-about-page-licensing-text">
-        <location filename="../qml/pages/AboutPage.qml" line="146"/>
+        <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>版权所有 © 2019 grumpycat&lt;br/&gt;&lt;br/&gt; 软件使用 MIT 许可协议&lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 使用 Smashicons 制作的图标&lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt; 内容通过 %1 提供，并具有完全责任。&lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
@@ -421,6 +426,21 @@
         <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s 视频</translation>
+    </message>
+    <message id="ph-translations-page-header">
+        <location filename="../qml/pages/TranslationsPage.qml" line="41"/>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-translations-english-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="55"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-translations-simplified-chinese-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="61"/>
+        <source>Simplified Chinese</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

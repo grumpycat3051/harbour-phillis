@@ -63,6 +63,7 @@ DISTFILES += \
     qml/pages/AdultContentDisclaimerPage.qml \
     qml/pages/LockScreenPage.qml \
     qml/pages/RecommendedPage.qml \
+    qml/pages/TranslationsPage.qml \
 
 
 

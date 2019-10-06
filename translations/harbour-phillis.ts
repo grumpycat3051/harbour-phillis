@@ -178,23 +178,28 @@
         <source>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
-    <message id="ph-about-privacy-header">
+    <message id="about-page-licenses-sources-header">
         <location filename="../qml/pages/AboutPage.qml" line="123"/>
+        <source>Licenses &amp; Sources</source>
+        <translation>Licenses &amp; Sources</translation>
+    </message>
+    <message id="ph-about-privacy-header">
+        <location filename="../qml/pages/AboutPage.qml" line="139"/>
         <source>Privacy</source>
         <translation>Privacy</translation>
     </message>
     <message id="ph-about-page-privacy-text">
-        <location filename="../qml/pages/AboutPage.qml" line="130"/>
+        <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
-    <message id="about-page-licensing-header">
-        <location filename="../qml/pages/AboutPage.qml" line="139"/>
-        <source>Licensing</source>
-        <translation>Licensing</translation>
+    <message id="about-page-translations-button">
+        <location filename="../qml/pages/AboutPage.qml" line="161"/>
+        <source>Translations</source>
+        <translation>Translations</translation>
     </message>
     <message id="ph-about-page-licensing-text">
-        <location filename="../qml/pages/AboutPage.qml" line="146"/>
+        <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
@@ -421,6 +426,21 @@
         <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
+    </message>
+    <message id="ph-translations-page-header">
+        <location filename="../qml/pages/TranslationsPage.qml" line="41"/>
+        <source>Translations</source>
+        <translation>Translations</translation>
+    </message>
+    <message id="ph-translations-english-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="55"/>
+        <source>English</source>
+        <translation>English</translation>
+    </message>
+    <message id="ph-translations-simplified-chinese-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="61"/>
+        <source>Simplified Chinese</source>
+        <translation>Simplified Chinese</translation>
     </message>
 </context>
 </TS>
