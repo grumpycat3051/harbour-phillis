@@ -119,19 +119,48 @@ Page {
                 }
 
                 SectionHeader {
-                    //% "Licenses & Sources"
-                    text: qsTrId("about-page-licenses-sources-header")
+                    //% "Disclaimer"
+                    text: qsTrId("about-page-disclaimer-header")
                 }
 
                 LinkedLabel {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
-                    //% "Copyright © 2019 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>.<br/><br/>The content provided through %1 is the property and sole responsibility of <a href='https://www.pornhub.com/'>Pornhub</a>."
-                    text: qsTrId("ph-about-page-licensing-text").arg(App.displayName)
+                    //% "The content provided through %1 is the property and sole responsibility of <a href='https://www.pornhub.com/'>Pornhub</a>."
+                    text: qsTrId("ph-about-page-disclaimer-text").arg(App.displayName)
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.secondaryHighlightColor
                     linkColor: Theme.secondaryColor
+                }
+
+                SectionHeader {
+                    //% "Credits, Licenses, and Sources"
+                    text: qsTrId("about-page-credits-licenses-sources-header")
+                }
+
+                LinkedLabel {
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2*x
+                    //% "Copyright © 2019 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>."
+                    text: qsTrId("ph-about-page-credits-licenses-sources-text").arg(App.displayName)
+                    wrapMode: Text.WordWrap
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.secondaryHighlightColor
+                    linkColor: Theme.secondaryColor
+                }
+
+                Item {
+                    width: parent.width
+                    height: Theme.paddingSmall
+                }
+
+                ButtonLayout {
+                    Button {
+                        //% "Translations"
+                        text: qsTrId("about-page-translations-button")
+                        onClicked: pageStack.push(Qt.resolvedUrl("TranslationsPage.qml"))
+                    }
                 }
 
                 SectionHeader {
@@ -153,19 +182,6 @@ Page {
                 Item {
                     width: parent.width
                     height: Theme.paddingLarge
-                }
-
-                ButtonLayout {
-                    Button {
-                        //% "Translations"
-                        text: qsTrId("about-page-translations-button")
-                        onClicked: pageStack.push(Qt.resolvedUrl("TranslationsPage.qml"))
-                    }
-                }
-
-                Item {
-                    width: parent.width
-                    height: Theme.paddingMedium
                 }
             }
         }

@@ -52,19 +52,19 @@ Page {
 
                     DetailItem {
                         //% "English"
-                        label: qsTrId("ph-translations-english-label")
+                        label: qsTrId("ph-translations-page-english-label")
                         value: "grumpycat3051"
                     }
 
                     DetailItem {
                         //% "Simplified Chinese"
-                        label: qsTrId("ph-translations-simplified-chinese-label")
+                        label: qsTrId("ph-translations-page-simplified-chinese-label")
                         value: "RollingRelease"
                     }
 
                     DetailItem {
                         //% "Italian"
-                        label: qsTrId("ph-translations-italian-label")
+                        label: qsTrId("ph-translations-page-italian-label")
                         value: "fravaccaro"
                     }
 
