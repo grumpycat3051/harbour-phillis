@@ -442,5 +442,10 @@
         <source>Simplified Chinese</source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="ph-translations-italian-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="67"/>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

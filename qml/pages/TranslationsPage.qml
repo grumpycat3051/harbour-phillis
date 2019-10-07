@@ -62,6 +62,12 @@ Page {
                         value: "RollingRelease"
                     }
 
+                    DetailItem {
+                        //% "Italian"
+                        label: qsTrId("ph-translations-italian-label")
+                        value: "fravaccaro"
+                    }
+
                     Item {
                         width: parent.width
                         height: Theme.paddingLarge

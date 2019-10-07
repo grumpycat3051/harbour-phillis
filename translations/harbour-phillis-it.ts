@@ -178,23 +178,28 @@
         <source>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>%1 è un client non ufficiale Sailfish OS del sito web per adulti &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
-    <message id="ph-about-privacy-header">
+    <message id="about-page-licenses-sources-header">
         <location filename="../qml/pages/AboutPage.qml" line="123"/>
+        <source>Licenses &amp; Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-about-privacy-header">
+        <location filename="../qml/pages/AboutPage.qml" line="139"/>
         <source>Privacy</source>
         <translation>Privacy</translation>
     </message>
     <message id="ph-about-page-privacy-text">
-        <location filename="../qml/pages/AboutPage.qml" line="130"/>
+        <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>Quest&apos;app non salva né raccoglie nessun dato personale. Se effettui l&apos;accesso, l&apos;app salverà le credenziali di &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
-    <message id="about-page-licensing-header">
-        <location filename="../qml/pages/AboutPage.qml" line="139"/>
-        <source>Licensing</source>
-        <translation>Licenza</translation>
+    <message id="about-page-translations-button">
+        <location filename="../qml/pages/AboutPage.qml" line="161"/>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
     </message>
     <message id="ph-about-page-licensing-text">
-        <location filename="../qml/pages/AboutPage.qml" line="146"/>
+        <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;Quest&apos;app è rilasciata sotto licenza MIT su &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 utilizza le icone di Smashicons da &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Il contenuto fruito attraverso %1 è proprietà e responsabilità di &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
@@ -204,7 +209,7 @@
         <translation>Filtri</translation>
     </message>
     <message id="ph-categories-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/CategoriesPage.qml" line="200"/>
+        <location filename="../qml/pages/CategoriesPage.qml" line="203"/>
         <source>Categories are being loaded</source>
         <translation>Caricamento categorie</translation>
     </message>
@@ -215,13 +220,13 @@
         <translation>Carica altro</translation>
     </message>
     <message id="ph-pornstars-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/PornstarsPage.qml" line="170"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="172"/>
         <source>Pornstars are being loaded</source>
         <translation>Caricamento pornostar</translation>
     </message>
     <message id="ph-view-placeholder-text-no-results">
-        <location filename="../qml/pages/PornstarsPage.qml" line="175"/>
-        <location filename="../qml/pages/VideosPage.qml" line="198"/>
+        <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
+        <location filename="../qml/pages/VideosPage.qml" line="200"/>
         <source>Search yielded no results</source>
         <translation>La ricerca non ha fornito risultati</translation>
     </message>
@@ -231,7 +236,7 @@
         <translation>Copia URL negli appunti</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/VideosPage.qml" line="193"/>
+        <location filename="../qml/pages/VideosPage.qml" line="195"/>
         <source>Videos are being loaded</source>
         <translation>Caricamento video</translation>
     </message>
@@ -271,7 +276,7 @@
         <translation>Pornostar</translation>
     </message>
     <message id="ph-recommended-page-categories-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="200"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="202"/>
         <source>Categories</source>
         <translation>Categorie</translation>
     </message>
@@ -421,6 +426,26 @@
         <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
         <source>%1&apos;s Videos</source>
         <translation>Video di %1</translation>
+    </message>
+    <message id="ph-translations-page-header">
+        <location filename="../qml/pages/TranslationsPage.qml" line="41"/>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-translations-english-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="55"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-translations-simplified-chinese-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="61"/>
+        <source>Simplified Chinese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-translations-italian-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="67"/>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
