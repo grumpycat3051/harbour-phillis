@@ -28,6 +28,7 @@ import Sailfish.Silica 1.0
 import Nemo.KeepAlive 1.2
 import grumpycat 1.0
 import ".."
+import "../MiniJS.js" as MiniJS
 
 Page {
     id: page
@@ -765,6 +766,11 @@ Page {
     function _parseVideoData(data) {
         var formats = []
         var videoFormatsRegex = new RegExp("^\\s*var\\s+flashvars_\\d+\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
+        var obfuscatedJsRegex = new RegExp("^\\s*var\\s+.*media_0;.*\\s*$")
+        var jsVarDefinitionRegex = new RegExp("^\\s*var\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*=\\s*(.+)\\s*$")
+        var jsCommentRegex = new RegExp("/\\*.*?\\*/", "g")
+
+
         var ratingRegex = new RegExp("^\\s*var\\s+WIDGET_RATINGS_LIKE_FAV\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
         var ratingTokenRegex = new RegExp("^\\s*WIDGET_RATINGS_LIKE_FAV.token\\s*=\\s*\"(.+?)\"")
         var modelRegex = new RegExp("<a\\s+.*?href=[\"']([^\"']+)[\"']\\s+class=[\"']bolded[\"'][^>]*>([^<]+)</a>")
@@ -881,16 +887,14 @@ Page {
                     var mediaDefinitions = jsonObject.mediaDefinitions
                     for (var j = 0; j < mediaDefinitions.length; ++j) {
                         var def = mediaDefinitions[j]
-                        if (def.videoUrl) {
-                            var format = {
-                                format_quality: parseInt(def.quality),
-                                format_url: def.videoUrl,
-                                format_extension: def.format
-                            }
-
-                            formats.push(format)
-                            console.debug("added quality=" + format.format_quality + " ext=" + format.format_extension + " url=" + format.format_url)
+                        var format = {
+                            format_quality: parseInt(def.quality),
+                            format_url: def.videoUrl,
+                            format_extension: def.format
                         }
+
+                        formats.push(format)
+                        console.debug("added quality=" + format.format_quality + " ext=" + format.format_extension + " url=" + format.format_url)
                     }
 
                     _formats = formats
@@ -949,6 +953,32 @@ Page {
                             _modelUrl = modelMatch[1]
                             _modelName = modelMatch[2]
                             console.debug("model name=" + _modelName + " model url=" + _modelUrl)
+                        }
+
+                        var obfuscatedJsMatch = obfuscatedJsRegex.exec(lines[i])
+                        if (obfuscatedJsMatch) {
+                            var defs = {}
+                            var vars = obfuscatedJsMatch[0].split(";")
+                            for (var j = 0; j < vars.length; ++j) {
+//                                console.debug(vars[j])
+                                var stmt = vars[j].replace(jsCommentRegex, "")
+//                                if (stmt !== vars[j]) {
+//                                    console.debug(stmt)
+//                                }
+
+                                var jsVarDefinitionMatch = jsVarDefinitionRegex.exec(stmt)
+                                if (jsVarDefinitionMatch) {
+                                    defs[jsVarDefinitionMatch[1]] = jsVarDefinitionMatch[2]
+                                }
+                            }
+
+                            for (var j = 0; j < _formats.length; ++j) {
+                                var url = MiniJS.evaluate(defs, "media_" + j)
+                                if (url) {
+                                    console.debug("index " + j + " url " + url)
+                                    _formats[j]["format_url"] = url
+                                }
+                            }
                         }
                     }
                 }

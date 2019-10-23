@@ -138,26 +138,6 @@
         <source>Login on application start</source>
         <translation>Accedi all&apos;avvio dell&apos;app</translation>
     </message>
-    <message id="ph-login-succes-message">
-        <location filename="../qml/harbour-phillis.qml" line="81"/>
-        <source>Login success</source>
-        <translation>Accesso effettuato</translation>
-    </message>
-    <message id="ph-error-message-initial-request-failed">
-        <location filename="../qml/harbour-phillis.qml" line="118"/>
-        <source>Initial loading of website failed</source>
-        <translation>Caricamento del sito fallito</translation>
-    </message>
-    <message id="ph-setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="229"/>
-        <source>Please enter your online trading PIN</source>
-        <translation>Inserisci il tuo PIN online</translation>
-    </message>
-    <message id="ph-error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="345"/>
-        <source>Request failed</source>
-        <translation>Richiesta fallita</translation>
-    </message>
     <message id="ph-about-page-header">
         <location filename="../qml/pages/AboutPage.qml" line="42"/>
         <source>About %1</source>
@@ -433,8 +413,8 @@
         <translation>Accedi</translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="578"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="596"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="579"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="597"/>
         <source>%1&apos;s Videos</source>
         <translation>Video di %1</translation>
     </message>
@@ -457,6 +437,26 @@
         <location filename="../qml/pages/TranslationsPage.qml" line="67"/>
         <source>Italian</source>
         <translation type="unfinished">Italiano</translation>
+    </message>
+    <message id="ph-login-succes-message">
+        <location filename="../qml/harbour-phillis.qml" line="81"/>
+        <source>Login success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-error-message-initial-request-failed">
+        <location filename="../qml/harbour-phillis.qml" line="118"/>
+        <source>Initial loading of website failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-setting-lock-screen-text">
+        <location filename="../qml/harbour-phillis.qml" line="229"/>
+        <source>Please enter your online trading PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-error-request-failed-summary">
+        <location filename="../qml/harbour-phillis.qml" line="345"/>
+        <source>Request failed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

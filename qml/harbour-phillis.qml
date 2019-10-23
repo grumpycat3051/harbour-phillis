@@ -421,7 +421,9 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
         cookieJar.clear()
         var tomorrow = new Date()
         tomorrow.setDate(tomorrow.getDate() + 1)
-        cookieJar.addCookie(".pornhub.com", "/", "accessAgeDisclaimerPH", "1", tomorrow.getTime(), false)
+        //cookieJar.addCookie(".pornhub.com", "/", "accessAgeDisclaimerPH", "1", tomorrow.getTime(), false)
+        cookieJar.addCookie(".pornhub.com", "/", "age_verified", "1", tomorrow.getTime(), false)
+
         reload()
     }
 

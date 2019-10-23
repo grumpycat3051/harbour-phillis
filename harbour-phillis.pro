@@ -64,6 +64,7 @@ DISTFILES += \
     qml/pages/LockScreenPage.qml \
     qml/pages/RecommendedPage.qml \
     qml/pages/TranslationsPage.qml \
+    qml/MiniJS.js \
 
 
 
