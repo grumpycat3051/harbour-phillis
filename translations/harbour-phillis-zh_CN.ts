@@ -232,22 +232,22 @@
         <translation>正在加载视频</translation>
     </message>
     <message id="ph-disclaimer-page-title">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="49"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="57"/>
         <source>Adult Content Disclaimer</source>
         <translation>成人内容声明</translation>
     </message>
     <message id="ph-disclaimer-page-text1">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="62"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="70"/>
         <source>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</source>
         <translation>此应用程序提供的内容仅适用于成年人，可能包含一些观众会觉得冒犯的图片和材料。 如果你未满18岁或者此类材料冒犯您或者您所在社区查看此类材料是非法的，请退出该网站。 以下条款和条件适用于本网站。 使用本网站即表示您同意以下条款和条件:</translation>
     </message>
     <message id="ph-disclaimer-page-text2">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="75"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="83"/>
         <source>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</source>
         <translation>1.我18岁或以上 2.我对自己的行为负全部责任 3.我同意我在法律上受这些条款和条件的约束</translation>
     </message>
     <message id="ph-disclaimer-page-accept-button">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="89"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="98"/>
         <source>Accept</source>
         <translation>接受</translation>
     </message>

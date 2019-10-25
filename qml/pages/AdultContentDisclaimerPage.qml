@@ -30,13 +30,21 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
-        contentHeight: parent.height
+        contentHeight: column.height
+
+        VerticalScrollDecorator {}
 
         Column {
+            id: column
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
             anchors.verticalCenter: parent.verticalCenter
             spacing: 2*Theme.paddingMedium
+
+            Item {
+                width: parent.width
+                height: Theme.fontSizeHuge
+            }
 
             Column {
                 width: parent.width
@@ -83,11 +91,18 @@ Page {
                 }
             }
 
-            Button {
-                anchors.horizontalCenter: parent.horizontalCenter
-                //% "Accept"
-                text: qsTrId("ph-disclaimer-page-accept-button")
-                onClicked: disclaimerAccepted.value = true
+            ButtonLayout {
+                Button {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    //% "Accept"
+                    text: qsTrId("ph-disclaimer-page-accept-button")
+                    onClicked: disclaimerAccepted.value = true
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: Theme.paddingLarge
             }
         }
     }

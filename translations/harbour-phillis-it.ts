@@ -232,22 +232,22 @@
         <translation>Caricamento video</translation>
     </message>
     <message id="ph-disclaimer-page-title">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="49"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="57"/>
         <source>Adult Content Disclaimer</source>
         <translation>Clausola di esclusione della responsabilità</translation>
     </message>
     <message id="ph-disclaimer-page-text1">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="62"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="70"/>
         <source>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</source>
         <translation>Il contenuto fruito attraverso quest&apos;app è destinato soltanto ad ADULTI e potrebbe includere immagini e materiale che alcuni utenti potrebbero trovare offensivo. Se sei minorenne, se questo materiale ti offende o se ti trovi in paesi nei quali guardare questo materiale è illegale, esci da questo sito. L&apos;utilizzo del sito costituisce l&apos;accettazione dei seguenti termini e condizioni:</translation>
     </message>
     <message id="ph-disclaimer-page-text2">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="75"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="83"/>
         <source>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</source>
         <translation>1) Sono maggiorenne&lt;br/&gt;2) Accetto la responsabilità delle mie azioni&lt;br/&gt;3) Accetto che questi termini e condizioni abbiano valore legale</translation>
     </message>
     <message id="ph-disclaimer-page-accept-button">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="89"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="98"/>
         <source>Accept</source>
         <translation>Accetto</translation>
     </message>
