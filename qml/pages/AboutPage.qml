@@ -172,7 +172,7 @@ Page {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
                     //% "This application does not collect or save any personal data aside from possibly those credentials required to sign into <a href='https://www.pornhub.com/'>Pornhub</a>."
-                    text: qsTrId("ph-about-page-privacy-text").arg(App.displayName)
+                    text: qsTrId("ph-about-page-privacy-text")
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.secondaryHighlightColor
