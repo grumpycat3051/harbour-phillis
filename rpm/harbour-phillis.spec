@@ -18,6 +18,7 @@ Version:    0.2.7
 Release:    1
 Group:      Applications/Multimedia
 License:    MIT
+URL:        https://github.com/grumpycat3051/harbour-phillis
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-phillis.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

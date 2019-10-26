@@ -5,7 +5,7 @@ Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
 Group: Applications/Multimedia
-#URL: http://example.org/
+URL: https://github.com/grumpycat3051/harbour-phillis
 License: MIT
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
