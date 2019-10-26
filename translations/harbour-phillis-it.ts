@@ -441,22 +441,22 @@
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="81"/>
         <source>Login success</source>
-        <translation type="unfinished"></translation>
+        <translation>Accesso effettuato</translation>
     </message>
     <message id="ph-error-message-initial-request-failed">
         <location filename="../qml/harbour-phillis.qml" line="118"/>
         <source>Initial loading of website failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Caricamento del sito fallito</translation>
     </message>
     <message id="ph-setting-lock-screen-text">
         <location filename="../qml/harbour-phillis.qml" line="229"/>
         <source>Please enter your online trading PIN</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci il tuo PIN online</translation>
     </message>
     <message id="ph-error-request-failed-summary">
         <location filename="../qml/harbour-phillis.qml" line="345"/>
         <source>Request failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Richiesta fallita</translation>
     </message>
 </context>
 </TS>
