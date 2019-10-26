@@ -24,6 +24,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import grumpycat 1.0
+import ".."
 
 ListItem {
     id: root
@@ -37,7 +38,7 @@ ListItem {
         width: parent.width - 2*x
         height: parent.height
 
-        Icon {
+        BestEffortIcon {
             id: icon
             visible: !!iconName
             source: visible? "file://" + App.appDir + "/media/" + iconName : ""

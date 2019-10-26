@@ -519,7 +519,7 @@ Page {
                                 spacing: Theme.paddingSmall
                                 visible: _upVotes >= 0 && _downVotes >= 0
 
-                                Icon {
+                                BestEffortIcon {
                                     width: Theme.iconSizeExtraSmall
                                     height: Theme.iconSizeExtraSmall
                                     source: "file://" + App.appDir + "/media/thumbs-up-filled-white.png"
@@ -537,7 +537,7 @@ Page {
                                     color: Theme.highlightColor
                                 }
 
-                                Icon {
+                                BestEffortIcon {
                                     width: Theme.iconSizeExtraSmall
                                     height: Theme.iconSizeExtraSmall
                                     source: "file://" + App.appDir + "/media/thumbs-down-filled-white.png"

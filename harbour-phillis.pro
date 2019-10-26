@@ -39,6 +39,8 @@ SOURCES += src/QuickApp.cpp
 
 
 DISTFILES += \
+    qml/BestEffortIcon.qml \
+    qml/ThemeColoredImage.qml \
     rpm/harbour-phillis.changes.in \
     rpm/harbour-phillis.changes.run.in \
     rpm/harbour-phillis.spec \
