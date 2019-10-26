@@ -161,23 +161,23 @@
     <message id="about-page-disclaimer-header">
         <location filename="../qml/pages/AboutPage.qml" line="123"/>
         <source>Disclaimer</source>
-        <translation type="unfinished">Clausola di esclusione della responsabilità</translation>
+        <translation>Esclusione della responsabilità</translation>
     </message>
     <message id="ph-about-page-disclaimer-text">
         <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation type="unfinished">Il contenuto fruito attraverso %1 è proprietà e responsabilità di &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
+        <translation>Il contenuto fruito attraverso %1 è proprietà e responsabilità di &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-credits-licenses-sources-header">
         <location filename="../qml/pages/AboutPage.qml" line="139"/>
         <source>Credits, Licenses, and Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Crediti, licenze e sorgenti</translation>
     </message>
     <message id="ph-about-page-credits-licenses-sources-text">
         <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
         <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;.&lt;br/&gt;%1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
-        <translation type="unfinished">Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;Quest&apos;app è rilasciata sotto licenza MIT su &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 utilizza le icone di Smashicons da &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
+        <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;Quest&apos;app è rilasciata sotto licenza MIT su &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 utilizza le icone di Smashicons da &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="168"/>
@@ -192,7 +192,7 @@
     <message id="about-page-translations-button">
         <location filename="../qml/pages/AboutPage.qml" line="161"/>
         <source>Translations</source>
-        <translation type="unfinished">Traduzioni</translation>
+        <translation>Traduzioni</translation>
     </message>
     <message id="ph-categories-page-filter-placeholder">
         <location filename="../qml/pages/CategoriesPage.qml" line="115"/>
@@ -421,22 +421,22 @@
     <message id="ph-translations-page-header">
         <location filename="../qml/pages/TranslationsPage.qml" line="41"/>
         <source>Translations</source>
-        <translation type="unfinished">Traduzioni</translation>
+        <translation>Traduzioni</translation>
     </message>
     <message id="ph-translations-page-english-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="55"/>
         <source>English</source>
-        <translation type="unfinished">Inglese</translation>
+        <translation>Inglese</translation>
     </message>
     <message id="ph-translations-page-simplified-chinese-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="61"/>
         <source>Simplified Chinese</source>
-        <translation type="unfinished">Cinese semplificato</translation>
+        <translation>Cinese semplificato</translation>
     </message>
     <message id="ph-translations-page-italian-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="67"/>
         <source>Italian</source>
-        <translation type="unfinished">Italiano</translation>
+        <translation>Italiano</translation>
     </message>
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="81"/>
