@@ -48,7 +48,7 @@ Item {
         _delegate.fillMode = fillMode
     }
 
-    function _createIcon(parent) {
+    function _createIcon() {
         try {
             var x = Qt.createQmlObject("import Sailfish.Silica 1.0; Icon {}",
                                            root,
