@@ -25,7 +25,6 @@ import QtQuick 2.0
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import Sailfish.Silica 1.0
-import Nemo.KeepAlive 1.2
 import grumpycat 1.0
 import ".."
 import "../MiniJS.js" as MiniJS
@@ -66,10 +65,7 @@ Page {
     property var _categories: []
     property var _pornstars: []
     property var _tags: []
-
-    DisplayBlanking {
-        id: displayBlanking
-    }
+    property var _displayBlanking
 
     Http {
         id: http
@@ -199,7 +195,7 @@ Page {
                 break
             }
 
-            displayBlanking.preventBlanking = playbackState === MediaPlayer.PlayingState
+            _displayBlanking.preventBlanking = playbackState === MediaPlayer.PlayingState
         }
     }
 
@@ -660,13 +656,14 @@ Page {
     }
 
     Component.onCompleted: {
+        _displayBlanking = _createDisplayBlanking()
         window.videoPlayerPage = page
         http.get(videoUrl)
     }
 
     Component.onDestruction: {
         console.debug("destruction")
-        displayBlanking.preventBlanking = false
+        _displayBlanking.preventBlanking = false
         mediaplayer.pause()
         window.videoPlayerPage = null
     }
@@ -1125,6 +1122,27 @@ Page {
         }
 
         return formatIndex
+    }
+
+    function _createDisplayBlanking() {
+        try {
+            var x = Qt.createQmlObject("import Nemo.KeepAlive 1.2; DisplayBlanking {}", root, "script");
+            if (x) {
+                return x
+            }
+        } catch (e) {
+        }
+
+        try {
+            var x = Qt.createQmlObject("import Nemo.KeepAlive 1.1; DisplayBlanking {}", root, "script");
+            if (x) {
+                return x
+            }
+        } catch (e) {
+        }
+
+        console.warn("display blanking prevention not available")
+        return Qt.createQmlObject("import QtQuick 2.0; Item { property bool preventBlanking: false }", root, "script");
     }
 }
 

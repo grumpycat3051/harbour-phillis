@@ -413,8 +413,8 @@
         <translation>Login</translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="579"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="597"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="575"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="593"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
     </message>
