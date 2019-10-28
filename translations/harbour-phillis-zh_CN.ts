@@ -31,7 +31,7 @@
     <message id="ph-settings-page-network-connection-mobile">
         <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>Mobile</source>
-        <translation>移动</translation>
+        <translation>移动数据</translation>
     </message>
     <message id="ph-format-label">
         <location filename="../qml/pages/SettingsPage.qml" line="85"/>
@@ -46,7 +46,7 @@
     <message id="ph-settings-page-network-mobile-label">
         <location filename="../qml/pages/SettingsPage.qml" line="104"/>
         <source>Mobile</source>
-        <translation>移动</translation>
+        <translation>移动数据</translation>
     </message>
     <message id="ph-settings-page-content-preferences-section-header">
         <location filename="../qml/pages/SettingsPage.qml" line="118"/>
@@ -106,7 +106,7 @@
     <message id="ph-settings-page-access-restrict-description">
         <location filename="../qml/pages/SettingsPage.qml" line="232"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
-        <translation>防止意外访问应用程序。  PIN 将以纯文本形式存储在应用程序配置目录中。 如果你忘记了PIN，只需删除该文件即可恢复对该应用程序的访问权限。</translation>
+        <translation>防止意外访问应用程序。PIN 将以纯文本形式存储在应用程序配置目录中。 如果你忘记了PIN，只需删除该文件即可恢复对该应用程序的访问权限。</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-label">
         <location filename="../qml/pages/SettingsPage.qml" line="248"/>
@@ -161,23 +161,24 @@
     <message id="about-page-disclaimer-header">
         <location filename="../qml/pages/AboutPage.qml" line="123"/>
         <source>Disclaimer</source>
-        <translation type="unfinished"></translation>
+        <translation>免责声明</translation>
     </message>
     <message id="ph-about-page-disclaimer-text">
         <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>内容由 %1 提供并享有一切权利及承担一切义务。 https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt</translation>
     </message>
     <message id="about-page-credits-licenses-sources-header">
         <location filename="../qml/pages/AboutPage.qml" line="139"/>
         <source>Credits, Licenses, and Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>信誉、许可协议及源代码</translation>
     </message>
     <message id="ph-about-page-credits-licenses-sources-text">
         <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
         <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;.&lt;br/&gt;%1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>
+​版权所有 © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;该软件在  MIT 许可证下发布 &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 使用 Smashicons 制作的图标 &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;。</translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="168"/>
@@ -192,7 +193,7 @@
     <message id="about-page-translations-button">
         <location filename="../qml/pages/AboutPage.qml" line="161"/>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>翻译</translation>
     </message>
     <message id="ph-categories-page-filter-placeholder">
         <location filename="../qml/pages/CategoriesPage.qml" line="115"/>
@@ -202,7 +203,7 @@
     <message id="ph-categories-page-view-placeholder-text-loading">
         <location filename="../qml/pages/CategoriesPage.qml" line="203"/>
         <source>Categories are being loaded</source>
-        <translation></translation>
+        <translation>正在加载分类</translation>
     </message>
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
@@ -244,7 +245,7 @@
     <message id="ph-disclaimer-page-text2">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="83"/>
         <source>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</source>
-        <translation>1.我18岁或以上 2.我对自己的行为负全部责任 3.我同意我在法律上受这些条款和条件的约束</translation>
+        <translation>1.我已年满18岁 2.我对自己的行为负全部责任 3.我同意我在法律上受这些条款和条件的约束</translation>
     </message>
     <message id="ph-disclaimer-page-accept-button">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="98"/>
@@ -319,7 +320,7 @@
     <message id="ph-start-page-pornstars-most-viewed">
         <location filename="../qml/pages/StartPage.qml" line="115"/>
         <source>Most Viewed</source>
-        <translation></translation>
+        <translation>最多浏览</translation>
     </message>
     <message id="ph-start-page-pornstars-most-subscribed">
         <location filename="../qml/pages/StartPage.qml" line="122"/>
@@ -421,22 +422,22 @@
     <message id="ph-translations-page-header">
         <location filename="../qml/pages/TranslationsPage.qml" line="41"/>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>翻译</translation>
     </message>
     <message id="ph-translations-page-english-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="55"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>英语</translation>
     </message>
     <message id="ph-translations-page-simplified-chinese-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="61"/>
         <source>Simplified Chinese</source>
-        <translation type="unfinished"></translation>
+        <translation>汉语（简体）</translation>
     </message>
     <message id="ph-translations-page-italian-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="67"/>
         <source>Italian</source>
-        <translation type="unfinished"></translation>
+        <translation>意大利语</translation>
     </message>
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="81"/>
