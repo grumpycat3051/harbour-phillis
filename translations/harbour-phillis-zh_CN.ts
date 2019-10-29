@@ -166,7 +166,7 @@
     <message id="ph-about-page-disclaimer-text">
         <location filename="../qml/pages/AboutPage.qml" line="130"/>
         <source>The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
-        <translation>内容由 %1 提供并享有一切权利及承担一切义务。 https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt</translation>
+        <translation>内容由 %1 提供并享有一切权利及承担一切义务 &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-credits-licenses-sources-header">
         <location filename="../qml/pages/AboutPage.qml" line="139"/>
@@ -177,8 +177,7 @@
         <location filename="../qml/pages/AboutPage.qml" line="146"/>
         <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
         <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;.&lt;br/&gt;%1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
-        <translation>
-​版权所有 © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;该软件在  MIT 许可证下发布 &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 使用 Smashicons 制作的图标 &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;。</translation>
+        <translation>​版权所有 © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;该软件在  MIT 许可证下发布 &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 使用 Smashicons 制作的图标 &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;。</translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="168"/>
