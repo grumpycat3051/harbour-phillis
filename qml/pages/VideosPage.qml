@@ -154,7 +154,7 @@ Page {
                             }
 
                             Label {
-                                text: video_rating + "%"
+                                text: video_rating + "% " + video_length
                                 font.pixelSize: Theme.fontSizeExtraSmall
                                 font.bold: true
                                 anchors.verticalCenter: parent.verticalCenter

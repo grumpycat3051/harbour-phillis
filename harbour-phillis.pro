@@ -3,9 +3,9 @@ TARGET = harbour-phillis
 # known to qmake
 VER_MAJ = 0
 VER_MIN = 2
-VER_PAT = 7
+VER_PAT = 7.4
 
-VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}.3
+VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}
 
 PHILLIS_NAMESPACE=grumpycat
 DEFINES += PHILLIS_APP_NAME=\"\\\"\"harbour-phillis\"\\\"\"
