@@ -1127,7 +1127,14 @@ Page {
     function _createDisplayBlanking() {
         try {
             console.info("Attempting to use Nemo.KeepAlive 1.2 DisplayBlanking")
-            var x = Qt.createQmlObject("import Nemo.KeepAlive 1.2; DisplayBlanking {}", root, "script");
+            var x = Qt.createQmlObject(
+                        "import QtQuick 2.0\n" +
+                        "import Nemo.KeepAlive 1.2\n" +
+                        "Item {\n" +
+                        "   property alias preventBlanking: displayBlanking.preventBlanking\n" +
+                        "   DisplayBlanking {id: displayBlanking}\n" +
+                        "}\n",
+                        root, "script");
             if (x) {
                 console.info("Using Nemo.KeepAlive 1.2 DisplayBlanking")
                 return x
@@ -1137,8 +1144,16 @@ Page {
         }
 
         try {
+            // DisplayBlanking is a static here!
             console.info("Attempting to use Nemo.KeepAlive 1.1 DisplayBlanking")
-            var x = Qt.createQmlObject("import Nemo.KeepAlive 1.1; DisplayBlanking {}", root, "script");
+            var x = Qt.createQmlObject(
+                        "import QtQuick 2.0\n" +
+                        "import Nemo.KeepAlive 1.1\n" +
+                        "Item {\n" +
+                        "   property bool preventBlanking: false\n" +
+                        "   onPreventBlankingChanged: DisplayBlanking.preventBlanking = preventBlanking\n" +
+                        "}\n",
+                        root, "script");
             if (x) {
                 console.info("Using Nemo.KeepAlive 1.1 DisplayBlanking")
                 return x
