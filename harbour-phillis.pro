@@ -5,7 +5,7 @@ VER_MAJ = 0
 VER_MIN = 2
 VER_PAT = 7
 
-VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}.2
+VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}.3
 
 PHILLIS_NAMESPACE=grumpycat
 DEFINES += PHILLIS_APP_NAME=\"\\\"\"harbour-phillis\"\\\"\"
