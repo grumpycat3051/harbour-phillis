@@ -1126,22 +1126,28 @@ Page {
 
     function _createDisplayBlanking() {
         try {
+            console.info("Attempting to use Nemo.KeepAlive 1.2 DisplayBlanking")
             var x = Qt.createQmlObject("import Nemo.KeepAlive 1.2; DisplayBlanking {}", root, "script");
             if (x) {
+                console.info("Using Nemo.KeepAlive 1.2 DisplayBlanking")
                 return x
             }
         } catch (e) {
+            console.debug("exception: " + e.message)
         }
 
         try {
+            console.info("Attempting to use Nemo.KeepAlive 1.1 DisplayBlanking")
             var x = Qt.createQmlObject("import Nemo.KeepAlive 1.1; DisplayBlanking {}", root, "script");
             if (x) {
+                console.info("Using Nemo.KeepAlive 1.1 DisplayBlanking")
                 return x
             }
         } catch (e) {
+            console.debug("exception: " + e.message)
         }
 
-        console.warn("display blanking prevention not available")
+        console.warn("Display blanking prevention not available")
         return Qt.createQmlObject("import QtQuick 2.0; Item { property bool preventBlanking: false }", root, "script");
     }
 }
