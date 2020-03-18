@@ -178,6 +178,31 @@ Page {
             TextField {
                 width: parent.width
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
+                //% "Videos per row"
+                label: qsTrId("ph-settings-page-display-videos-per-grid-row")
+                text: settingDisplayVideosPerRow.value
+                EnterKey.enabled: acceptableInput
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: focus = false
+                validator: IntValidator {
+                    bottom: 1
+                }
+
+                onTextChanged: {
+                    console.debug("text: " + text)
+                    if (acceptableInput) {
+                        var number = parseFloat(text)
+                        console.debug("number: " + number)
+                        if (typeof(number) === "number") {
+                            settingDisplayVideosPerRow.value = number
+                        }
+                    }
+                }
+            }
+
+            TextField {
+                width: parent.width
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Categories per row"
                 label: qsTrId("ph-settings-page-display-categories-per-grid-row")
                 text: settingDisplayCategoriesPerRow.value

@@ -160,6 +160,12 @@ ApplicationWindow
     }
 
     ConfigurationValue {
+        id: settingDisplayVideosPerRow
+        defaultValue: 2
+        key: "/display/pornstars/items_per_grid_row"
+    }
+
+    ConfigurationValue {
         id: settingDisplayCategoriesPerRow
         defaultValue: 1
         key: "/display/categories/items_per_grid_row"

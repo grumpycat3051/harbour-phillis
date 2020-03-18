@@ -32,6 +32,8 @@ Page {
 
     property string videosUrl
     property string title
+    readonly property int itemPerRow: settingDisplayVideosPerRow.value
+    readonly property real _targetCellWidth: width / itemPerRow
     property bool _reload: false
     property int _page: 0
     readonly property int videosToSkip: 4
@@ -96,10 +98,13 @@ Page {
             }
         }
 
-        SilicaListView {
+        SilicaGridView {
             id: view
             anchors.fill: parent
             model: model
+
+            cellWidth: _targetCellWidth
+            cellHeight: cellWidth * 9 / 16
 
             header: PageHeader {
                 id: header
@@ -110,8 +115,8 @@ Page {
             delegate: Component {
                 ListItem {
                     id: videoItem
-                    contentHeight: thumbnail.height
-                    width: ListView.view.width
+                    width: view.cellWidth
+                    height: view.cellHeight
                     enabled: !_startedMetaDataDownload
 
                     property var _playlist
@@ -178,7 +183,7 @@ Page {
                     }
 
                     onClicked: {
-                        ListView.view.currentIndex = index
+                        view.currentIndex = index
                         pageStack.push(Qt.resolvedUrl("VideoPlayerPage.qml"), {
                                                         videoId: video_id,
                                                         videoUrl: video_url,
