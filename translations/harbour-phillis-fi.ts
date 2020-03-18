@@ -520,17 +520,17 @@
         <translation>suomi</translation>
     </message>
     <message id="ph-login-succes-message">
-        <location filename="../qml/harbour-phillis.qml" line="81"/>
+        <location filename="../qml/harbour-phillis.qml" line="83"/>
         <source>Login success</source>
         <translation>Kirjautuminen onnistui</translation>
     </message>
     <message id="ph-error-message-initial-request-failed">
-        <location filename="../qml/harbour-phillis.qml" line="118"/>
+        <location filename="../qml/harbour-phillis.qml" line="120"/>
         <source>Initial loading of website failed</source>
         <translation>Verkkosisällön laataminen epäonnistui</translation>
     </message>
     <message id="ph-setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="247"/>
+        <location filename="../qml/harbour-phillis.qml" line="249"/>
         <source>Please enter your online trading PIN</source>
         <translation>Ole hyvä ja syötä online-kaupankäynnin PIN-koodisi</translation>
     </message>

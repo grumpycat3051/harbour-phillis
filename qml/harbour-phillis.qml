@@ -32,7 +32,9 @@ ApplicationWindow
 {
     id: window
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-    initialPage: Qt.resolvedUrl("pages/StartPage.qml")
+    initialPage: !disclaimerAccepted.value
+                 ? Qt.resolvedUrl("pages/AdultContentDisclaimerPage.qml")
+                 : Qt.resolvedUrl("pages/StartPage.qml")
     allowedOrientations: defaultAllowedOrientations
 
     property bool _pausedDueToDisplayState: false
@@ -211,7 +213,7 @@ ApplicationWindow
         defaultValue: false
         onValueChanged: {
             if (value) {
-                pageStack.pop()
+                init()
             }
         }
     }
@@ -256,15 +258,13 @@ ApplicationWindow
     Component.onCompleted: {
         DownloadCache.cacheDirectory = StandardPaths.cache
 
-        if (!disclaimerAccepted.value) {
-            pageStack.push(Qt.resolvedUrl("pages/AdultContentDisclaimerPage.qml"), {}, PageStackAction.Immediate)
-        }
-
         if (restrictAccess) {
             pageStack.push(Qt.resolvedUrl("pages/LockScreenPage.qml"), {}, PageStackAction.Immediate)
         }
 
-        init()
+        if(disclaimerAccepted.value) {
+            init()
+        }
     }
 
     Component.onDestruction: {
