@@ -37,9 +37,11 @@ Page {
 
         Column {
             id: column
-            x: Theme.horizontalPageMargin
-            width: parent.width - 2*x
-            anchors.verticalCenter: parent.verticalCenter
+            anchors {
+                top: parent.top
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: isPortrait ? parent.width * 0.9 : parent.width * 0.6
             spacing: 2*Theme.paddingMedium
 
             Item {

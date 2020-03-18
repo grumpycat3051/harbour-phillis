@@ -35,7 +35,11 @@ Page {
 
         Column {
             id: column
-            width: parent.width
+            anchors {
+                top: parent.top
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: isPortrait ? parent.width : parent.width * 0.75
 
             PageHeader {
                 //% "Translations"

@@ -40,7 +40,11 @@ Page {
 
         Column {
             id: column
-            width: parent.width
+            anchors {
+                top: parent.top
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: isPortrait ? parent.width : parent.width * 0.75
 
             PageHeader {
                 id: header
@@ -172,7 +176,7 @@ Page {
             }
 
             TextField {
-                width: root.width
+                width: parent.width
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Categories per row"
                 label: qsTrId("ph-settings-page-display-categories-per-grid-row")
@@ -197,7 +201,7 @@ Page {
             }
 
             TextField {
-                width: root.width
+                width: parent.width
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Pornstars per row"
                 label: qsTrId("ph-settings-page-display-pornstars-per-grid-row")
@@ -242,7 +246,7 @@ Page {
 
             TextField {
                 id: pinField
-                width: root.width
+                width: parent.width
                 enabled: settingAccessRestrict.value
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "PIN"
@@ -260,7 +264,7 @@ Page {
             }
 
             TextField {
-                width: root.width
+                width: parent.width
                 enabled: settingAccessRestrict.value
                 //% "Lock screen text"
                 label: qsTrId("ph-settings-page-access-lock-screen-text")
