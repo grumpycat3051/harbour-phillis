@@ -34,9 +34,10 @@ Page {
     property string title
     property bool _reload: false
     property int _page: 0
+    readonly property bool useExtraRow: settingDisplayExtraLandscapeColumn.value
     readonly property int itemPerRow: settingDisplayPornstarsPerRow.value
     property real _targetImageHeight: Theme.itemSizeHuge
-    readonly property real _targetCellWidth: width / itemPerRow
+    readonly property real _targetCellWidth: width / (itemPerRow + (isLandscape && useExtraRow ? 1 : 0))
     property bool _thumbnailLoaded: false
     property var _pornstars: []
     property bool isSearch: false

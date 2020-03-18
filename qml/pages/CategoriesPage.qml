@@ -34,9 +34,10 @@ Page {
     property string prefix
     property string categoriesUrl
     property string title
+    readonly property bool useExtraRow: settingDisplayExtraLandscapeColumn.value
     readonly property int itemPerRow: settingDisplayCategoriesPerRow.value
     property real _targetImageHeight: Theme.itemSizeHuge
-    readonly property real _targetCellWidth: width / itemPerRow
+    readonly property real _targetCellWidth: width / (itemPerRow + (isLandscape && useExtraRow ? 1 : 0))
     property bool _thumbnailLoaded: false
     property var _filter: new RegExp(".*")
     property var _categories: []

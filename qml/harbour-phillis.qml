@@ -178,6 +178,12 @@ ApplicationWindow
     }
 
     ConfigurationValue {
+        id: settingDisplayExtraLandscapeColumn
+        key: "/display/extra_landscape_column"
+        defaultValue: true
+    }
+
+    ConfigurationValue {
         id: settingPlaybackPauseInCoverMode
         key: "/playback/pause_in_cover_mode"
         defaultValue: false

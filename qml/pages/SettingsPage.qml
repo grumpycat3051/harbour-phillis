@@ -250,6 +250,16 @@ Page {
                 }
             }
 
+            TextSwitch {
+                //% "Add one extra column in landscape orientation"
+                text: qsTrId("ph-settings-page-display-extra-landscape-column")
+                checked: settingDisplayExtraLandscapeColumn.value
+                onClicked: {
+                    settingDisplayExtraLandscapeColumn.value = !settingDisplayExtraLandscapeColumn.value
+                    console.debug("display extra landscape column=" + checked)
+                }
+            }
+
             SectionHeader {
                 //% "Access"
                 text: qsTrId("ph-settings-page-access")
