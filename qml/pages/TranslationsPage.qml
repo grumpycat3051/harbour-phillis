@@ -73,6 +73,12 @@ Page {
                         value: "fravaccaro"
                     }
 
+                    DetailItem {
+                        //% "Finnish"
+                        label: qsTrId("ph-translations-page-finnish-label")
+                        value: "direc85"
+                    }
+
                     Item {
                         width: parent.width
                         height: Theme.paddingLarge

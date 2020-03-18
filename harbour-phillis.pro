@@ -87,6 +87,7 @@ TRANSLATION_SOURCES += $$PWD/src
 TRANSLATIONS += translations/harbour-phillis.ts
 TRANSLATIONS += translations/harbour-phillis-it.ts
 TRANSLATIONS += translations/harbour-phillis-zh_CN.ts
+TRANSLATIONS += translations/harbour-phillis-fi.ts
 
 DISTFILES += $$TRANSLATIONS
 
