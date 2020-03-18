@@ -99,7 +99,10 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     //% "Accept"
                     text: qsTrId("ph-disclaimer-page-accept-button")
-                    onClicked: disclaimerAccepted.value = true
+                    onClicked: {
+                        disclaimerAccepted.value = true
+                        pageStack.replace(Qt.resolvedUrl("StartPage.qml"))
+                    }
                 }
             }
 
