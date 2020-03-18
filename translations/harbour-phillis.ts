@@ -469,6 +469,11 @@
         <source>Italian</source>
         <translation>Italian</translation>
     </message>
+    <message id="ph-translations-page-finnish-label">
+        <location filename="../qml/pages/TranslationsPage.qml" line="78"/>
+        <source>Finnish</source>
+        <translation>Finnish</translation>
+    </message>
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="81"/>
         <source>Login success</source>
