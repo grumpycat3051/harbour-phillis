@@ -191,7 +191,7 @@ Page {
                 onTextChanged: {
                     console.debug("text: " + text)
                     if (acceptableInput) {
-                        var number = parseFloat(text)
+                        var number = parseInt(text)
                         console.debug("number: " + number)
                         if (typeof(number) === "number") {
                             settingDisplayVideosPerRow.value = number
@@ -216,7 +216,7 @@ Page {
                 onTextChanged: {
                     console.debug("text: " + text)
                     if (acceptableInput) {
-                        var number = parseFloat(text)
+                        var number = parseInt(text)
                         console.debug("number: " + number)
                         if (typeof(number) === "number") {
                             settingDisplayCategoriesPerRow.value = number
@@ -241,7 +241,7 @@ Page {
                 onTextChanged: {
                     console.debug("text: " + text)
                     if (acceptableInput) {
-                        var number = parseFloat(text)
+                        var number = parseInt(text)
                         console.debug("number: " + number)
                         if (typeof(number) === "number") {
                             settingDisplayPornstarsPerRow.value = number
