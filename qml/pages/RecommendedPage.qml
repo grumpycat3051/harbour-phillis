@@ -28,6 +28,7 @@ import ".."
 
 Page {
     id: root
+    allowedOrientations: Orientation.All
 
     property bool _reload: false
 //    readonly property int pornstarsPerRow: settingDisplayPornstarsPerRow.value

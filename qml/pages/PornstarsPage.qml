@@ -28,6 +28,7 @@ import ".."
 
 Page {
     id: root
+    allowedOrientations: Orientation.All
 
     property string pornstarsUrl
     property string title

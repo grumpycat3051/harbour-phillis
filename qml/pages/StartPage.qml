@@ -28,6 +28,7 @@ import ".."
 
 Page {
     id: root
+    allowedOrientations: Orientation.All
 
     readonly property string categoriesUrl: Constants.baseUrl + "/categories"
     readonly property string prefix: settingGayOnly.value ? "/gay" : ""

@@ -29,6 +29,7 @@ import ".."
 
 Page {
     id: root
+    allowedOrientations: Orientation.All
 
     SilicaFlickable {
         anchors.fill: parent

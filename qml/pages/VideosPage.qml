@@ -28,6 +28,7 @@ import ".."
 
 Page {
     id: root
+    allowedOrientations: Orientation.All
 
     property string videosUrl
     property string title

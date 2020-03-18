@@ -33,7 +33,7 @@ ApplicationWindow
     id: window
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     initialPage: Qt.resolvedUrl("pages/StartPage.qml")
-    allowedOrientations: defaultAllowedOrientations
+    allowedOrientations: Orientation.All
 
     property bool _pausedDueToDisplayState: false
     property var videoPlayerPage
