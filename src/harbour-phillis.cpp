@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,7 @@
 #include "QuickApp.h"
 #include "QuickCookieJar.h"
 #include "QuickConfigurationValue.h"
+#include "QuickProxy.h"
 
 
 
@@ -57,6 +58,7 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     qmlRegisterType<QuickHttp>(PHILLIS_NAMESPACE, 1, 0, "Http");
     qmlRegisterType<QuickConfigurationValue>(PHILLIS_NAMESPACE, 1, 0, "ConfigurationValue");
+    qmlRegisterType<QuickProxy>(PHILLIS_NAMESPACE, 1, 0, "Proxy");
     qmlRegisterSingletonType<QuickDownloadCache>(PHILLIS_NAMESPACE, 1, 0, "DownloadCache", downloadCacheProvider);
     qmlRegisterSingletonType<QuickApp>(PHILLIS_NAMESPACE, 1, 0, "App", appProvider);
     qmlRegisterUncreatableType<QNetworkAccessManager>(PHILLIS_NAMESPACE, 1, 0, "NAM", QStringLiteral("QML warnings"));
@@ -74,6 +76,7 @@ int main(int argc, char *argv[])
     cookieJar.setParent(nullptr);
 
     QuickConfigurationValue::SetSettings(&settings);
+    QuickApp::SetSettings(&settings);
 
 
     int result = 0;

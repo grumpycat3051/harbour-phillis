@@ -80,6 +80,40 @@ Page {
                 }
             }
 
+            ProxyComboBox {
+                id: proxy
+                width: parent.width
+            }
+
+            ButtonLayout {
+                width: parent.width
+                Button {
+                    enabled: {
+                        if (proxy.targetProxy) {
+                            if (proxy.targetProxy.valid) {
+                                if (proxy.currentProxy) {
+                                    if (proxy.currentProxy.valid) {
+                                        return !proxy.targetProxy.isEqualTo(proxy.currentProxy)
+                                    } else {
+                                        return true
+                                    }
+                                } else {
+                                    return true
+                                }
+                            } else {
+                                return false
+                            }
+                        } else {
+                            return false
+                        }
+                    }
+
+                    //% "Apply"
+                    text: qsTrId("ph-settings-page-network-apply-proxy-settings")
+                    onClicked: App.proxy = proxy.targetProxy
+                }
+            }
+
             SectionHeader {
                 //% "Format"
                 text: qsTrId("ph-format-label")

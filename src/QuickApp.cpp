@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,7 @@
  */
 
 #include "QuickApp.h"
+#include "QuickProxy.h"
 
 #include <QNetworkConfiguration>
 #include <QUrl>
@@ -31,6 +32,8 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QUrlQuery>
+#include <QNetworkProxy>
+#include <QSettings>
 
 namespace
 {
@@ -44,12 +47,31 @@ const QHash<QString, QString> htmlEntityReplacements = {
     { QStringLiteral("&apos;"), QStringLiteral("'") },
 
 };
+
+
+const QString s_ProxyTypeKey(QLatin1String("/proxy/type"));
+const QString s_ProxyUsernameKey(QLatin1String("/proxy/username"));
+const QString s_ProxyPasswordKey(QLatin1String("/proxy/password"));
+const QString s_ProxyHostnameKey(QLatin1String("/proxy/hostname"));
+const QString s_ProxyPortKey(QLatin1String("/proxy/port"));
+
+const QString s_ProxyTypeSocks5Key(QLatin1String("socks5"));
+
+} // anon
+
+QSettings* QuickApp::ms_Settings;
+
+QuickApp::~QuickApp()
+{
+    delete m_Proxy;
 }
 
 QuickApp::QuickApp(QObject* parent)
     : QObject(parent)
 {
     connect(&m_NetworkConfigurationManager, &QNetworkConfigurationManager::onlineStateChanged, this, &QuickApp::onOnlineStateChanged);
+
+    loadProxy();
 }
 
 QString
@@ -187,4 +209,81 @@ QString QuickApp::urlEncode(const QVariantMap& kv)
     }
 
     return q.toString(QUrl::FullyEncoded);
+}
+
+void QuickApp::loadProxy()
+{
+    Q_ASSERT(ms_Settings);
+
+    m_Proxy = new QuickProxy(this);
+
+    const QString type = ms_Settings->value(s_ProxyTypeKey, QString()).toString();
+    qDebug("loaded proxy type is \"%s\"\n", qPrintable(type));
+    if (s_ProxyTypeSocks5Key == type) {
+        m_Proxy->setProxyType(QuickProxy::Socks5);
+        m_Proxy->setHostname(ms_Settings->value(s_ProxyHostnameKey, QString()).toString());
+        m_Proxy->setUsername(ms_Settings->value(s_ProxyUsernameKey, QString()).toString());
+        m_Proxy->setPassword(ms_Settings->value(s_ProxyPasswordKey, QString()).toString());
+        m_Proxy->setPort(static_cast<ushort>(ms_Settings->value(s_ProxyPortKey, 0).toUInt()));
+    }
+
+    applyProxy(m_Proxy);
+}
+
+void QuickApp::saveProxy() const
+{
+    Q_ASSERT(ms_Settings);
+    Q_ASSERT(m_Proxy);
+
+    switch (m_Proxy->proxyType()) {
+    case QuickProxy::Socks5:
+        qDebug("saving socks5 proxy settings host=%s port=%d ...\n", qPrintable(m_Proxy->hostname()), m_Proxy->port());
+        ms_Settings->setValue(s_ProxyTypeKey, s_ProxyTypeSocks5Key);
+        break;
+    default:
+        qDebug("saving system settings proxy\n");
+        ms_Settings->setValue(s_ProxyTypeKey, QString());
+        break;
+    }
+
+    ms_Settings->setValue(s_ProxyHostnameKey, m_Proxy->hostname());
+    ms_Settings->setValue(s_ProxyPortKey, m_Proxy->port());
+    ms_Settings->setValue(s_ProxyUsernameKey, m_Proxy->username());
+    ms_Settings->setValue(s_ProxyPasswordKey, m_Proxy->password());
+}
+
+void QuickApp::applyProxy(const QuickProxy* _proxy)
+{
+    Q_ASSERT(_proxy);
+
+    QNetworkProxy networkProxy;
+    networkProxy.setHostName(_proxy->hostname());
+    networkProxy.setUser(_proxy->username());
+    networkProxy.setPassword(_proxy->password());
+    networkProxy.setPort(_proxy->port());
+    switch (_proxy->proxyType()) {
+    case QuickProxy::Socks5:
+        networkProxy.setType(QNetworkProxy::Socks5Proxy);
+        qDebug("activating socks5 proxy host=%s port=%d ...\n", qPrintable(networkProxy.hostName()), networkProxy.port());
+        break;
+    default:
+        qDebug("activating system proxy\n");
+        break;
+    }
+
+    QNetworkProxy::setApplicationProxy(networkProxy);
+}
+
+void QuickApp::setProxy(QuickProxy* value)
+{
+    Q_ASSERT(value);
+    if (*m_Proxy != *value) {
+        QScopedPointer<QuickProxy> guard(m_Proxy);
+        m_Proxy = value;
+        m_Proxy->setParent(this);
+        emit proxyChanged();
+
+        applyProxy(m_Proxy);
+        saveProxy();
+    }
 }

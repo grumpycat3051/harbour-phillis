@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,9 @@
 #include <QObject>
 #include <QNetworkConfigurationManager>
 
+class QuickProxy;
+class QSettings;
+
 class QuickApp : public QObject
 {
     Q_OBJECT
@@ -35,9 +38,14 @@ class QuickApp : public QObject
     Q_PROPERTY(bool isOnMobile READ isOnMobile NOTIFY isOnMobileChanged)
     Q_PROPERTY(bool isOnline READ isOnline NOTIFY isOnlineChanged)
     Q_PROPERTY(QString appDir READ appDir CONSTANT)
+    Q_PROPERTY(QuickProxy* proxy READ proxy WRITE setProxy NOTIFY proxyChanged)
 
 public:
+    virtual ~QuickApp();
     QuickApp(QObject* parent = nullptr);
+
+public:
+    static void SetSettings(QSettings* value) { ms_Settings = value; }
 
 public:
     QString version() const;
@@ -47,6 +55,8 @@ public:
     bool isOnBroadband() const;
     bool isOnMobile() const;
     bool isOnline() const;
+    QuickProxy* proxy() const { return m_Proxy; }
+    void setProxy(QuickProxy* value);
     Q_INVOKABLE bool isUrl(const QString& str) const;
     Q_INVOKABLE bool unlink(const QString& filePath) const;
     Q_INVOKABLE bool copy(const QString& srcFilePath, const QString& dstFilePath) const;
@@ -59,10 +69,20 @@ signals:
     void isOnBroadbandChanged();
     void isOnMobileChanged();
     void isOnlineChanged();
+    void proxyChanged();
 
 private slots:
     void onOnlineStateChanged(bool online);
 
 private:
+    void loadProxy();
+    void saveProxy() const;
+    static void applyProxy(const QuickProxy* proxy);
+
+private:
     QNetworkConfigurationManager m_NetworkConfigurationManager;
+    QuickProxy* m_Proxy;
+
+private:
+    static QSettings* ms_Settings;
 };

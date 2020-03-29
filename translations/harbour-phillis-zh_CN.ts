@@ -33,108 +33,113 @@
         <source>Mobile</source>
         <translation>移动数据</translation>
     </message>
+    <message id="ph-settings-page-network-apply-proxy-settings">
+        <location filename="../qml/pages/SettingsPage.qml" line="112"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-format-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="119"/>
         <source>Format</source>
         <translation>格式</translation>
     </message>
     <message id="ph-settings-page-network-broadband-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="124"/>
         <source>Broadband</source>
         <translation>宽带</translation>
     </message>
     <message id="ph-settings-page-network-mobile-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="104"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="138"/>
         <source>Mobile</source>
         <translation>移动数据</translation>
     </message>
     <message id="ph-settings-page-content-preferences-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="118"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="152"/>
         <source>Content Preferences</source>
         <translation>内容偏好</translation>
     </message>
     <message id="ph-settings-page-content-preferences-gay-only-switch-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="127"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
         <source>Gay Only</source>
         <translation>仅显示 Gay 内容</translation>
     </message>
     <message id="ph-settings-page-content-preferences-gay-only-switch-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="129"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="163"/>
         <source>Only show gay categories and videos</source>
         <translation>仅显示 Gay 分类及视频</translation>
     </message>
     <message id="ph-settings-page-playback-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="145"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="179"/>
         <source>Playback</source>
         <translation>播放</translation>
     </message>
     <message id="ph-settings-page-playback-pause-on-device-lock-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="150"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
         <source>Pause playback on device lock</source>
         <translation>设备锁定时停止播放</translation>
     </message>
     <message id="ph-settings-page-playback-pause-if-cover-page-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="160"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="194"/>
         <source>Pause playback when the cover page is shown</source>
         <translation>显示封面页面时停止播放</translation>
     </message>
     <message id="ph-settings-page-display">
-        <location filename="../qml/pages/SettingsPage.qml" line="170"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="204"/>
         <source>Display</source>
         <translation>显示</translation>
     </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="177"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="211"/>
         <source>Categories per row</source>
         <translation>每列分类</translation>
     </message>
     <message id="ph-settings-page-display-pornstars-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="202"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
         <source>Pornstars per row</source>
         <translation>每列情色影星</translation>
     </message>
     <message id="ph-settings-page-access">
-        <location filename="../qml/pages/SettingsPage.qml" line="225"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="259"/>
         <source>Access</source>
         <translation>访问</translation>
     </message>
     <message id="ph-settings-page-access-restrict-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="230"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="264"/>
         <source>Require a PIN to access the app</source>
         <translation>需要PIN 码以访问应用程序</translation>
     </message>
     <message id="ph-settings-page-access-restrict-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="232"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="266"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
         <translation>防止意外访问应用程序。PIN 将以纯文本形式存储在应用程序配置目录中。 如果你忘记了PIN，只需删除该文件即可恢复对该应用程序的访问权限。</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="248"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="282"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-placeholder">
-        <location filename="../qml/pages/SettingsPage.qml" line="250"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
         <source>Enter four or more digits</source>
         <translation>请输入四位及以上数字</translation>
     </message>
     <message id="ph-settings-page-access-lock-screen-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="265"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="299"/>
         <source>Lock screen text</source>
         <translation>锁屏文本</translation>
     </message>
     <message id="ph-settings-page-account">
-        <location filename="../qml/pages/SettingsPage.qml" line="278"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="312"/>
         <source>Account</source>
         <translation>账户</translation>
     </message>
     <message id="ph-settings-page-account-username">
-        <location filename="../qml/pages/SettingsPage.qml" line="283"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="317"/>
         <source>Username</source>
         <translation>用户名</translation>
     </message>
     <message id="ph-settings-page-account-auto-login">
-        <location filename="../qml/pages/SettingsPage.qml" line="309"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="343"/>
         <source>Login on application start</source>
         <translation>应用程序启动时自动登录</translation>
     </message>
@@ -457,6 +462,46 @@
         <location filename="../qml/harbour-phillis.qml" line="345"/>
         <source>Request failed</source>
         <translation>请求失败</translation>
+    </message>
+    <message id="ph-proxy-combobox-type-label">
+        <location filename="../qml/ProxyComboBox.qml" line="42"/>
+        <source>Proxy type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-combobox-system">
+        <location filename="../qml/ProxyComboBox.qml" line="48"/>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-combobox-socks5">
+        <location filename="../qml/ProxyComboBox.qml" line="52"/>
+        <source>SOCKS5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-data-section-title">
+        <location filename="../qml/ProxyComboBox.qml" line="95"/>
+        <source>Proxy data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-data-host-label">
+        <location filename="../qml/ProxyComboBox.qml" line="104"/>
+        <source>Host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-data-port-label">
+        <location filename="../qml/ProxyComboBox.qml" line="128"/>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-data-user-label">
+        <location filename="../qml/ProxyComboBox.qml" line="152"/>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-proxy-data-password-label">
+        <location filename="../qml/ProxyComboBox.qml" line="173"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

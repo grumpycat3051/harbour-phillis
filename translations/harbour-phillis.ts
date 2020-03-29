@@ -33,108 +33,113 @@
         <source>Mobile</source>
         <translation>Mobile</translation>
     </message>
+    <message id="ph-settings-page-network-apply-proxy-settings">
+        <location filename="../qml/pages/SettingsPage.qml" line="112"/>
+        <source>Apply</source>
+        <translation>Apply</translation>
+    </message>
     <message id="ph-format-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="119"/>
         <source>Format</source>
         <translation>Format</translation>
     </message>
     <message id="ph-settings-page-network-broadband-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="124"/>
         <source>Broadband</source>
         <translation>Broadband</translation>
     </message>
     <message id="ph-settings-page-network-mobile-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="104"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="138"/>
         <source>Mobile</source>
         <translation>Mobile</translation>
     </message>
     <message id="ph-settings-page-content-preferences-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="118"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="152"/>
         <source>Content Preferences</source>
         <translation>Content Preferences</translation>
     </message>
     <message id="ph-settings-page-content-preferences-gay-only-switch-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="127"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
         <source>Gay Only</source>
         <translation>Gay Only</translation>
     </message>
     <message id="ph-settings-page-content-preferences-gay-only-switch-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="129"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="163"/>
         <source>Only show gay categories and videos</source>
         <translation>Only show gay categories and videos</translation>
     </message>
     <message id="ph-settings-page-playback-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="145"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="179"/>
         <source>Playback</source>
         <translation>Playback</translation>
     </message>
     <message id="ph-settings-page-playback-pause-on-device-lock-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="150"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
         <source>Pause playback on device lock</source>
         <translation>Pause playback on device lock</translation>
     </message>
     <message id="ph-settings-page-playback-pause-if-cover-page-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="160"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="194"/>
         <source>Pause playback when the cover page is shown</source>
         <translation>Pause playback when the cover page is shown</translation>
     </message>
     <message id="ph-settings-page-display">
-        <location filename="../qml/pages/SettingsPage.qml" line="170"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="204"/>
         <source>Display</source>
         <translation>Display</translation>
     </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="177"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="211"/>
         <source>Categories per row</source>
         <translation>Categories per row</translation>
     </message>
     <message id="ph-settings-page-display-pornstars-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="202"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
         <source>Pornstars per row</source>
         <translation>Pornstars per row</translation>
     </message>
     <message id="ph-settings-page-access">
-        <location filename="../qml/pages/SettingsPage.qml" line="225"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="259"/>
         <source>Access</source>
         <translation>Access</translation>
     </message>
     <message id="ph-settings-page-access-restrict-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="230"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="264"/>
         <source>Require a PIN to access the app</source>
         <translation>Require a PIN to access the application</translation>
     </message>
     <message id="ph-settings-page-access-restrict-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="232"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="266"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
         <translation>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="248"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="282"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-placeholder">
-        <location filename="../qml/pages/SettingsPage.qml" line="250"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
         <source>Enter four or more digits</source>
         <translation>Enter four or more digits</translation>
     </message>
     <message id="ph-settings-page-access-lock-screen-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="265"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="299"/>
         <source>Lock screen text</source>
         <translation>Lock screen text</translation>
     </message>
     <message id="ph-settings-page-account">
-        <location filename="../qml/pages/SettingsPage.qml" line="278"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="312"/>
         <source>Account</source>
         <translation>Account</translation>
     </message>
     <message id="ph-settings-page-account-username">
-        <location filename="../qml/pages/SettingsPage.qml" line="283"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="317"/>
         <source>Username</source>
         <translation>Username</translation>
     </message>
     <message id="ph-settings-page-account-auto-login">
-        <location filename="../qml/pages/SettingsPage.qml" line="309"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="343"/>
         <source>Login on application start</source>
         <translation>Login on application start</translation>
     </message>
@@ -457,6 +462,46 @@
         <location filename="../qml/harbour-phillis.qml" line="345"/>
         <source>Request failed</source>
         <translation>Request failed</translation>
+    </message>
+    <message id="ph-proxy-combobox-type-label">
+        <location filename="../qml/ProxyComboBox.qml" line="42"/>
+        <source>Proxy type</source>
+        <translation>Proxy type</translation>
+    </message>
+    <message id="ph-proxy-combobox-system">
+        <location filename="../qml/ProxyComboBox.qml" line="48"/>
+        <source>System</source>
+        <translation>System</translation>
+    </message>
+    <message id="ph-proxy-combobox-socks5">
+        <location filename="../qml/ProxyComboBox.qml" line="52"/>
+        <source>SOCKS5</source>
+        <translation>SOCKS5</translation>
+    </message>
+    <message id="ph-proxy-data-section-title">
+        <location filename="../qml/ProxyComboBox.qml" line="95"/>
+        <source>Proxy data</source>
+        <translation>Proxy data</translation>
+    </message>
+    <message id="ph-proxy-data-host-label">
+        <location filename="../qml/ProxyComboBox.qml" line="104"/>
+        <source>Host</source>
+        <translation>Host</translation>
+    </message>
+    <message id="ph-proxy-data-port-label">
+        <location filename="../qml/ProxyComboBox.qml" line="128"/>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message id="ph-proxy-data-user-label">
+        <location filename="../qml/ProxyComboBox.qml" line="152"/>
+        <source>User</source>
+        <translation>User</translation>
+    </message>
+    <message id="ph-proxy-data-password-label">
+        <location filename="../qml/ProxyComboBox.qml" line="173"/>
+        <source>Password</source>
+        <translation>Password</translation>
     </message>
 </context>
 </TS>

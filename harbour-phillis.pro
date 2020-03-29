@@ -23,23 +23,25 @@ CONFIG += sailfishapp
 HEADERS += \
     src/QuickCookieJar.h \
     src/QuickHttp.h \
-    src/QuickConfigurationValue.h
-HEADERS += src/QuickDownloadCache.h
-HEADERS += src/QuickApp.h
+    src/QuickConfigurationValue.h \
+    src/QuickDownloadCache.h \
+    src/QuickApp.h \
+    src/QuickProxy.h
 
 
 SOURCES += src/harbour-phillis.cpp \
     src/QuickCookieJar.cpp \
     src/QuickHttp.cpp \
-    src/QuickConfigurationValue.cpp
-SOURCES +=
-SOURCES += src/QuickDownloadCache.cpp
-SOURCES += src/QuickApp.cpp
+    src/QuickConfigurationValue.cpp \
+    src/QuickDownloadCache.cpp \
+    src/QuickApp.cpp \
+    src/QuickProxy.cpp
 
 
 
 DISTFILES += \
     qml/BestEffortIcon.qml \
+    qml/ProxyComboBox.qml \
     qml/ThemeColoredImage.qml \
     rpm/harbour-phillis.changes.in \
     rpm/harbour-phillis.changes.run.in \
