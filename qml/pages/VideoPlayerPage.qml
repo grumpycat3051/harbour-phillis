@@ -763,7 +763,7 @@ Page {
     function _parseVideoData(data) {
         var formats = []
         var videoFormatsRegex = new RegExp("^\\s*var\\s+flashvars_\\d+\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
-        var obfuscatedJsRegex = new RegExp("^\\s*var\\s+.*media_0;.*\\s*$")
+        var obfuscatedJsRegex = new RegExp("^\\s*var\\s+.*media_[0-9]+;.*\\s*$")
         var jsVarDefinitionRegex = new RegExp("^\\s*var\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*=\\s*(.+)\\s*$")
         var jsCommentRegex = new RegExp("/\\*.*?\\*/", "g")
 
@@ -970,10 +970,21 @@ Page {
                             }
 
                             for (var j = 0; j < _formats.length; ++j) {
-                                var url = MiniJS.evaluate(defs, "media_" + j)
-                                if (url) {
-                                    console.debug("index " + j + " url " + url)
+                                var varName = "media_" + j
+                                var url = MiniJS.evaluate(defs, varName)
+                                if (url && url !== varName) {
+                                    console.debug("index=" + j + " url=" + url)
                                     _formats[j]["format_url"] = url
+                                }
+                            }
+
+                            // remove formats without url
+                            for (var j = 0; j < _formats.length; ) {
+                                if (!_formats[j]["format_url"]) {
+                                    console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
+                                    _formats.splice(j, 1)
+                                } else {
+                                    ++j
                                 }
                             }
                         }
