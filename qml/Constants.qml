@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,8 @@ Item { // Component objects cannot declare new properties.
     readonly property int bearerModeAutoDetect: 0
     readonly property int bearerModeBroadband: 1
     readonly property int bearerModeMobile: 2
+    readonly property int format2160: 2160
+    readonly property int format1440: 1440
     readonly property int format1080: 1080
     readonly property int format720: 720
     readonly property int format480: 480

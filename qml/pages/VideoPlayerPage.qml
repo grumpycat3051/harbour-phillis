@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -1052,12 +1052,29 @@ Page {
             return Constants.format1080
         }
 
+        if (height <= 1440) {
+            return Constants.format1440
+        }
+
+        if (height <= 2160) {
+            return Constants.format2160
+        }
+
         return Constants.formatUnknown
     }
 
     function _getAreaFromFormatQuality(q) {
         var targetArea = 1080*1920
         switch (q) {
+        case 2160:
+            targetArea = 2160*3840
+            break
+        case 1440:
+            targetArea = 1440*2560
+            break
+        case 1080:
+            targetArea = 1080*1920
+            break
         case 720:
             targetArea = 720*1280
             break
