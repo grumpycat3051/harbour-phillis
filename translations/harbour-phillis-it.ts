@@ -444,8 +444,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="669"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="687"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="666"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="684"/>
         <source>%1&apos;s Videos</source>
         <translation>Video di %1</translation>
     </message>

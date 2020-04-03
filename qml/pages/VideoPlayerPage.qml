@@ -792,6 +792,8 @@ Page {
         _openCount = 0
         _pauseCount = 0;
         _paused = false
+        _restartHttp = false
+        _playBestFormatOnResume = false
     }
 
     function pause() {
