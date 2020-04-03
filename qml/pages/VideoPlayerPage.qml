@@ -82,6 +82,7 @@ Page {
         loadingVideo || _forceBusyIndicator || _waitingOnFirstVideoImage
     property bool _restartHttp: false
     property bool _playBestFormatOnResume: false
+    property bool _videoControlGesturesEnabled: videoOutput.visible
 
     Http {
         id: http
@@ -330,7 +331,6 @@ Page {
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-            enabled: videoOutput.visible
 
             property real startx: -1
             property real starty: -1
@@ -342,39 +342,44 @@ Page {
             property real initialVolume: 0
 
             onPositionChanged: function (e) {
+
 //                console.debug("x=" + e.x + " y="+e.y)
                 e.accepted = true
 
-                if (startx >= 0 && starty >= 0) {
-                    var dx = e.x - startx
-                    var dy = e.y - starty
+                if (_videoControlGesturesEnabled) {
+                    if (startx >= 0 && starty >= 0) {
+                        var dx = e.x - startx
+                        var dy = e.y - starty
 
-                    if (-1 === seekType) {
-                        if (Math.abs(dx) >= dragDistance ||
-                            Math.abs(dy) >= dragDistance) {
+                        if (-1 === seekType) {
+                            if (Math.abs(dx) >= dragDistance ||
+                                Math.abs(dy) >= dragDistance) {
 
-                            if (Math.abs(dx) >= Math.abs(dy)) {
-                                seekType = 0
-                            } else {
-                                seekType = 1
+                                if (Math.abs(dx) >= Math.abs(dy)) {
+                                    seekType = 0
+                                } else {
+                                    seekType = 1
+                                }
                             }
                         }
-                    }
 
-                    seekRectangle.visible = seekType !== -1
-                    switch (seekType) {
-                    case 0: { // position
-                        var skipSeconds = computePositionSeek(dx)
-                        var streamPosition = Math.max(0, Math.min(streamPositonS + skipSeconds, streamDurationS))
-                        seekLabel.text = (dx >= 0 ? "+" : "-") + _toTime(Math.abs(skipSeconds)) + " (" + _toTime(streamPosition) + ")"
-                    } break
-                    case 1: { // volume
-                        var volumeChange = -(dy / parent.height)
-                        var volume = Math.max(0, Math.min(initialVolume + volumeChange, 1))
-                        seekLabel.text = "Volume " + (volume * 100).toFixed(0) + "%"
-                        mediaplayer.volume = volume
-                    } break
+                        seekRectangle.visible = seekType !== -1
+                        switch (seekType) {
+                        case 0: { // position
+                            var skipSeconds = computePositionSeek(dx)
+                            var streamPosition = Math.max(0, Math.min(streamPositonS + skipSeconds, streamDurationS))
+                            seekLabel.text = (dx >= 0 ? "+" : "-") + _toTime(Math.abs(skipSeconds)) + " (" + _toTime(streamPosition) + ")"
+                        } break
+                        case 1: { // volume
+                            var volumeChange = -(dy / parent.height)
+                            var volume = Math.max(0, Math.min(initialVolume + volumeChange, 1))
+                            seekLabel.text = "Volume " + (volume * 100).toFixed(0) + "%"
+                            mediaplayer.volume = volume
+                        } break
+                        }
                     }
+                } else {
+                    seekType = -1 // disable seek
                 }
             }
 

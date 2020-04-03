@@ -429,23 +429,23 @@
         <translation>Login</translation>
     </message>
     <message id="ph-video-player-page-no-urls-found">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="104"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="105"/>
         <source>No video urls found</source>
         <translation>No video URLs found</translation>
     </message>
     <message id="ph-video-player-resource-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="262"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="263"/>
         <source>Resource error</source>
         <translation>Resource error</translation>
     </message>
     <message id="ph-video-player-network-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="272"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="273"/>
         <source>Network error</source>
         <translation>Network error</translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="664"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="682"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="669"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="687"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
     </message>
