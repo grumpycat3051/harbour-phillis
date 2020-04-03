@@ -416,12 +416,9 @@ Page {
                 } break
                 default: {
                     if (!held) {
-                        if (controlPanel.open) {
-                            if (_clickedToOpen) {
-                                _clickedToOpen = false
-                                closeControlPanel()
-                            }
-//                            mediaplayer.play()
+                        if (_clickedToOpen) {
+                            _clickedToOpen = false
+                            closeControlPanel()
                         } else {
 //                            mediaplayer.pause()
                             if (!_clickedToOpen) {
