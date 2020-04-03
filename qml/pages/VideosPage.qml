@@ -37,6 +37,7 @@ Page {
     property bool cache: false
     property bool isSearch: false
     readonly property real overlayOpacity: 0.68
+    readonly property bool _canTriggerLoadMore: _page >= 1 && http.status !== Http.StatusRunning
 
     ListModel {
         id: model
@@ -86,11 +87,11 @@ Page {
         }
 
         PushUpMenu {
-            enabled: root._page >= 1
+            enabled: _canTriggerLoadMore
             MenuItem {
                 //% "Load more"
                 text: qsTrId("ph-push-up-menu-load-more")
-                onClicked: http.get(_makeUrl(videosUrl, "page=" + (root._page + 1)))
+                onClicked: _loadNextPage()
             }
         }
 
@@ -98,6 +99,31 @@ Page {
             id: view
             anchors.fill: parent
             model: model
+
+            readonly property real visibleAreaHeight: height
+            property real itemHeight: -1
+            readonly property bool itemHeightUpdated: -1 != itemHeight
+            readonly property int maxVisibleItems: (itemHeight > 0 ? Math.ceil(visibleAreaHeight / itemHeight) : 0) + 1
+            property real _previousContentY: 0
+
+            onContentYChanged: {
+                if (_previousContentY < contentY) {
+                    // scrolling down
+                    if (_canTriggerLoadMore) {
+                        var index = indexAt(0, contentY)
+                        if (index >= 0) {
+                            if (itemHeightUpdated && index + maxVisibleItems >= count) {
+                                console.debug("infinite scroll load next page")
+                                _loadNextPage()
+                            }
+                        }
+                    }
+
+                }
+
+                _previousContentY = contentY
+            }
+
 
             header: PageHeader {
                 id: header
@@ -110,12 +136,9 @@ Page {
                     id: videoItem
                     contentHeight: thumbnail.height
                     width: ListView.view.width
-                    enabled: !_startedMetaDataDownload
 
                     property var _playlist
-                    property int _token
 
-                    property bool _startedMetaDataDownload
                     menu: ContextMenu {
                         MenuItem {
                             //% "Copy URL to clipboard"
@@ -183,6 +206,13 @@ Page {
                                                         videoTitle: video_title,
                                                         })
                     }
+
+                    onContentHeightChanged: {
+                        if (Image.Ready  === thumbnail.status && contentHeight > 0
+                                && (ListView.view.itemHeight <= 0 || contentHeight < ListView.view.itemHeight)) {
+                            ListView.view.itemHeight = contentHeight
+                        }
+                    }
                 }
             }
 
@@ -205,6 +235,7 @@ Page {
 
             Component.onCompleted: {
                 currentIndex = -1
+                _previousContentY = contentY
             }
         }
     }
@@ -342,5 +373,9 @@ Page {
             return baseUrl + "&" + newPart
         }
         return baseUrl + "?" + newPart
+    }
+
+    function _loadNextPage() {
+        http.get(_makeUrl(videosUrl, "page=" + (_page + 1)))
     }
 }

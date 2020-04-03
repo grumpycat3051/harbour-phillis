@@ -216,7 +216,7 @@
     </message>
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
-        <location filename="../qml/pages/VideosPage.qml" line="92"/>
+        <location filename="../qml/pages/VideosPage.qml" line="93"/>
         <source>Load more</source>
         <translation>加载更多</translation>
     </message>
@@ -227,22 +227,22 @@
     </message>
     <message id="ph-view-placeholder-text-no-results">
         <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
-        <location filename="../qml/pages/VideosPage.qml" line="199"/>
+        <location filename="../qml/pages/VideosPage.qml" line="229"/>
         <source>Search yielded no results</source>
         <translation>无搜索结果</translation>
     </message>
     <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
-        <location filename="../qml/pages/VideosPage.qml" line="122"/>
+        <location filename="../qml/pages/VideosPage.qml" line="145"/>
         <source>Copy URL to clipboard</source>
         <translation>复制链接到剪切板</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/VideosPage.qml" line="194"/>
+        <location filename="../qml/pages/VideosPage.qml" line="224"/>
         <source>Videos are being loaded</source>
         <translation>正在加载视频</translation>
     </message>
     <message id="ph-videos-page-no-urls-found">
-        <location filename="../qml/pages/VideosPage.qml" line="335"/>
+        <location filename="../qml/pages/VideosPage.qml" line="366"/>
         <source>No video URLs found</source>
         <oldsource>No video urls found</oldsource>
         <translation type="unfinished"></translation>
