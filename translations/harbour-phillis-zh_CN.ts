@@ -83,63 +83,68 @@
         <source>Pause playback when the cover page is shown</source>
         <translation>显示封面页面时停止播放</translation>
     </message>
+    <message id="ph-settings-page-playback-video-reload-attempts">
+        <location filename="../qml/pages/SettingsPage.qml" line="206"/>
+        <source>Attempts to reload video on playback error</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-settings-page-display">
-        <location filename="../qml/pages/SettingsPage.qml" line="204"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="229"/>
         <source>Display</source>
         <translation>显示</translation>
     </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="211"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
         <source>Categories per row</source>
         <translation>每列分类</translation>
     </message>
     <message id="ph-settings-page-display-pornstars-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="261"/>
         <source>Pornstars per row</source>
         <translation>每列情色影星</translation>
     </message>
     <message id="ph-settings-page-access">
-        <location filename="../qml/pages/SettingsPage.qml" line="259"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
         <source>Access</source>
         <translation>访问</translation>
     </message>
     <message id="ph-settings-page-access-restrict-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="264"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="289"/>
         <source>Require a PIN to access the app</source>
         <translation>需要PIN 码以访问应用程序</translation>
     </message>
     <message id="ph-settings-page-access-restrict-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="266"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="291"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
         <translation>防止意外访问应用程序。PIN 将以纯文本形式存储在应用程序配置目录中。 如果你忘记了PIN，只需删除该文件即可恢复对该应用程序的访问权限。</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="282"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="307"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-placeholder">
-        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="309"/>
         <source>Enter four or more digits</source>
         <translation>请输入四位及以上数字</translation>
     </message>
     <message id="ph-settings-page-access-lock-screen-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="299"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="324"/>
         <source>Lock screen text</source>
         <translation>锁屏文本</translation>
     </message>
     <message id="ph-settings-page-account">
-        <location filename="../qml/pages/SettingsPage.qml" line="312"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="337"/>
         <source>Account</source>
         <translation>账户</translation>
     </message>
     <message id="ph-settings-page-account-username">
-        <location filename="../qml/pages/SettingsPage.qml" line="317"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="342"/>
         <source>Username</source>
         <translation>用户名</translation>
     </message>
     <message id="ph-settings-page-account-auto-login">
-        <location filename="../qml/pages/SettingsPage.qml" line="343"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="368"/>
         <source>Login on application start</source>
         <translation>应用程序启动时自动登录</translation>
     </message>
@@ -211,7 +216,7 @@
     </message>
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
-        <location filename="../qml/pages/VideosPage.qml" line="93"/>
+        <location filename="../qml/pages/VideosPage.qml" line="92"/>
         <source>Load more</source>
         <translation>加载更多</translation>
     </message>
@@ -222,19 +227,25 @@
     </message>
     <message id="ph-view-placeholder-text-no-results">
         <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
-        <location filename="../qml/pages/VideosPage.qml" line="200"/>
+        <location filename="../qml/pages/VideosPage.qml" line="199"/>
         <source>Search yielded no results</source>
         <translation>无搜索结果</translation>
     </message>
     <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
-        <location filename="../qml/pages/VideosPage.qml" line="123"/>
+        <location filename="../qml/pages/VideosPage.qml" line="122"/>
         <source>Copy URL to clipboard</source>
         <translation>复制链接到剪切板</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/VideosPage.qml" line="195"/>
+        <location filename="../qml/pages/VideosPage.qml" line="194"/>
         <source>Videos are being loaded</source>
         <translation>正在加载视频</translation>
+    </message>
+    <message id="ph-videos-page-no-urls-found">
+        <location filename="../qml/pages/VideosPage.qml" line="335"/>
+        <source>No video URLs found</source>
+        <oldsource>No video urls found</oldsource>
+        <translation type="unfinished"></translation>
     </message>
     <message id="ph-disclaimer-page-title">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="57"/>
@@ -417,9 +428,24 @@
         <source>Login</source>
         <translation>登录</translation>
     </message>
+    <message id="ph-video-player-page-no-urls-found">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="104"/>
+        <source>No video urls found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-video-player-resource-error">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="262"/>
+        <source>Resource error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-video-player-network-error">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="272"/>
+        <source>Network error</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="575"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="593"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="664"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="682"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s 视频</translation>
     </message>
@@ -454,12 +480,12 @@
         <translation>初始化加载网页失败</translation>
     </message>
     <message id="ph-setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="229"/>
+        <location filename="../qml/harbour-phillis.qml" line="235"/>
         <source>Please enter your online trading PIN</source>
         <translation>请输入你的在线验证码</translation>
     </message>
     <message id="ph-error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="345"/>
+        <location filename="../qml/harbour-phillis.qml" line="351"/>
         <source>Request failed</source>
         <translation>请求失败</translation>
     </message>

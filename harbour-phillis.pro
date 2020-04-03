@@ -42,6 +42,7 @@ SOURCES += src/harbour-phillis.cpp \
 DISTFILES += \
     qml/BestEffortIcon.qml \
     qml/ProxyComboBox.qml \
+    qml/StateMachine.js \
     qml/ThemeColoredImage.qml \
     rpm/harbour-phillis.changes.in \
     rpm/harbour-phillis.changes.run.in \

@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,6 @@ Page {
     ListModel {
         id: model
     }
-
 
     Http {
         id: http
@@ -332,6 +331,9 @@ Page {
             }
         } else {
             console.debug(data)
+            //% "No video URLs found"
+            var message = qsTrId("ph-videos-page-no-urls-found")
+            window.notify(message)
         }
     }
 

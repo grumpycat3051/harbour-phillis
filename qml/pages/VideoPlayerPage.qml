@@ -28,6 +28,7 @@ import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
 import "../MiniJS.js" as MiniJS
+import "../StateMachine.js" as Stm
 
 Page {
     id: page
@@ -35,13 +36,11 @@ Page {
     property string videoId
     property string videoTitle
 
-    backNavigation: controlPanel.open || !_hasSource
-
+    backNavigation: controlPanel.open
     readonly property int playbackOffset: streamPositonS
     readonly property int streamPositonS: Math.floor(mediaplayer.position / 1000)
     readonly property int streamDurationS: Math.ceil(mediaplayer.duration / 1000)
     property bool _forceBusyIndicator: false
-    property bool _hasSource: !!("" + mediaplayer.source)
     property bool _paused: false
     property int _pauseCount: 0
     property int _openCount: 0
@@ -49,7 +48,6 @@ Page {
     property bool _clickedToOpen: false
     readonly property bool isPlaying: mediaplayer.playbackState === MediaPlayer.PlayingState
     property var _formats: []
-
     property bool _isFavorite: false
     property int _action: -1
     property string _ratingToken
@@ -66,6 +64,24 @@ Page {
     property var _pornstars: []
     property var _tags: []
     property var _displayBlanking
+    property int _networkErrorRetryCount: 0
+    property var _stateMachines: []
+    readonly property bool _mediaPlayerVideoLoading:
+        mediaplayer.error === MediaPlayer.NoError
+        && (mediaplayer.status === MediaPlayer.Buffering
+            || mediaplayer.status === MediaPlayer.Stalled
+            || mediaplayer.status === MediaPlayer.Loading
+            || mediaplayer.status === MediaPlayer.Loaded)
+    readonly property bool _websiteLoading:
+        http.status === Http.StatusRunning
+        || networkErrorTimer.running
+
+    readonly property bool loadingVideo: _mediaPlayerVideoLoading || _websiteLoading
+    readonly property bool _waitingOnFirstVideoImage: !videoOutput.visible && mediaplayer.playbackState === MediaPlayer.PlayingState
+    readonly property bool showBusyIndicator:
+        loadingVideo || _forceBusyIndicator || _waitingOnFirstVideoImage
+    property bool _restartHttp: false
+    property bool _playBestFormatOnResume: false
 
     Http {
         id: http
@@ -78,21 +94,15 @@ Page {
                     if (url === videoUrl) {
                         _parseVideoData(data)
                         if (_formats.length) {
-                            // update allowed orientations based on video format
-                            var f = _formats[0]
-                            if (f.height > f.width) {
-                                page.allowedOrientations = Orientation.Portrait | Orientation.PortraitInverted
+                            if (_pauseCount) {
+                                _playBestFormatOnResume = true
                             } else {
-                                page.allowedOrientations = Orientation.Landscape | Orientation.LandscapeInverted
+                                _playBestFormat()
                             }
-
-                            // select format and play
-                            var formatId = _getVideoFormatFromBearerMode()
-                            var formatIndex = _findBestFormat(formatId)
-                            var format = _formats[formatIndex]
-                            play(format.format_url)
                         } else {
-                            // fix me
+                            //% "No video urls found"
+                            var message = qsTrId("ph-video-player-page-no-urls-found")
+                            window.notify(message)
                             openControlPanel()
                         }
                     } else {
@@ -138,10 +148,40 @@ Page {
         }
     }
 
+    Timer {
+        id: networkErrorTimer
+        interval: 1666
+        onTriggered: {
+            console.debug("network error timer expired")
+            mediaplayer.source = ""
+            http.get(videoUrl)
+        }
+    }
+
+    Timer {
+        id: stateMachineTimer
+        interval: 100
+        repeat: true
+        running: true
+        onTriggered: {
+            for (var i = 0; i < _stateMachines.length; ++i) {
+                var stateMachine = _stateMachines[i]
+                stateMachine.tick()
+            }
+        }
+    }
+
 
     MediaPlayer {
         id: mediaplayer
         autoPlay: true
+
+        onPositionChanged: {
+            if (MediaPlayer.NoError === error &&
+                MediaPlayer.Buffered === status) {
+                _networkErrorRetryCount = 0
+            }
+        }
 
         onStatusChanged: {
             console.debug("media player status=" + status)
@@ -172,7 +212,18 @@ Page {
                 break
             case MediaPlayer.InvalidMedia:
                 console.debug("invalid media")
-                openControlPanel()
+                break
+            case MediaPlayer.NoMedia:
+                console.debug("no media")
+                break
+            case MediaPlayer.Loading:
+                console.debug("loading")
+                break
+            case MediaPlayer.UnknownStatus:
+                console.debug("unknown status")
+                break
+            default:
+                console.debug("unhandled status")
                 break
             }
         }
@@ -197,8 +248,44 @@ Page {
 
             _displayBlanking.preventBlanking = playbackState === MediaPlayer.PlayingState
         }
-    }
 
+        onErrorChanged: {
+            console.debug("media player error=" + error)
+
+            switch (error) {
+            case MediaPlayer.NoError:
+                console.debug("no error")
+                break
+            case MediaPlayer.ResourceError:
+                console.debug("resource error")
+                //% "Resource error"
+                var message = qsTrId("ph-video-player-resource-error")
+                _onMediaPlayerError(message)
+                break
+            case MediaPlayer.FormatError:
+                console.debug("format error")
+                openControlPanel()
+                break
+            case MediaPlayer.NetworkError:
+                console.debug("network error")
+                //% "Network error"
+                var message = qsTrId("ph-video-player-network-error")
+                _onMediaPlayerError(message)
+                break
+            case MediaPlayer.AccessDenied:
+                console.debug("access denied")
+                openControlPanel()
+                break
+            case MediaPlayer.ServiceMissing:
+                console.debug("service missing")
+                openControlPanel()
+                break
+            default:
+                console.debug("unhandled error")
+                break
+            }
+        }
+    }
 
     Rectangle {
         id: videoOutputRectangle
@@ -207,14 +294,15 @@ Page {
 
         VideoOutput {
             id: videoOutput
-            anchors.fill: parent
             source: mediaplayer
+            visible: false
+            anchors.fill: parent
             fillMode: VideoOutput.PreserveAspectFit
         }
 
         BusyIndicator {
             anchors.centerIn: parent
-            running: _forceBusyIndicator || (mediaplayer.status === MediaPlayer.Stalled) || http.status === Http.StatusRunning
+            running: showBusyIndicator
             size: BusyIndicatorSize.Medium
         }
 
@@ -242,6 +330,7 @@ Page {
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
+            enabled: videoOutput.visible
 
             property real startx: -1
             property real starty: -1
@@ -659,6 +748,8 @@ Page {
         _displayBlanking = _createDisplayBlanking()
         window.videoPlayerPage = page
         http.get(videoUrl)
+
+        _createVideoStm()
     }
 
     Component.onDestruction: {
@@ -704,10 +795,11 @@ Page {
     function pause() {
         _pauseCount += 1
         console.debug("pause count="+ _pauseCount)
+
+        stateMachineTimer.running = false
+
         if (isPlaying) {
             console.debug("video player page pause playback")
-//            mediaplayer.pause()
-
             _paused = true
             mediaplayer.pause()
         }
@@ -716,14 +808,28 @@ Page {
     function resume() {
         _pauseCount -= 1
         console.debug("pause count="+ _pauseCount)
-        if (_pauseCount === 0 && _paused) {
-            console.debug("video player page resume playback")
-            _paused = false
-            mediaplayer.play()
-            // toggle item visibility to to unfreeze video
-            // after coming out of device lock
-            videoOutputRectangle.visible = false
-            videoOutputRectangle.visible = true
+        if (_pauseCount === 0) {
+            stateMachineTimer.running = true
+
+            if (_restartHttp) {
+                _restartHttp = false
+                http.get(videoUrl)
+            }
+
+            if (_playBestFormatOnResume) {
+                _playBestFormat()
+            }
+
+            if (_paused) {
+                console.debug("video player page resume playback")
+                _paused = false
+                mediaplayer.play()
+
+                // toggle item visibility to to unfreeze video
+                // after coming out of device lock
+                videoOutputRectangle.visible = false
+                videoOutputRectangle.visible = true
+            }
         }
     }
 
@@ -743,10 +849,6 @@ Page {
             console.debug("closing control panel")
             controlPanel.open = false
         }
-    }
-
-    function _stopPlayback() {
-        pause()
     }
 
     function _toTime(n) {
@@ -1192,6 +1294,74 @@ Page {
 
         console.warn("Display blanking prevention not available")
         return Qt.createQmlObject("import QtQuick 2.0; Item { property bool preventBlanking: false }", root, "script");
+    }
+
+    function _playBestFormat() {
+        // update allowed orientations based on video format
+        var f = _formats[0]
+        if (f.height > f.width) {
+            page.allowedOrientations = Orientation.Portrait | Orientation.PortraitInverted
+        } else {
+            page.allowedOrientations = Orientation.Landscape | Orientation.LandscapeInverted
+        }
+
+        // select format and play
+        var formatId = _getVideoFormatFromBearerMode()
+        var selectedFormatIndex = _findBestFormat(formatId)
+        var format = _formats[selectedFormatIndex]
+        play(format.format_url)
+    }
+
+    function _createVideoStm() {
+        var stm = Stm.create("video")
+        stm.setLogger(console.debug)
+
+        var initial = stm.addState("initial")
+        var picAvailable = stm.addState("picAvailable")
+        var picVisible = stm.addState("picVisible")
+        var startTime = 0
+        var picAvailableCondition = function() {
+            return MediaPlayer.NoError === mediaplayer.error &&
+                    (MediaPlayer.Buffered === mediaplayer.status || MediaPlayer.Stalled === mediaplayer.status)
+            }
+
+        stm.addTransition(initial, picAvailable, picAvailableCondition,
+            function() {
+                startTime = new Date().getTime()
+            })
+
+        stm.addTransition(picAvailable, initial, function() {
+                return !picAvailableCondition()
+            })
+
+        stm.addTransition(picAvailable, picVisible, function() {
+                return picAvailableCondition() && new Date().getTime() - startTime >= 1000
+            },
+            function () {
+                videoOutput.visible = true
+            })
+
+        stm.initialState = initial
+
+        stm.start()
+
+        _stateMachines.push(stm)
+    }
+
+    function _onMediaPlayerError(str) {
+        console.debug("retry count=" + _networkErrorRetryCount)
+        if (_networkErrorRetryCount < settingPlaybackVideoReloadAttempts.value) {
+            if (_pauseCount) {
+                _restartHttp = true
+            } else {
+                ++_networkErrorRetryCount
+                mediaplayer.stop()
+                networkErrorTimer.restart()
+            }
+        } else {
+            window.notify(str)
+            openControlPanel()
+        }
     }
 }
 

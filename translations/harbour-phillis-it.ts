@@ -83,63 +83,68 @@
         <source>Pause playback when the cover page is shown</source>
         <translation>Metti in pausa quando minimizzato nella cover</translation>
     </message>
+    <message id="ph-settings-page-playback-video-reload-attempts">
+        <location filename="../qml/pages/SettingsPage.qml" line="206"/>
+        <source>Attempts to reload video on playback error</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-settings-page-display">
-        <location filename="../qml/pages/SettingsPage.qml" line="204"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="229"/>
         <source>Display</source>
         <translation>Mostra</translation>
     </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="211"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
         <source>Categories per row</source>
         <translation>Categorie per riga</translation>
     </message>
     <message id="ph-settings-page-display-pornstars-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="261"/>
         <source>Pornstars per row</source>
         <translation>Pornostar per riga</translation>
     </message>
     <message id="ph-settings-page-access">
-        <location filename="../qml/pages/SettingsPage.qml" line="259"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
         <source>Access</source>
         <translation>Accesso</translation>
     </message>
     <message id="ph-settings-page-access-restrict-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="264"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="289"/>
         <source>Require a PIN to access the app</source>
         <translation>Richiedi un PIN per accedere all&apos;app</translation>
     </message>
     <message id="ph-settings-page-access-restrict-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="266"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="291"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
         <translation>Proteggi contro l&apos;accesso accidentale all&apos;app. Il PIN sarà salvato come file di testo nella cartella di configurazione dell&apos;app, per cui nel caso dovessi dimenticarlo ti basterà cancellare quel file per ripristinare l&apos;accesso all&apos;app.</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="282"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="307"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-placeholder">
-        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="309"/>
         <source>Enter four or more digits</source>
         <translation>Inserisci almeno quattro cifre</translation>
     </message>
     <message id="ph-settings-page-access-lock-screen-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="299"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="324"/>
         <source>Lock screen text</source>
         <translation>Testo blocco schermo</translation>
     </message>
     <message id="ph-settings-page-account">
-        <location filename="../qml/pages/SettingsPage.qml" line="312"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="337"/>
         <source>Account</source>
         <translation>Account</translation>
     </message>
     <message id="ph-settings-page-account-username">
-        <location filename="../qml/pages/SettingsPage.qml" line="317"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="342"/>
         <source>Username</source>
         <translation>Nome utente</translation>
     </message>
     <message id="ph-settings-page-account-auto-login">
-        <location filename="../qml/pages/SettingsPage.qml" line="343"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="368"/>
         <source>Login on application start</source>
         <translation>Accedi all&apos;avvio dell&apos;app</translation>
     </message>
@@ -211,7 +216,7 @@
     </message>
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
-        <location filename="../qml/pages/VideosPage.qml" line="93"/>
+        <location filename="../qml/pages/VideosPage.qml" line="92"/>
         <source>Load more</source>
         <translation>Carica altro</translation>
     </message>
@@ -222,19 +227,25 @@
     </message>
     <message id="ph-view-placeholder-text-no-results">
         <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
-        <location filename="../qml/pages/VideosPage.qml" line="200"/>
+        <location filename="../qml/pages/VideosPage.qml" line="199"/>
         <source>Search yielded no results</source>
         <translation>La ricerca non ha fornito risultati</translation>
     </message>
     <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
-        <location filename="../qml/pages/VideosPage.qml" line="123"/>
+        <location filename="../qml/pages/VideosPage.qml" line="122"/>
         <source>Copy URL to clipboard</source>
         <translation>Copia URL negli appunti</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/VideosPage.qml" line="195"/>
+        <location filename="../qml/pages/VideosPage.qml" line="194"/>
         <source>Videos are being loaded</source>
         <translation>Caricamento video</translation>
+    </message>
+    <message id="ph-videos-page-no-urls-found">
+        <location filename="../qml/pages/VideosPage.qml" line="335"/>
+        <source>No video URLs found</source>
+        <oldsource>No video urls found</oldsource>
+        <translation type="unfinished"></translation>
     </message>
     <message id="ph-disclaimer-page-title">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="57"/>
@@ -417,9 +428,24 @@
         <source>Login</source>
         <translation>Accedi</translation>
     </message>
+    <message id="ph-video-player-page-no-urls-found">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="104"/>
+        <source>No video urls found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-video-player-resource-error">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="262"/>
+        <source>Resource error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="ph-video-player-network-error">
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="272"/>
+        <source>Network error</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="575"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="593"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="664"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="682"/>
         <source>%1&apos;s Videos</source>
         <translation>Video di %1</translation>
     </message>
@@ -454,12 +480,12 @@
         <translation>Caricamento del sito fallito</translation>
     </message>
     <message id="ph-setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="229"/>
+        <location filename="../qml/harbour-phillis.qml" line="235"/>
         <source>Please enter your online trading PIN</source>
         <translation>Inserisci il tuo PIN online</translation>
     </message>
     <message id="ph-error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="345"/>
+        <location filename="../qml/harbour-phillis.qml" line="351"/>
         <source>Request failed</source>
         <translation>Richiesta fallita</translation>
     </message>

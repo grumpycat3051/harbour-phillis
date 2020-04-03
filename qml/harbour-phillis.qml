@@ -182,6 +182,12 @@ ApplicationWindow
     }
 
     ConfigurationValue {
+        id: settingPlaybackVideoReloadAttempts
+        key: "/playback/video_reload_attempts"
+        defaultValue: 3
+    }
+
+    ConfigurationValue {
         id: debugApp
         key: "/debug"
         defaultValue: false

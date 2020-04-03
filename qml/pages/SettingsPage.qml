@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -199,6 +199,31 @@ Page {
                 }
             }
 
+            TextField {
+                width: root.width
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
+                //% "Attempts to reload video on playback error"
+                label: qsTrId("ph-settings-page-playback-video-reload-attempts")
+                text: settingPlaybackVideoReloadAttempts.value
+                EnterKey.enabled: acceptableInput
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: focus = false
+                validator: IntValidator {
+                    bottom: 1
+                }
+
+                onTextChanged: {
+                    console.debug("text: " + text)
+                    if (acceptableInput) {
+                        var number = parseInt(text)
+                        console.debug("number: " + number)
+                        if (typeof(number) === "number") {
+                            settingPlaybackVideoReloadAttempts.value = number
+                        }
+                    }
+                }
+            }
+
             SectionHeader {
                 //% "Display"
                 text: qsTrId("ph-settings-page-display")
@@ -220,7 +245,7 @@ Page {
                 onTextChanged: {
                     console.debug("text: " + text)
                     if (acceptableInput) {
-                        var number = parseFloat(text)
+                        var number = parseInt(text)
                         console.debug("number: " + number)
                         if (typeof(number) === "number") {
                             settingDisplayCategoriesPerRow.value = number
@@ -245,7 +270,7 @@ Page {
                 onTextChanged: {
                     console.debug("text: " + text)
                     if (acceptableInput) {
-                        var number = parseFloat(text)
+                        var number = parseInt(text)
                         console.debug("number: " + number)
                         if (typeof(number) === "number") {
                             settingDisplayPornstarsPerRow.value = number
