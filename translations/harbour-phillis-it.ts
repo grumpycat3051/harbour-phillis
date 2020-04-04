@@ -185,9 +185,9 @@
     </message>
     <message id="ph-about-page-credits-licenses-sources-text">
         <location filename="../qml/pages/AboutPage.qml" line="146"/>
-        <source>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
-        <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;.&lt;br/&gt;%1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
-        <translation>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;Quest&apos;app è rilasciata sotto licenza MIT su &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 utilizza le icone di Smashicons da &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
+        <source>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
+        <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
+        <translation>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;Quest&apos;app è rilasciata sotto licenza MIT su &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 utilizza le icone di Smashicons da &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="168"/>
