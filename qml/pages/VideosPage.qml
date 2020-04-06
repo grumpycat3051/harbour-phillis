@@ -25,9 +25,13 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
+import "."
 
-Page {
+GridViewPage {
     id: root
+
+    itemsPerRow: settingDisplayVideosPerRow.value
+    onOrientationChanged: view.updateInfiniteScroll()
 
     property string videosUrl
     property string title
@@ -95,35 +99,28 @@ Page {
             }
         }
 
-        SilicaListView {
+        SilicaGridView {
             id: view
             anchors.fill: parent
             model: model
 
-            readonly property real visibleAreaHeight: height
-            property real itemHeight: -1
-            readonly property bool itemHeightUpdated: -1 != itemHeight
-            readonly property int maxVisibleItems: (itemHeight > 0 ? Math.ceil(visibleAreaHeight / itemHeight) : 0) + 1
+            readonly property real visibleAreaHeight: height > 0 ? height : 1
+            readonly property int maxVisibleRows: visibleAreaHeight / cellHeight + 1
+            readonly property int maxVisibleItems: maxVisibleRows * _itemsPerRow
             property real _previousContentY: 0
 
             onContentYChanged: {
                 if (_previousContentY < contentY) {
                     // scrolling down
-                    if (_canTriggerLoadMore) {
-                        var index = indexAt(0, contentY)
-                        if (index >= 0) {
-                            if (itemHeightUpdated && index + maxVisibleItems >= count) {
-                                console.debug("infinite scroll load next page")
-                                _loadNextPage()
-                            }
-                        }
-                    }
-
+                    updateInfiniteScroll()
                 }
 
                 _previousContentY = contentY
             }
 
+
+            cellWidth: _targetCellWidth
+            cellHeight: cellWidth * 9 / 16
 
             header: PageHeader {
                 id: header
@@ -134,8 +131,10 @@ Page {
             delegate: Component {
                 ListItem {
                     id: videoItem
-                    contentHeight: thumbnail.height
-                    width: ListView.view.width
+
+                    width: view.cellWidth
+                    height: view.cellHeight
+
 
                     property var _playlist
 
@@ -199,19 +198,12 @@ Page {
                     }
 
                     onClicked: {
-                        ListView.view.currentIndex = index
+                        view.currentIndex = index
                         pageStack.push(Qt.resolvedUrl("VideoPlayerPage.qml"), {
                                                         videoId: video_id,
                                                         videoUrl: video_url,
                                                         videoTitle: video_title,
                                                         })
-                    }
-
-                    onContentHeightChanged: {
-                        if (Image.Ready  === thumbnail.status && contentHeight > 0
-                                && (ListView.view.itemHeight <= 0 || contentHeight < ListView.view.itemHeight)) {
-                            ListView.view.itemHeight = contentHeight
-                        }
                     }
                 }
             }
@@ -236,6 +228,18 @@ Page {
             Component.onCompleted: {
                 currentIndex = -1
                 _previousContentY = contentY
+            }
+
+            function updateInfiniteScroll() {
+                if (_canTriggerLoadMore) {
+                    var index = indexAt(0, contentY)
+                    if (index >= 0) {
+                        if (index + maxVisibleItems >= count) {
+                            console.debug("infinite scroll load next page")
+                            _loadNextPage()
+                        }
+                    }
+                }
             }
         }
     }
@@ -378,4 +382,6 @@ Page {
     function _loadNextPage() {
         http.get(_makeUrl(videosUrl, "page=" + (_page + 1)))
     }
+
+
 }

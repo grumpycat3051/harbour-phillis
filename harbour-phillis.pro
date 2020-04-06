@@ -44,6 +44,7 @@ DISTFILES += \
     qml/ProxyComboBox.qml \
     qml/StateMachine.js \
     qml/ThemeColoredImage.qml \
+    qml/pages/GridViewPage.qml \
     rpm/harbour-phillis.changes.in \
     rpm/harbour-phillis.changes.run.in \
     rpm/harbour-phillis.spec \

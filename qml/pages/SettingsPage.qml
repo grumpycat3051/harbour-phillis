@@ -29,6 +29,7 @@ import ".."
 
 Page {
     id: root
+    allowedOrientations: defaultAllowedOrientations
 
     SilicaFlickable {
         anchors.fill: parent
@@ -232,6 +233,31 @@ Page {
             TextField {
                 width: root.width
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
+                //% "Videos per row"
+                label: qsTrId("ph-settings-page-display-videos-per-grid-row")
+                text: settingDisplayVideosPerRow.value
+                EnterKey.enabled: acceptableInput
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: focus = false
+                validator: IntValidator {
+                    bottom: 1
+                }
+
+                onTextChanged: {
+                    console.debug("text: " + text)
+                    if (acceptableInput) {
+                        var number = parseInt(text)
+                        console.debug("number: " + number)
+                        if (typeof(number) === "number") {
+                            settingDisplayVideosPerRow.value = number
+                        }
+                    }
+                }
+            }
+
+            TextField {
+                width: parent.width
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
                 //% "Categories per row"
                 label: qsTrId("ph-settings-page-display-categories-per-grid-row")
                 text: settingDisplayCategoriesPerRow.value
@@ -276,6 +302,16 @@ Page {
                             settingDisplayPornstarsPerRow.value = number
                         }
                     }
+                }
+            }
+
+            TextSwitch {
+                //% "Add one extra column in landscape orientation"
+                text: qsTrId("ph-settings-page-display-extra-landscape-column")
+                checked: settingDisplayExtraLandscapeColumn.value
+                onClicked: {
+                    settingDisplayExtraLandscapeColumn.value = !settingDisplayExtraLandscapeColumn.value
+                    console.debug("display extra landscape column=" + checked)
                 }
             }
 

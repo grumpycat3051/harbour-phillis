@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,17 +25,17 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
+import "."
 
-Page {
+GridViewPage {
     id: root
 
+    itemsPerRow: settingDisplayCategoriesPerRow.value
     property bool _reload: false
     property string prefix
     property string categoriesUrl
     property string title
-    readonly property int itemPerRow: settingDisplayCategoriesPerRow.value
     property real _targetImageHeight: Theme.itemSizeHuge
-    readonly property real _targetCellWidth: width / itemPerRow
     property bool _thumbnailLoaded: false
     property var _filter: new RegExp(".*")
     property var _categories: []

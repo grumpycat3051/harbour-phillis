@@ -4,203 +4,213 @@
 <context>
     <name></name>
     <message id="ph-settings-page-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="47"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message id="ph-settings-page-network-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="52"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="53"/>
         <source>Network</source>
         <translation>Network</translation>
     </message>
     <message id="ph-settings-page-network-connection-type">
-        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
         <source>Network connection type</source>
         <translation>Network connection type</translation>
     </message>
     <message id="ph-settings-page-network-connection-autodetect">
-        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="64"/>
         <source>Autodetect</source>
         <translation>Autodetect</translation>
     </message>
     <message id="ph-settings-page-network-connection-broadband">
-        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="68"/>
         <source>Broadband</source>
         <translation>Broadband</translation>
     </message>
     <message id="ph-settings-page-network-connection-mobile">
-        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="72"/>
         <source>Mobile</source>
         <translation>Mobile</translation>
     </message>
     <message id="ph-settings-page-network-apply-proxy-settings">
-        <location filename="../qml/pages/SettingsPage.qml" line="112"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="113"/>
         <source>Apply</source>
         <translation>Apply</translation>
     </message>
     <message id="ph-format-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="119"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="120"/>
         <source>Format</source>
         <translation>Format</translation>
     </message>
     <message id="ph-settings-page-network-broadband-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="124"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="125"/>
         <source>Broadband</source>
         <translation>Broadband</translation>
     </message>
     <message id="ph-settings-page-network-mobile-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="138"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="139"/>
         <source>Mobile</source>
         <translation>Mobile</translation>
     </message>
     <message id="ph-settings-page-content-preferences-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="152"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="153"/>
         <source>Content Preferences</source>
         <translation>Content Preferences</translation>
     </message>
     <message id="ph-settings-page-content-preferences-gay-only-switch-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="162"/>
         <source>Gay Only</source>
         <translation>Gay Only</translation>
     </message>
     <message id="ph-settings-page-content-preferences-gay-only-switch-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="163"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="164"/>
         <source>Only show gay categories and videos</source>
         <translation>Only show gay categories and videos</translation>
     </message>
     <message id="ph-settings-page-playback-section-header">
-        <location filename="../qml/pages/SettingsPage.qml" line="179"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
         <source>Playback</source>
         <translation>Playback</translation>
     </message>
     <message id="ph-settings-page-playback-pause-on-device-lock-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="185"/>
         <source>Pause playback on device lock</source>
         <translation>Pause playback on device lock</translation>
     </message>
     <message id="ph-settings-page-playback-pause-if-cover-page-switch">
-        <location filename="../qml/pages/SettingsPage.qml" line="194"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="195"/>
         <source>Pause playback when the cover page is shown</source>
         <translation>Pause playback when the cover page is shown</translation>
     </message>
     <message id="ph-settings-page-playback-video-reload-attempts">
-        <location filename="../qml/pages/SettingsPage.qml" line="206"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="207"/>
         <source>Attempts to reload video on playback error</source>
         <translation>Attempts to reload video on playback error</translation>
     </message>
     <message id="ph-settings-page-display">
-        <location filename="../qml/pages/SettingsPage.qml" line="229"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="230"/>
         <source>Display</source>
         <translation>Display</translation>
     </message>
+    <message id="ph-settings-page-display-videos-per-grid-row">
+        <location filename="../qml/pages/SettingsPage.qml" line="237"/>
+        <source>Videos per row</source>
+        <translation>Videos per row</translation>
+    </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="236"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="262"/>
         <source>Categories per row</source>
         <translation>Categories per row</translation>
     </message>
     <message id="ph-settings-page-display-pornstars-per-grid-row">
-        <location filename="../qml/pages/SettingsPage.qml" line="261"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="287"/>
         <source>Pornstars per row</source>
         <translation>Pornstars per row</translation>
     </message>
+    <message id="ph-settings-page-display-extra-landscape-column">
+        <location filename="../qml/pages/SettingsPage.qml" line="310"/>
+        <source>Add one extra column in landscape orientation</source>
+        <translation>Add one extra column in landscape orientation</translation>
+    </message>
     <message id="ph-settings-page-access">
-        <location filename="../qml/pages/SettingsPage.qml" line="284"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="320"/>
         <source>Access</source>
         <translation>Access</translation>
     </message>
     <message id="ph-settings-page-access-restrict-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="289"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="325"/>
         <source>Require a PIN to access the app</source>
         <translation>Require a PIN to access the application</translation>
     </message>
     <message id="ph-settings-page-access-restrict-description">
-        <location filename="../qml/pages/SettingsPage.qml" line="291"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="327"/>
         <source>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</source>
         <translation>Protect against accidently accessing the application. The PIN will be stored as plain text in the application configuration directory. Should you forget your PIN simply delete the file to restore access to the application.</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-label">
-        <location filename="../qml/pages/SettingsPage.qml" line="307"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="343"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="ph-settings-page-access-require-pin-placeholder">
-        <location filename="../qml/pages/SettingsPage.qml" line="309"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="345"/>
         <source>Enter four or more digits</source>
         <translation>Enter four or more digits</translation>
     </message>
     <message id="ph-settings-page-access-lock-screen-text">
-        <location filename="../qml/pages/SettingsPage.qml" line="324"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="360"/>
         <source>Lock screen text</source>
         <translation>Lock screen text</translation>
     </message>
     <message id="ph-settings-page-account">
-        <location filename="../qml/pages/SettingsPage.qml" line="337"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="373"/>
         <source>Account</source>
         <translation>Account</translation>
     </message>
     <message id="ph-settings-page-account-username">
-        <location filename="../qml/pages/SettingsPage.qml" line="342"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="378"/>
         <source>Username</source>
         <translation>Username</translation>
     </message>
     <message id="ph-settings-page-account-auto-login">
-        <location filename="../qml/pages/SettingsPage.qml" line="368"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="404"/>
         <source>Login on application start</source>
         <translation>Login on application start</translation>
     </message>
     <message id="ph-about-page-header">
-        <location filename="../qml/pages/AboutPage.qml" line="42"/>
+        <location filename="../qml/pages/AboutPage.qml" line="44"/>
         <source>About %1</source>
         <translation>About %1</translation>
     </message>
     <message id="ph-about-page-version-text">
-        <location filename="../qml/pages/AboutPage.qml" line="90"/>
+        <location filename="../qml/pages/AboutPage.qml" line="92"/>
         <source>%1 %2</source>
         <translation>%1 %2</translation>
     </message>
     <message id="ph-about-page-description-header">
-        <location filename="../qml/pages/AboutPage.qml" line="107"/>
+        <location filename="../qml/pages/AboutPage.qml" line="109"/>
         <source>Description</source>
         <translation>Description</translation>
     </message>
     <message id="ph-about-page-description-text">
-        <location filename="../qml/pages/AboutPage.qml" line="114"/>
+        <location filename="../qml/pages/AboutPage.qml" line="116"/>
         <source>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>%1 is an unofficial Sailfish OS client for the adult content website &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-disclaimer-header">
-        <location filename="../qml/pages/AboutPage.qml" line="123"/>
+        <location filename="../qml/pages/AboutPage.qml" line="125"/>
         <source>Disclaimer</source>
         <translation>Disclaimer</translation>
     </message>
     <message id="ph-about-page-disclaimer-text">
-        <location filename="../qml/pages/AboutPage.qml" line="130"/>
+        <location filename="../qml/pages/AboutPage.qml" line="132"/>
         <source>The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>The content provided through %1 is the property and sole responsibility of &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-credits-licenses-sources-header">
-        <location filename="../qml/pages/AboutPage.qml" line="139"/>
+        <location filename="../qml/pages/AboutPage.qml" line="141"/>
         <source>Credits, Licenses, and Sources</source>
         <translation>Credits, Licenses, and Sources</translation>
     </message>
     <message id="ph-about-page-credits-licenses-sources-text">
-        <location filename="../qml/pages/AboutPage.qml" line="146"/>
+        <location filename="../qml/pages/AboutPage.qml" line="148"/>
         <source>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
         <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
         <translation>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
     </message>
     <message id="ph-about-privacy-header">
-        <location filename="../qml/pages/AboutPage.qml" line="168"/>
+        <location filename="../qml/pages/AboutPage.qml" line="170"/>
         <source>Privacy</source>
         <translation>Privacy</translation>
     </message>
     <message id="ph-about-page-privacy-text">
-        <location filename="../qml/pages/AboutPage.qml" line="175"/>
+        <location filename="../qml/pages/AboutPage.qml" line="177"/>
         <source>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</source>
         <translation>This application does not collect or save any personal data aside from possibly those credentials required to sign into &lt;a href=&apos;https://www.pornhub.com/&apos;&gt;Pornhub&lt;/a&gt;.</translation>
     </message>
     <message id="about-page-translations-button">
-        <location filename="../qml/pages/AboutPage.qml" line="161"/>
+        <location filename="../qml/pages/AboutPage.qml" line="163"/>
         <source>Translations</source>
         <translation>Translations</translation>
     </message>
@@ -216,7 +226,15 @@
     </message>
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
-        <location filename="../qml/pages/VideosPage.qml" line="93"/>
+        <location filename="../qml/pages/VideosPage.qml" line="97"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="96"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="96"/>
+        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="96"/>
+        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="96"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="93"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="93"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="97"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="97"/>
         <source>Load more</source>
         <translation>Load more</translation>
     </message>
@@ -227,164 +245,192 @@
     </message>
     <message id="ph-view-placeholder-text-no-results">
         <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
-        <location filename="../qml/pages/VideosPage.qml" line="229"/>
+        <location filename="../qml/pages/VideosPage.qml" line="221"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="232"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="232"/>
+        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="206"/>
+        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="206"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="229"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="229"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="207"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="207"/>
         <source>Search yielded no results</source>
         <translation>Search yielded no results</translation>
     </message>
     <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
-        <location filename="../qml/pages/VideosPage.qml" line="145"/>
+        <location filename="../qml/pages/VideosPage.qml" line="144"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="148"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="148"/>
+        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="129"/>
+        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="129"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="145"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="145"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="130"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="130"/>
         <source>Copy URL to clipboard</source>
         <translation>Copy URL to clipboard</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
-        <location filename="../qml/pages/VideosPage.qml" line="224"/>
+        <location filename="../qml/pages/VideosPage.qml" line="216"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="227"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="227"/>
+        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="201"/>
+        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="201"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="224"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="224"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="202"/>
+        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="202"/>
         <source>Videos are being loaded</source>
         <translation>Videos are being loaded</translation>
     </message>
     <message id="ph-videos-page-no-urls-found">
-        <location filename="../qml/pages/VideosPage.qml" line="366"/>
+        <location filename="../qml/pages/VideosPage.qml" line="370"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="369"/>
+        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="369"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="366"/>
+        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="366"/>
         <source>No video URLs found</source>
         <oldsource>No video urls found</oldsource>
         <translation>No video URLs found</translation>
     </message>
     <message id="ph-disclaimer-page-title">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="57"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="58"/>
         <source>Adult Content Disclaimer</source>
         <translation>Adult Content Disclaimer</translation>
     </message>
     <message id="ph-disclaimer-page-text1">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="70"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="71"/>
         <source>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</source>
         <translation>The content provided through this app is designed for ADULTS only and may include pictures and materials that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community please exit the site. The following terms and conditions apply to this site. Use of the site will constitute your agreement to the following terms and conditions:</translation>
     </message>
     <message id="ph-disclaimer-page-text2">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="83"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="84"/>
         <source>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</source>
         <translation>1.) I am 18 years of age or older&lt;br/&gt;2.) I accept all responsibility for my own actions; and&lt;br/&gt;3.) I agree that I am legally bound to these Terms and Conditions</translation>
     </message>
     <message id="ph-disclaimer-page-accept-button">
-        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="98"/>
+        <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="99"/>
         <source>Accept</source>
         <translation>Accept</translation>
     </message>
     <message id="ph-lock-screen-page-pin-placeholder">
-        <location filename="../qml/pages/LockScreenPage.qml" line="65"/>
+        <location filename="../qml/pages/LockScreenPage.qml" line="66"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message id="ph-recommended-page-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="133"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="134"/>
         <source>Recommended</source>
         <translation>Recommended</translation>
     </message>
     <message id="ph-recommended-page-pornstars-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="139"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="140"/>
         <source>Pornstars</source>
         <translation>Pornstars</translation>
     </message>
     <message id="ph-recommended-page-categories-section-header">
-        <location filename="../qml/pages/RecommendedPage.qml" line="202"/>
+        <location filename="../qml/pages/RecommendedPage.qml" line="203"/>
         <source>Categories</source>
         <translation>Categories</translation>
     </message>
     <message id="ph-start-page-videos-hottest">
-        <location filename="../qml/pages/StartPage.qml" line="46"/>
+        <location filename="../qml/pages/StartPage.qml" line="47"/>
         <source>Hottest</source>
         <translation>Hottest</translation>
     </message>
     <message id="ph-start-page-videos-most-viewed">
-        <location filename="../qml/pages/StartPage.qml" line="53"/>
+        <location filename="../qml/pages/StartPage.qml" line="54"/>
         <source>Most Viewed</source>
         <translation>Most Viewed</translation>
     </message>
     <message id="ph-start-page-videos-top-ratedmost-viewed">
-        <location filename="../qml/pages/StartPage.qml" line="60"/>
+        <location filename="../qml/pages/StartPage.qml" line="61"/>
         <source>Top Rated</source>
         <translation>Top Rated</translation>
     </message>
     <message id="ph-start-page-videos-popular-homemade">
-        <location filename="../qml/pages/StartPage.qml" line="67"/>
+        <location filename="../qml/pages/StartPage.qml" line="68"/>
         <source>Popular Homemade</source>
         <translation>Popular Homemade</translation>
     </message>
     <message id="ph-start-page-categories-popular">
-        <location filename="../qml/pages/StartPage.qml" line="77"/>
+        <location filename="../qml/pages/StartPage.qml" line="78"/>
         <source>Popular</source>
         <translation>Popular</translation>
     </message>
     <message id="ph-start-page-categories-alphabetical">
-        <location filename="../qml/pages/StartPage.qml" line="84"/>
+        <location filename="../qml/pages/StartPage.qml" line="85"/>
         <source>Alphabetical</source>
         <translation>Alphabetical</translation>
     </message>
     <message id="ph-start-page-categories-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="91"/>
+        <location filename="../qml/pages/StartPage.qml" line="92"/>
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
     <message id="ph-start-page-pornstars-most-popular">
-        <location filename="../qml/pages/StartPage.qml" line="101"/>
+        <location filename="../qml/pages/StartPage.qml" line="102"/>
         <source>Most Popular</source>
         <translation>Most Popular</translation>
     </message>
     <message id="ph-start-page-pornstars-top-trending">
-        <location filename="../qml/pages/StartPage.qml" line="108"/>
+        <location filename="../qml/pages/StartPage.qml" line="109"/>
         <source>Top Trending</source>
         <translation>Top Trending</translation>
     </message>
     <message id="ph-start-page-pornstars-most-viewed">
-        <location filename="../qml/pages/StartPage.qml" line="115"/>
+        <location filename="../qml/pages/StartPage.qml" line="116"/>
         <source>Most Viewed</source>
         <translation>Most Viewed</translation>
     </message>
     <message id="ph-start-page-pornstars-most-subscribed">
-        <location filename="../qml/pages/StartPage.qml" line="122"/>
+        <location filename="../qml/pages/StartPage.qml" line="123"/>
         <source>Most Subscribed</source>
         <translation>Most Subscribed</translation>
     </message>
     <message id="ph-start-page-pornstars-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="136"/>
+        <location filename="../qml/pages/StartPage.qml" line="137"/>
         <source>Number of Videos</source>
         <translation>Number of Videos</translation>
     </message>
     <message id="ph-start-page-header">
-        <location filename="../qml/pages/StartPage.qml" line="192"/>
+        <location filename="../qml/pages/StartPage.qml" line="193"/>
         <source>Pornhub</source>
         <translation>Pornhub</translation>
     </message>
     <message id="ph-start-page-videos-recommended">
-        <location filename="../qml/pages/StartPage.qml" line="197"/>
+        <location filename="../qml/pages/StartPage.qml" line="198"/>
         <source>Recommended</source>
         <translation>Recommended</translation>
     </message>
     <message id="ph-start-page-videos-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="210"/>
+        <location filename="../qml/pages/StartPage.qml" line="211"/>
         <source>Videos</source>
         <translation>Videos</translation>
     </message>
     <message id="ph-start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="234"/>
-        <location filename="../qml/pages/StartPage.qml" line="300"/>
+        <location filename="../qml/pages/StartPage.qml" line="235"/>
+        <location filename="../qml/pages/StartPage.qml" line="301"/>
         <source>Search</source>
         <translation>Search</translation>
     </message>
     <message id="ph-start-page-categories-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="251"/>
+        <location filename="../qml/pages/StartPage.qml" line="252"/>
         <source>Categories</source>
         <translation>Categories</translation>
     </message>
     <message id="ph-start-page-pornstars-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="276"/>
+        <location filename="../qml/pages/StartPage.qml" line="277"/>
         <source>Pornstars</source>
         <translation>Pornstars</translation>
     </message>
     <message id="ph-start-page-my-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="317"/>
+        <location filename="../qml/pages/StartPage.qml" line="318"/>
         <source>My</source>
         <translation>My</translation>
     </message>
     <message id="ph-start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="352"/>
+        <location filename="../qml/pages/StartPage.qml" line="353"/>
         <source>Favorites</source>
         <translation>Favorites</translation>
     </message>
@@ -429,48 +475,48 @@
         <translation>Login</translation>
     </message>
     <message id="ph-video-player-page-no-urls-found">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="105"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="106"/>
         <source>No video urls found</source>
         <translation>No video URLs found</translation>
     </message>
     <message id="ph-video-player-resource-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="263"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="264"/>
         <source>Resource error</source>
         <translation>Resource error</translation>
     </message>
     <message id="ph-video-player-network-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="273"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="274"/>
         <source>Network error</source>
         <translation>Network error</translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="666"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="684"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="667"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="685"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
     </message>
     <message id="ph-translations-page-header">
-        <location filename="../qml/pages/TranslationsPage.qml" line="41"/>
+        <location filename="../qml/pages/TranslationsPage.qml" line="42"/>
         <source>Translations</source>
         <translation>Translations</translation>
     </message>
     <message id="ph-translations-page-english-label">
-        <location filename="../qml/pages/TranslationsPage.qml" line="55"/>
+        <location filename="../qml/pages/TranslationsPage.qml" line="56"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message id="ph-translations-page-simplified-chinese-label">
-        <location filename="../qml/pages/TranslationsPage.qml" line="61"/>
+        <location filename="../qml/pages/TranslationsPage.qml" line="62"/>
         <source>Simplified Chinese</source>
         <translation>Simplified Chinese</translation>
     </message>
     <message id="ph-translations-page-italian-label">
-        <location filename="../qml/pages/TranslationsPage.qml" line="67"/>
+        <location filename="../qml/pages/TranslationsPage.qml" line="68"/>
         <source>Italian</source>
         <translation>Italian</translation>
     </message>
     <message id="ph-translations-page-finnish-label">
-        <location filename="../qml/pages/TranslationsPage.qml" line="78"/>
+        <location filename="../qml/pages/TranslationsPage.qml" line="74"/>
         <source>Finnish</source>
         <translation>Finnish</translation>
     </message>
@@ -485,12 +531,12 @@
         <translation>Initial loading of website failed</translation>
     </message>
     <message id="ph-setting-lock-screen-text">
-        <location filename="../qml/harbour-phillis.qml" line="235"/>
+        <location filename="../qml/harbour-phillis.qml" line="247"/>
         <source>Please enter your online trading PIN</source>
         <translation>Please enter your online trading PIN</translation>
     </message>
     <message id="ph-error-request-failed-summary">
-        <location filename="../qml/harbour-phillis.qml" line="351"/>
+        <location filename="../qml/harbour-phillis.qml" line="363"/>
         <source>Request failed</source>
         <translation>Request failed</translation>
     </message>

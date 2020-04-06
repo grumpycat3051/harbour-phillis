@@ -158,15 +158,27 @@ ApplicationWindow
     }
 
     ConfigurationValue {
+        id: settingDisplayVideosPerRow
+        defaultValue: 1
+        key: "/display/videos_per_grid_row"
+    }
+
+    ConfigurationValue {
         id: settingDisplayCategoriesPerRow
         defaultValue: 1
-        key: "/display/categories/items_per_grid_row"
+        key: "/display/categories_per_grid_row"
     }
 
     ConfigurationValue {
         id: settingDisplayPornstarsPerRow
         defaultValue: 2
-        key: "/display/pornstars/items_per_grid_row"
+        key: "/display/pornstars_per_grid_row"
+    }
+
+    ConfigurationValue {
+        id: settingDisplayExtraLandscapeColumn
+        key: "/display/extra_landscape_column"
+        defaultValue: true
     }
 
     ConfigurationValue {

@@ -36,6 +36,7 @@ Page {
     property string videoId
     property string videoTitle
 
+    allowedOrientations: defaultAllowedOrientations
     backNavigation: controlPanel.open
     readonly property int playbackOffset: streamPositonS
     readonly property int streamPositonS: Math.floor(mediaplayer.position / 1000)

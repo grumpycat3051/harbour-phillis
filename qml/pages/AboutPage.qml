@@ -26,6 +26,8 @@ import Sailfish.Silica 1.0
 import grumpycat 1.0
 
 Page {
+    allowedOrientations: defaultAllowedOrientations
+
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
