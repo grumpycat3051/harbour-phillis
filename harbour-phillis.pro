@@ -2,7 +2,7 @@ TARGET = harbour-phillis
 
 # known to qmake
 VER_MAJ = 0
-VER_MIN = 3
+VER_MIN = 4
 VER_PAT = 0
 
 VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}
