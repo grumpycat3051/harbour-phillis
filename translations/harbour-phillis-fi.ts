@@ -227,14 +227,6 @@
     <message id="ph-push-up-menu-load-more">
         <location filename="../qml/pages/PornstarsPage.qml" line="114"/>
         <location filename="../qml/pages/VideosPage.qml" line="97"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="96"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="96"/>
-        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="96"/>
-        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="96"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="93"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="93"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="97"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="97"/>
         <source>Load more</source>
         <translation>Lataa lisää kohteita</translation>
     </message>
@@ -246,49 +238,21 @@
     <message id="ph-view-placeholder-text-no-results">
         <location filename="../qml/pages/PornstarsPage.qml" line="177"/>
         <location filename="../qml/pages/VideosPage.qml" line="221"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="232"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="232"/>
-        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="206"/>
-        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="206"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="229"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="229"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="207"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="207"/>
         <source>Search yielded no results</source>
         <translation>Ei hakutuloksia</translation>
     </message>
     <message id="ph-videos-page-context-menu-copy-url-to-clipboard">
         <location filename="../qml/pages/VideosPage.qml" line="144"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="148"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="148"/>
-        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="129"/>
-        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="129"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="145"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="145"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="130"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="130"/>
         <source>Copy URL to clipboard</source>
         <translation>Kopioi URL leikepöydälle</translation>
     </message>
     <message id="ph-videos-page-view-placeholder-text-loading">
         <location filename="../qml/pages/VideosPage.qml" line="216"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="227"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="227"/>
-        <location filename="../qml/pages/VideosPage_BASE_26751.qml" line="201"/>
-        <location filename="../qml/pages/VideosPage_BASE_26934.qml" line="201"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="224"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="224"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26751.qml" line="202"/>
-        <location filename="../qml/pages/VideosPage_REMOTE_26934.qml" line="202"/>
         <source>Videos are being loaded</source>
         <translation>Videoita ladataan</translation>
     </message>
     <message id="ph-videos-page-no-urls-found">
         <location filename="../qml/pages/VideosPage.qml" line="370"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26751.qml" line="369"/>
-        <location filename="../qml/pages/VideosPage_BACKUP_26934.qml" line="369"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26751.qml" line="366"/>
-        <location filename="../qml/pages/VideosPage_LOCAL_26934.qml" line="366"/>
         <source>No video URLs found</source>
         <translation type="unfinished"></translation>
     </message>
