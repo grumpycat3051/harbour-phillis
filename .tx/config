@@ -1,0 +1,11 @@
+[main]
+host = https://www.transifex.com
+
+[harbour-phillis.translations]
+type = QT
+source_file = translations/harbour-phillis.ts
+source_lang = en
+trans.fi = translations/harbour-phillis-fi.ts
+trans.it = translations/harbour-phillis-it.ts
+trans.zh_CN = translations/harbour-phillis-zh_CN.ts
+

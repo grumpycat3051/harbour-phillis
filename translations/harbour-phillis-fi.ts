@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fi_FI">
+<TS version="2.1" language="fi">
 <context>
     <name></name>
     <message id="ph-settings-page-header">
@@ -197,7 +197,7 @@
         <location filename="../qml/pages/AboutPage.qml" line="148"/>
         <source>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
         <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
-        <translation type="unfinished">Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;Tämä sovellus on julkaistu MIT-lisenssin alla &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;-sivustolla. %1 käyttää Smashiconsin tekemiä ikoneita sivustolta &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="170"/>
@@ -254,6 +254,7 @@
     <message id="ph-videos-page-no-urls-found">
         <location filename="../qml/pages/VideosPage.qml" line="370"/>
         <source>No video URLs found</source>
+        <oldsource>No video urls found</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message id="ph-disclaimer-page-title">

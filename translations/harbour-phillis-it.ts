@@ -487,7 +487,7 @@
     <message id="ph-translations-page-finnish-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="74"/>
         <source>Finnish</source>
-        <translation type="unfinished">Finlandese</translation>
+        <translation>Finlandese</translation>
     </message>
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="83"/>
