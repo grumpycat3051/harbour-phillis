@@ -120,7 +120,7 @@ GridViewPage {
 
 
             cellWidth: _targetCellWidth
-            cellHeight: cellWidth * 9 / 16
+            cellHeight: cellWidth * Screen.width / Screen.height
 
             header: PageHeader {
                 id: header
