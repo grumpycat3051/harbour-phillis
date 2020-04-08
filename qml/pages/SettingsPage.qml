@@ -210,7 +210,7 @@ Page {
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
                 EnterKey.onClicked: focus = false
                 validator: IntValidator {
-                    bottom: 1
+                    bottom: 0
                 }
 
                 onTextChanged: {
