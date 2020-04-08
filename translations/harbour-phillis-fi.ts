@@ -443,23 +443,23 @@
         <translation>Kirjaudu sisään</translation>
     </message>
     <message id="ph-video-player-page-no-urls-found">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="106"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="109"/>
         <source>No video urls found</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="ph-video-player-resource-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="264"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="267"/>
         <source>Resource error</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="ph-video-player-network-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="274"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="277"/>
         <source>Network error</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="667"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="685"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="670"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="688"/>
         <source>%1&apos;s Videos</source>
         <translation>Esiintyjän %1 videot</translation>
     </message>

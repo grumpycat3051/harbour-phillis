@@ -36,7 +36,10 @@ Page {
     property string videoId
     property string videoTitle
 
-    allowedOrientations: defaultAllowedOrientations
+    // Pornhub has fixed video resolutions that are always wider than high.
+    // Thus we can simply fix the allowed orientations to landscape modes.
+    allowedOrientations: Orientation.Landscape | Orientation.LandscapeInverted
+    //allowedOrientations: defaultAllowedOrientations
     backNavigation: controlPanel.open
     readonly property int playbackOffset: streamPositonS
     readonly property int streamPositonS: Math.floor(mediaplayer.position / 1000)
@@ -1302,13 +1305,14 @@ Page {
     }
 
     function _playBestFormat() {
-        // update allowed orientations based on video format
-        var f = _formats[0]
-        if (f.height > f.width) {
-            page.allowedOrientations = Orientation.Portrait | Orientation.PortraitInverted
-        } else {
-            page.allowedOrientations = Orientation.Landscape | Orientation.LandscapeInverted
-        }
+// see comment at top of page
+//        // update allowed orientations based on video format
+//        var f = _formats[0]
+//        if (f.height > f.width) {
+//            page.allowedOrientations = Orientation.Portrait | Orientation.PortraitInverted
+//        } else {
+//            page.allowedOrientations = Orientation.Landscape | Orientation.LandscapeInverted
+//        }
 
         // select format and play
         var formatId = _getVideoFormatFromBearerMode()
