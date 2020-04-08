@@ -316,84 +316,89 @@
         <source>Popular Homemade</source>
         <translation>Suositut kotivideot</translation>
     </message>
+    <message id="ph-start-page-videos-newest">
+        <location filename="../qml/pages/StartPage.qml" line="75"/>
+        <source>Newest</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-start-page-categories-popular">
-        <location filename="../qml/pages/StartPage.qml" line="78"/>
+        <location filename="../qml/pages/StartPage.qml" line="85"/>
         <source>Popular</source>
         <translation>Suosituimmat</translation>
     </message>
     <message id="ph-start-page-categories-alphabetical">
-        <location filename="../qml/pages/StartPage.qml" line="85"/>
+        <location filename="../qml/pages/StartPage.qml" line="92"/>
         <source>Alphabetical</source>
         <translation>Aakkosjärjestys</translation>
     </message>
     <message id="ph-start-page-categories-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="92"/>
+        <location filename="../qml/pages/StartPage.qml" line="99"/>
         <source>Number of Videos</source>
         <translation>Videoiden määrät</translation>
     </message>
     <message id="ph-start-page-pornstars-most-popular">
-        <location filename="../qml/pages/StartPage.qml" line="102"/>
+        <location filename="../qml/pages/StartPage.qml" line="109"/>
         <source>Most Popular</source>
         <translation>Suosituimmat</translation>
     </message>
     <message id="ph-start-page-pornstars-top-trending">
-        <location filename="../qml/pages/StartPage.qml" line="109"/>
+        <location filename="../qml/pages/StartPage.qml" line="116"/>
         <source>Top Trending</source>
         <translation>Nousijat</translation>
     </message>
     <message id="ph-start-page-pornstars-most-viewed">
-        <location filename="../qml/pages/StartPage.qml" line="116"/>
+        <location filename="../qml/pages/StartPage.qml" line="123"/>
         <source>Most Viewed</source>
         <translation>Eniten katsellut</translation>
     </message>
     <message id="ph-start-page-pornstars-most-subscribed">
-        <location filename="../qml/pages/StartPage.qml" line="123"/>
+        <location filename="../qml/pages/StartPage.qml" line="130"/>
         <source>Most Subscribed</source>
         <translation>Eniten tilatut</translation>
     </message>
     <message id="ph-start-page-pornstars-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="137"/>
+        <location filename="../qml/pages/StartPage.qml" line="144"/>
         <source>Number of Videos</source>
         <translation>Videoiden määrät</translation>
     </message>
     <message id="ph-start-page-header">
-        <location filename="../qml/pages/StartPage.qml" line="193"/>
+        <location filename="../qml/pages/StartPage.qml" line="200"/>
         <source>Pornhub</source>
         <translation>Pornhub</translation>
     </message>
     <message id="ph-start-page-videos-recommended">
-        <location filename="../qml/pages/StartPage.qml" line="198"/>
+        <location filename="../qml/pages/StartPage.qml" line="205"/>
         <source>Recommended</source>
         <translation>Suositellut</translation>
     </message>
     <message id="ph-start-page-videos-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="211"/>
+        <location filename="../qml/pages/StartPage.qml" line="218"/>
         <source>Videos</source>
         <translation>Videot</translation>
     </message>
     <message id="ph-start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="235"/>
-        <location filename="../qml/pages/StartPage.qml" line="301"/>
+        <location filename="../qml/pages/StartPage.qml" line="242"/>
+        <location filename="../qml/pages/StartPage.qml" line="308"/>
         <source>Search</source>
         <translation>Hae</translation>
     </message>
     <message id="ph-start-page-categories-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="252"/>
+        <location filename="../qml/pages/StartPage.qml" line="259"/>
         <source>Categories</source>
         <translation>Kategoriat</translation>
     </message>
     <message id="ph-start-page-pornstars-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="277"/>
+        <location filename="../qml/pages/StartPage.qml" line="284"/>
         <source>Pornstars</source>
         <translation>Pornotähdet</translation>
     </message>
     <message id="ph-start-page-my-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="318"/>
+        <location filename="../qml/pages/StartPage.qml" line="325"/>
         <source>My</source>
         <translation>Omat</translation>
     </message>
     <message id="ph-start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="353"/>
+        <location filename="../qml/pages/StartPage.qml" line="360"/>
         <source>Favorites</source>
         <translation>Suosikit</translation>
     </message>

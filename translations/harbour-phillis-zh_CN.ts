@@ -317,84 +317,89 @@
         <source>Popular Homemade</source>
         <translation>最流行家庭制作</translation>
     </message>
+    <message id="ph-start-page-videos-newest">
+        <location filename="../qml/pages/StartPage.qml" line="75"/>
+        <source>Newest</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="ph-start-page-categories-popular">
-        <location filename="../qml/pages/StartPage.qml" line="78"/>
+        <location filename="../qml/pages/StartPage.qml" line="85"/>
         <source>Popular</source>
         <translation>最流行</translation>
     </message>
     <message id="ph-start-page-categories-alphabetical">
-        <location filename="../qml/pages/StartPage.qml" line="85"/>
+        <location filename="../qml/pages/StartPage.qml" line="92"/>
         <source>Alphabetical</source>
         <translation>按字母表排序</translation>
     </message>
     <message id="ph-start-page-categories-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="92"/>
+        <location filename="../qml/pages/StartPage.qml" line="99"/>
         <source>Number of Videos</source>
         <translation>视频编号</translation>
     </message>
     <message id="ph-start-page-pornstars-most-popular">
-        <location filename="../qml/pages/StartPage.qml" line="102"/>
+        <location filename="../qml/pages/StartPage.qml" line="109"/>
         <source>Most Popular</source>
         <translation>最受欢迎</translation>
     </message>
     <message id="ph-start-page-pornstars-top-trending">
-        <location filename="../qml/pages/StartPage.qml" line="109"/>
+        <location filename="../qml/pages/StartPage.qml" line="116"/>
         <source>Top Trending</source>
         <translation>流行趋势</translation>
     </message>
     <message id="ph-start-page-pornstars-most-viewed">
-        <location filename="../qml/pages/StartPage.qml" line="116"/>
+        <location filename="../qml/pages/StartPage.qml" line="123"/>
         <source>Most Viewed</source>
         <translation>最多浏览</translation>
     </message>
     <message id="ph-start-page-pornstars-most-subscribed">
-        <location filename="../qml/pages/StartPage.qml" line="123"/>
+        <location filename="../qml/pages/StartPage.qml" line="130"/>
         <source>Most Subscribed</source>
         <translation>最多订阅</translation>
     </message>
     <message id="ph-start-page-pornstars-no-videos">
-        <location filename="../qml/pages/StartPage.qml" line="137"/>
+        <location filename="../qml/pages/StartPage.qml" line="144"/>
         <source>Number of Videos</source>
         <translation>视频编号</translation>
     </message>
     <message id="ph-start-page-header">
-        <location filename="../qml/pages/StartPage.qml" line="193"/>
+        <location filename="../qml/pages/StartPage.qml" line="200"/>
         <source>Pornhub</source>
         <translation>Pornhub</translation>
     </message>
     <message id="ph-start-page-videos-recommended">
-        <location filename="../qml/pages/StartPage.qml" line="198"/>
+        <location filename="../qml/pages/StartPage.qml" line="205"/>
         <source>Recommended</source>
         <translation>推荐</translation>
     </message>
     <message id="ph-start-page-videos-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="211"/>
+        <location filename="../qml/pages/StartPage.qml" line="218"/>
         <source>Videos</source>
         <translation>视频</translation>
     </message>
     <message id="ph-start-page-search-placeholder">
-        <location filename="../qml/pages/StartPage.qml" line="235"/>
-        <location filename="../qml/pages/StartPage.qml" line="301"/>
+        <location filename="../qml/pages/StartPage.qml" line="242"/>
+        <location filename="../qml/pages/StartPage.qml" line="308"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message id="ph-start-page-categories-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="252"/>
+        <location filename="../qml/pages/StartPage.qml" line="259"/>
         <source>Categories</source>
         <translation>分类</translation>
     </message>
     <message id="ph-start-page-pornstars-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="277"/>
+        <location filename="../qml/pages/StartPage.qml" line="284"/>
         <source>Pornstars</source>
         <translation>情色明星</translation>
     </message>
     <message id="ph-start-page-my-section-title">
-        <location filename="../qml/pages/StartPage.qml" line="318"/>
+        <location filename="../qml/pages/StartPage.qml" line="325"/>
         <source>My</source>
         <translation>我的</translation>
     </message>
     <message id="ph-start-page-user-videos-favorites">
-        <location filename="../qml/pages/StartPage.qml" line="353"/>
+        <location filename="../qml/pages/StartPage.qml" line="360"/>
         <source>Favorites</source>
         <translation>收藏</translation>
     </message>

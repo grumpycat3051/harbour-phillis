@@ -69,6 +69,13 @@ Page {
             relativeUrl: "/video?p=homemade&o=tr"
             iconName: "video-player.png"
         }
+
+        ListElement {
+            //% "Newest"
+            title: qsTrId("ph-start-page-videos-newest")
+            relativeUrl: "/video?p=homemade&o=cm"
+            iconName: "time.png"
+        }
     }
 
     ListModel {
