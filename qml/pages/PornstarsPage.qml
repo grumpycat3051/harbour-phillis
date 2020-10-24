@@ -220,29 +220,35 @@ GridViewPage {
     function _parse(data, url, storeInCache) {
 
         /*
-<li>
+<li class="pornstarLi">
     <div class="wrap">
         <div class="subscribe-to-pornstar-icon display-none">
             <button type="button" data-title="Subscribe to Pornstar" class="tooltipTrig" onclick="return false;" ><span></span></button>
         </div>
-        <a class="js-mxp" data-mxptype="Pornstar" data-mxptext="Alexis Texas" href="/pornstar/alexis-texas">
-                                    <span class="pornstar_label">
-                <span class="title-album">Rank:
-                    <span class="rank_number">
-                        13					</span>
-
-                    <span class='icon rank-down'></span>				</span>
+        <a class="js-mxp" data-mxptype="Pornstar" data-mxptext="Dani Daniels" href="/pornstar/dani-daniels">
+            <span class="pornstar_label">
+                <span class="title-album">
+                    <span class="rank_number">28</span>
+                    <hr class='noChange'/>				</span>
             </span>
             <img
-                data-thumb_url="https://di.phncdn.com/pics/pornstars/000/000/118/(m=lciyeNbOb_c)(mh=HCqIOnRDqt5A2DoL)thumb_13291.jpg"
-                src="https://di.phncdn.com/pics/pornstars/000/000/118/(m=lciyeNbOb_c)(mh=HCqIOnRDqt5A2DoL)thumb_13291.jpg"
-                alt="Alexis Texas"
+                data-thumb_url="https://ci.phncdn.com/pics/users/375/516/231/avatar1504729184/(m=eQJ6GCjadOf)(mh=q3B08skgsSU-h6lA)200x200.jpg"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                alt="Dani Daniels"
             />
-                                                </a>
+        </a>
         <div class="thumbnail-info-wrapper">
-            <a href="/pornstar/alexis-texas" class="title js-mxp" data-mxptype="Pornstar" data-mxptext="Alexis Texas" >Alexis Texas</a>
-            <span class="videosNumber">1849 Videos				392M views </span>
-        </div>
+            <a
+                    href="/pornstar/dani-daniels"
+                    class="title js-mxp"
+                    data-mxptype="Pornstar"
+                    data-mxptext="Dani Daniels"
+            >
+                <span class="pornStarName">
+                    Dani <span class="lastName">Daniels<span class="modelBadges"><span class="verifiedPornstar tooltipTrig" data-title="Verified Pornstar"><i class="verifiedIcon"></i></span></span></span>                </span>
+            </a>
+                            <span class="videosNumber">1873 Videos				    554M views </span>
+                    </div>
     </div>
 </li>
             */
@@ -252,14 +258,14 @@ GridViewPage {
         data = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
         window.updateSessionHtml(data)
         var pornstars = []
-        var pornstarsRegex = new RegExp("<li>\\s*<div class=\"wrap\">\\s*<div class=\"subscribe-to-pornstar-icon display-none\">(.+?)</li>", "g")
+        var pornstarsRegex = new RegExp("<li.*?>\\s*<div class=\"wrap\">\\s*<div class=\"subscribe-to-pornstar-icon display-none\">(.+?)</li>", "g")
         var pornstarDataRegex = new RegExp("<a\\s+.*?href=\"/pornstar/(.+?)\".*?>.*?<span\\s+class=\"rank_number\">\\s*(\\d+)\\s*</span>.*?<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<span\\s+class=\"videosNumber\">\\s*(\\d+)\\s*Videos(?:\\s+(\\S+)\\s+views\\s*</span>|.*?</span>.*?<span class=\"pstarViews\">\\s*(\\S+)\\s+views\\s*</span>)")
         var junkRegex = new RegExp("\\(|\\)|,|\\.|<.+?>|\\s+", "g")
 
         var nextRegex = new RegExp("<li\\s+class=\"page_next\">\\s*<a href=\"(.+?)\".*?>.*?</li>")
         for (var pornstar; (pornstar = pornstarsRegex.exec(data)) !== null; ) {
-//            console.debug(category)
             var pornstarHtml = pornstar[1]
+            console.debug(pornstarHtml)
             var pornstarData = pornstarDataRegex.exec(pornstarHtml)
             if (pornstarData) {
                 var pornstarId = pornstarData[1]

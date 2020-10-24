@@ -230,28 +230,33 @@ GridViewPage {
     }
 
     function _parseCategories(data, storeInCache) {
-        /* <li class="cat_pic" data-category="43">
-        <div class="category-wrapper ">
-            <a href="/video?c=43" alt="Vintage" class="js-mxp" data-mxptype="Category" data-mxptext="Vintage">
-                <img
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    data-thumb_url="https://ci.phncdn.com/is-static/images/categories/(m=qN4656TbetZD8zjadOf)(mh=K7L_N523xcwzRCFu)roku_43.jpg"
-                    alt="Vintage"
-                />
-                                        </a>
-            <h5>
-                <a href="/video?c=43" class="js-mxp" data-mxptype="Category" data-mxptext="Vintage"><strong>Vintage</strong>
-                    <span class="videoCount">
-                        (<var>10,540</var>)
-                    </span>
-                </a>
-                                        </h5>
-                                </div>
-    </li> */
+        /* <li class="catPic" data-category="27">
+                    <div class="category-wrapper ">
+                        <a href="/video?c=27" alt="Lesbian" class="js-mxp" data-mxptype="Category" data-mxptext="Lesbian">
+                            <img
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                data-thumb_url="https://ci.phncdn.com/is-static/images/categories/(m=q41656TbetZD8zjadOf)(mh=4dqQygrsXSKDpore)roku_27.jpg"
+                                alt="Lesbian"
+                            />
+                                                    </a>
+                        <h5>
+                            <a href="/video?c=27" class="js-mxp subCategoryActive" data-mxptype="Category" data-mxptext="Lesbian"><strong>Lesbian</strong>
+                                <span class="videoCount">
+                                    (<var>74,930</var>)
+                                </span>
+                            </a>
+                            <span class="arrowWrapper js-openSubCatsImage"><span class="categories_arrow catArrowIE7 js-categories_arrow"></span></span>						</h5>
+                                                    <div class="subcatsNoScroll">
+                                <ul>
+                                    <li><a href="/video/incategories/amateur/lesbian">Amateur<span>313,848</span></a></li><li><a href="/video/incategories/anal/lesbian">Anal<span>132,143</span></a></li><li><a href="/video/incategories/big-tits/lesbian">Big Tits<span>282,607</span></a></li><li><a href="/video/incategories/hentai/lesbian">Hentai<span>18,338</span></a></li><li><a href="/video/incategories/lesbian/milf">MILF<span>150,627</span></a></li><li><a href="/video/incategories/lesbian/popular-with-women">Popular With Women<span>16,573</span></a></li><li><a href="/video?c=532">Scissoring <span>5,434</span> </a></li><li><a href="/video/incategories/lesbian/teen">Teen<span>274,255</span></a></li>								</ul>
+                            </div>
+                                            </div>
+                </li>
+ */
         data = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
         window.updateSessionHtml(data)
 
-        var categoriesRegex = new RegExp("<li\\s+class=\"cat_pic\"\\s+data-category=\"(\\d+)\">(.+?)</li>", "g")
+        var categoriesRegex = new RegExp("<li\\s+class=\"catPic\"\\s+data-category=\"(\\d+)\">(.+?)</li>", "g")
         // src contains some gif stuff sometimes
         var categoryDataRegex = new RegExp("<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<span[^>]*>(.+?)</span>")
         var junkRegex = new RegExp("\\(|\\)|,|\\.|<.+?>|\\s+", "g")

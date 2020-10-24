@@ -252,7 +252,7 @@
         <translation>Caricamento video</translation>
     </message>
     <message id="ph-videos-page-no-urls-found">
-        <location filename="../qml/pages/VideosPage.qml" line="370"/>
+        <location filename="../qml/pages/VideosPage.qml" line="412"/>
         <source>No video URLs found</source>
         <oldsource>No video urls found</oldsource>
         <translation type="unfinished"></translation>

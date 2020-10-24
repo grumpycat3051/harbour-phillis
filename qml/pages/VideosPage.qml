@@ -277,27 +277,69 @@ GridViewPage {
     function _parseVideos(data, url, storeInCache) {
 
         /*
-<div class="img fade fadeUp videoPreviewBg">
-                                    <a href="/view_video.php?viewkey=ph5aa1c96ba3ab9" title="mixed wrestling" class="img " data-related-url="/video/ajax_related_video?vkey=ph5aa1c96ba3ab9"  >
+ <li class="pcVideoListItem js-pop videoblock videoBox"
+                    id="v363214972"
+        data-video-id="363214972"
+    data-video-vkey="ph5f9280abe0e56"
+    data-id="363214972"
+    data-segment="straight"
+    data-entrycode="VidPg-premVid"
+>
+    <div class="wrap">
+                <div class="phimage"
+
+        >
+
+                                        <div class="preloadLine"></div>
+                                                            <a href="/view_video.php?viewkey=ph5f9280abe0e56" title="Hot babe tries fuck machine at college party"                        class="fade fadeUp videoPreviewBg linkVideoThumb js-linkVideoThumb img "
+                        data-related-url="/video/ajax_related_video?vkey=ph5f9280abe0e56"
+                                                >
 
                                                                                 <img
-                    src="https://ci.phncdn.com/videos/201803/08/157408752/original/(m=ecuKGgaaaa)(mh=XNx4Vv6EvPO5pGY9)14.jpg"
-                    data-thumb_url = "https://ci.phncdn.com/videos/201803/08/157408752/original/(m=ecuKGgaaaa)(mh=XNx4Vv6EvPO5pGY9)14.jpg"
-                    alt="mixed wrestling"
-                                            data-src = "https://ci.phncdn.com/videos/201803/08/157408752/original/(m=ecuKGgaaaa)(mh=XNx4Vv6EvPO5pGY9)14.jpg"
-                                                                data-mediumthumb="https://ci.phncdn.com/videos/201803/08/157408752/original/(m=ecuKGgaaaa)(mh=XNx4Vv6EvPO5pGY9)14.jpg"
-                                                                                    data-mediabook="https://cv.phncdn.com/videos/201803/08/157408752/180P_225K_157408752.webm?jqeR55BANwUgLH0FeD700AcFsF6--cccagjb2A1zYpSKvpK49UcL0dNELSo4slZvTdOJfRCdbM_sqEgmgTOIVSQxD0dPr6QDLIDl626dOZ0lU14Oquziknw39eQyt0MerIUC8XeURMtWR97GxeWSgbAhMlQcFRzxLN3lGqRHtjzcq-ER43zlRRVIGtamqEz-52kBpehX_u4"
-                                        class="js-pop js-videoThumb js-videoThumbFlip thumb js-videoPreview lazy"
-                    width="150"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    data-thumb_url = "https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eafTGgaaaa)(mh=r75FaeXOiGECS4fS)7.jpg"
+                    alt="Hot babe tries fuck machine at college party"
+                                            data-src = "https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eafTGgaaaa)(mh=r75FaeXOiGECS4fS)7.jpg"
+                                                        data-mediumthumb="https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eafTGgaaaa)(mh=r75FaeXOiGECS4fS)7.jpg"
+                                                                    data-mediabook="https://cw.phncdn.com/videos/202010/23/363214972/180P_225K_363214972.webm?JekHkGwbwo9OsSkj789u3sHyoqvwyOPB6B_N6vVDX7VFsJ-BAiIS9HFJUVIqq0Nk5X5bLBQ2U4IFthfd1RJVYajpCI9CPzwHapToAXRkSoSO4DA007AYPjQWSvdM7vtwPWYhXlFJeUGGogRHD2_b3Hnv-Q1p_UR-tlwD1u91wukix7Vv39ZXEaO0ynzgZy65CSoIf0KJo9U"
+                                class="js-pop js-videoThumb js-videoThumbFlip thumb js-videoPreview lazy"
+                width="150"
+                 class="rotating" data-video-id="363214972" data-thumbs="16" data-path="https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eWdTGgaaaa)(mh=kPwtPieqWzeLk_oC){index}.jpg"                    title="Hot babe tries fuck machine at college party" />
 
-                     class="rotating" data-video-id="157408752" data-thumbs="16" data-path="https://ci.phncdn.com/videos/201803/08/157408752/original/(m=eWdTGgaaaa)(mh=3j-71AlBzgHCfklz){index}.jpg"                    title="mixed wrestling" />
-
-                                            </a>
                                                                                                 <div class="marker-overlays js-noFade">
-                        <var class="duration">21:24</var>
+                        <var class="duration">1:00</var>
                                                     <span class="hd-thumbnail">HD</span>
-                                                                                            </div>
-            </div>
+                                                                                                                                            </div>
+                </a>
+                            </div>
+                                                        <div class="add-to-playlist-icon display-none">
+                    <button type="button" data-title="Add to a Playlist" class="tooltipTrig open-playlist-link playlist-trigger" onclick="return false;" data-video-id="363214972"></button>
+                </div>
+                                        <div class="thumbnail-info-wrapper clearfix">
+                <span class="title">
+                                                                        <a href="/view_video.php?viewkey=ph5f9280abe0e56" title="Hot babe tries fuck machine at college party" class=""                                                                        >
+                                Hot babe tries fuck machine at college party                            </a>
+                                                            </span>
+                                    <div class="videoUploaderBlock clearfix">
+
+                        <div class="usernameWrap">
+                                                            <a rel="nofollow" href="/users/zolanicole76"  title="zolanicole76">zolanicole76</a>                                                    </div>
+                    </div>
+                                <div class="videoDetailsBlock">
+                                            <span class="views"><var>2.8K</var> views</span>
+                        <div class="rating-container neutral">
+                            <div class="main-sprite icon"></div>
+                            <div class="value">82%</div>
+                        </div>
+
+
+                    <var class="added">22 hours ago</var>
+                </div>
+
+                            </div>
+                    </div>
+
+    </li>
             */
 
         // next page link <li class="page_next"><a href="/video?c=111&amp;page=2" class="orangeButton">Next <img class="pagination_arrow_right" src="https://di.phncdn.com/www-static/images/rightArrow.png"></a></li>
@@ -310,7 +352,7 @@ GridViewPage {
         window.updateSessionHtml(data)
 
         var videos = []
-        var videosRegex = new RegExp("<li\\s+.*?_vkey=\"(.+?)\"\\s+.*?data-id=\"(.+?)\".*?>(.*?)</li>", "g")
+        var videosRegex = new RegExp("<li\\s+.*?data-video-vkey=\"(.+?)\"\\s+.*?data-id=\"(.+?)\".*?>(.*?)</li>", "g")
         var videoDataRegex = new RegExp("<a\\s+.*?title\\s*=\\s*\"(.+?)\".*?>.*?<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\".*?/>.*?<var\\s+class\\s*=\\s*\"duration\".*?>(.+?)</var>.*?<span class=\"views\">\\s*<var>(.+?)</var>.*?</span>.*?<div class=\"value\">(.+?)</div>.*?<var class=\"added\">(.+?)</var>")
         var nextRegex = new RegExp("<li\\s+class=\"page_next\">\\s*<a href=\"(.+?)\".*?>.*?</li>")
         for (var videoMatch; (videoMatch = videosRegex.exec(data)) !== null; ) {
