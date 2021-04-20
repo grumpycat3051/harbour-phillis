@@ -45,7 +45,7 @@ ApplicationWindow
     property string _username
     readonly property var logoutTokenRegex: new RegExp("href=[\"']/user/logout\\?token=([^\"']+)[\"']")
     readonly property var loginTokenRegex: new RegExp("<input\\s+type=[\"']hidden[\"']\\s+name=[\"']token[\"']\\s+value=[\"']([^\"']+)[\"']\\s*/>")
-    readonly property var usernameRegex: new RegExp("<li\\s+class=[\"']profile[\"'].*?>\\s*<a\\s+.*?href=[\"']/users/([^\"']+)(/[^\"']*)?[\"'].*?>")
+    readonly property var usernameRegex: new RegExp("<li\\s+.*?class=[\"']profile[\"'].*?>\\s*<a\\s+.*?href=[\"']/users/([^\"']+)(/[^\"']*)?[\"'].*?>")
     readonly property bool isUserLoggedIn: _userIsLoggedIn
     property bool _userIsLoggedIn: false
     readonly property bool restrictAccess: settingAccessRestrict.value && settingLockScreenPin.value
