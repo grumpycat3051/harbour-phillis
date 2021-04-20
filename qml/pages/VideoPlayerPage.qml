@@ -932,6 +932,7 @@ Page {
         _pornstars = []
         _tags = []
 
+
         var oneline = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
 
         var categoriesMatch = categoriesRegex.exec(oneline)
@@ -987,15 +988,13 @@ Page {
             if (videoFormatsMatch) {
                 --want
                 try {
-                    //console.debug("JSON: " + jsonMatch[1])
+//                    console.debug("JSON: " + videoFormatsMatch[1])
                     var jsonObject = JSON.parse(videoFormatsMatch[1])
-                    //console.debug(jsonMatch[1])
-                    //console.debug(j)
                     var mediaDefinitions = jsonObject.mediaDefinitions
                     for (var j = 0; j < mediaDefinitions.length; ++j) {
                         var def = mediaDefinitions[j]
                         var format = {
-                            format_quality: parseInt(def.quality),
+                            format_quality: _parseVideoQuality(def.quality),
                             format_url: def.videoUrl,
                             format_extension: def.format
                         }
@@ -1079,18 +1078,31 @@ Page {
                                 }
                             }
 
+//                            console.debug("defs: " + JSON.stringify(defs))
+                            var quality_items_str = MiniJS.evaluate(defs, "qualityItems_" + videoId)
+//                            console.debug("qual items: " + quality_items_str)
+                            var quality_items = JSON.parse(quality_items_str)
+                            /*
+                              qual items: "[{\"id\":\"quality240p\",\"text\":\"240p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/240P_1000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=y1wwKnpaJZJU89ZIcwQsQkBDTuo%3D\",\"upgrade\":0,\"active\":0},{\"id\":\"quality480p\",\"text\":\"480p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/480P_2000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=FhuNgYx6Isa5tU2a6Zj%2FdMOOCvc%3D\",\"upgrade\":0,\"active\":0},{\"id\":\"quality720p\",\"text\":\"720p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/720P_4000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=VmII1AzNSQLobeYS%2BeVfCAkv1cs%3D\",\"upgrade\":0,\"active\":1},{\"id\":\"quality1080p\",\"text\":\"1080p\",\"url\":\"\",\"upgrade\":1,\"active\":0}]"
+                              */
+
                             for (var j = 0; j < _formats.length; ++j) {
-                                var varName = "media_" + j
-                                var url = MiniJS.evaluate(defs, varName)
-                                if (url && url !== varName) {
-                                    console.debug("index=" + j + " url=" + url)
-                                    _formats[j]["format_url"] = url
-                                }
+                                var quality_item = quality_items[j]
+//                                console.debug("qual item: " + JSON.stringify(quality_item))
+                                _formats[j].format_url = quality_item.url
+                                _formats[j].format_quality = _parseVideoQuality(quality_item.text)
+                                // media_0 urls are poisoned
+//                                var varName = "media_" + j
+//                                var url = MiniJS.evaluate(defs, varName)
+//                                if (url && url !== varName) {
+//                                    console.debug("index=" + j + " url=" + url)
+////                                    _formats[j]["format_url"] = url
+//                                }
                             }
 
                             // remove formats without url
                             for (var j = 0; j < _formats.length; ) {
-                                if (!_formats[j]["format_url"]) {
+                                if (!_formats[j].format_url) {
                                     console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
                                     _formats.splice(j, 1)
                                 } else {
@@ -1370,6 +1382,17 @@ Page {
         } else {
             window.notify(str)
             openControlPanel()
+        }
+    }
+
+    function _parseVideoQuality(obj) {
+        switch (typeof(obj)) {
+        case "number":
+            return Math.floor(obj)
+        case "string":
+            return parseInt(obj)
+        default:
+            return Constants.formatUnknown
         }
     }
 }
