@@ -413,8 +413,24 @@ Page {
                 width: root.width
                 height: Theme.paddingLarge
             }
-        }
 
+            Column {
+                visible: debugApp.value
+                width: parent.width
+
+                SectionHeader {
+                    text: "Debug"
+                }
+
+                TextSwitch {
+                    text: "video player"
+                    checked: window.debugVideoPlayer
+                    onClicked: {
+                        window.debugVideoPlayer = !window.debugVideoPlayer
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -57,6 +57,8 @@ ApplicationWindow
     readonly property int actionLogin: 1
     readonly property int actionLogout: 2
 
+    property bool debugVideoPlayer: false
+
     Http {
         id: http
         onStatusChanged: {

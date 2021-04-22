@@ -872,10 +872,14 @@ Page {
 
     function _parseVideoData(data) {
         var formats = []
+        var emptyOrWhitespaceRegex = new RegExp("^\\s*$")
+        var flashVarsRegex = new RegExp("<script\\s+type=[\"']text/javascript[\"']\\s*>\\s*(var\\s+flashvars_" + videoId + "\\s*=.+?)\\s*</script>")
         var videoFormatsRegex = new RegExp("^\\s*var\\s+flashvars_\\d+\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
         var obfuscatedJsRegex = new RegExp("^\\s*var\\s+.*media_[0-9]+;.*\\s*$")
         var jsVarDefinitionRegex = new RegExp("^\\s*var\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*=\\s*(.+)\\s*$")
-        var jsCommentRegex = new RegExp("/\\*.*?\\*/", "g")
+        //var jsLineCommentRegex = new RegExp("^(.*?)//.*$")
+        var jsLineCommentRegex = new RegExp("^\\s*//.*$") // wrong but works for urls
+        var jsRangeCommentRegex = new RegExp("/\\*.*?\\*/", "g")
 
 
         var ratingRegex = new RegExp("^\\s*var\\s+WIDGET_RATINGS_LIKE_FAV\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
@@ -933,7 +937,7 @@ Page {
         _tags = []
 
 
-        var oneline = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
+        var oneline = data.replace(new RegExp("\r|\n", "g"), "\v") // Qt doesn't have 's' flag to match newlines with .
 
         var categoriesMatch = categoriesRegex.exec(oneline)
         if (categoriesMatch) {
@@ -980,142 +984,209 @@ Page {
             }
         }
 
+        var flashVarsMatch = flashVarsRegex.exec(oneline)
+        if (flashVarsMatch) {
+            var singleLineCode = flashVarsMatch[1]
 
-        var want = 5
+            var singleLineCodeRangeCommentsRemoved = singleLineCode.replace(jsRangeCommentRegex, "")
+            console.debug("single: " + singleLineCode)
+            console.debug("single w/o range comments: " + singleLineCodeRangeCommentsRemoved)
+//            var multiLineCode = singleLineCode.replace(new RegExp("\v", "g"), "\n") // Qt doesn't have 's' flag to match newlines with .
+//            console.debug("multi: " + multiLineCode)
+            singleLineCode = singleLineCodeRangeCommentsRemoved
+
+            var lines = singleLineCode.split("\v")
+            singleLineCode = ""
+            for (var j = 0; j < lines.length; ++j) {
+                var line = lines[j]
+                var lineCommentMatch = jsLineCommentRegex.exec(line)
+                if (lineCommentMatch) {
+                    console.debug("line comment: " + lines[j])
+                    continue
+                }
+
+                if (emptyOrWhitespaceRegex.exec(line)) {
+                    console.debug("empty: " + lines[j])
+                    continue
+                }
+
+                console.debug("code: " + line)
+
+                singleLineCode += line + " "
+            }
+
+            var defs = {}
+            var stmts = singleLineCode.split(";")
+            for (var k = 0; k < stmts.length; ++k) {
+                var stmt = stmts[k]
+                console.debug("stmt: " + stmt)
+                var jsVarDefinitionMatch = jsVarDefinitionRegex.exec(stmt)
+                if (jsVarDefinitionMatch) {
+                    defs[jsVarDefinitionMatch[1]] = jsVarDefinitionMatch[2]
+                }
+            }
+            console.debug("defs: " + JSON.stringify(defs))
+
+            var jsonObject = JSON.parse(defs["flashvars_" + videoId])
+            var mediaDefinitions = jsonObject.mediaDefinitions
+            for (var j = 0; j < mediaDefinitions.length; ++j) {
+                var def = mediaDefinitions[j]
+                var format = {
+                    format_quality: _parseVideoQuality(def.quality),
+                    format_url: def.videoUrl,
+                    format_extension: def.format
+                }
+
+                formats.push(format)
+                console.debug("added quality=" + format.format_quality + " ext=" + format.format_extension + " url=" + format.format_url)
+            }
+
+            _formats = formats
+
+            var quality_items = JSON.parse(defs["qualityItems_" + videoId])
+
+            for (var j = 0; j < _formats.length; ++j) {
+                var quality_item = quality_items[j]
+//                                console.debug("qual item: " + JSON.stringify(quality_item))
+                _formats[j].format_url = quality_item.url
+                _formats[j].format_quality = _parseVideoQuality(quality_item.text)
+//                // media_0 urls are poisoned
+//                                var varName = "media_" + j
+//                                var url = MiniJS.evaluate(defs, varName)
+//                console.debug("index=" + j + " url=" + url)
+//                                if (url && url !== varName) {
+//                                    console.debug("index=" + j + " url=" + url)
+////                                    _formats[j]["format_url"] = url
+//                                }
+            }
+
+            // remove formats without url
+            for (var j = 0; j < _formats.length; ) {
+                if (!_formats[j].format_url) {
+                    console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
+                    _formats.splice(j, 1)
+                } else {
+                    ++j
+                }
+            }
+        }
+
+//        console.debug(data)
+
+        var want = 4
         var lines = data.split('\n');
         for (var i = 0; i < lines.length && want > 0; ++i) {
-            var videoFormatsMatch = videoFormatsRegex.exec(lines[i])
-            if (videoFormatsMatch) {
+            var ratingsMatch = ratingRegex.exec(lines[i])
+            if (ratingsMatch) {
                 --want
                 try {
-//                    console.debug("JSON: " + videoFormatsMatch[1])
-                    var jsonObject = JSON.parse(videoFormatsMatch[1])
-                    var mediaDefinitions = jsonObject.mediaDefinitions
-                    for (var j = 0; j < mediaDefinitions.length; ++j) {
-                        var def = mediaDefinitions[j]
-                        var format = {
-                            format_quality: _parseVideoQuality(def.quality),
-                            format_url: def.videoUrl,
-                            format_extension: def.format
-                        }
+                    console.debug("JSON: " + ratingsMatch[1])
+                    var jsonObject = JSON.parse(ratingsMatch[1])
 
-                        formats.push(format)
-                        console.debug("added quality=" + format.format_quality + " ext=" + format.format_extension + " url=" + format.format_url)
-                    }
-
-                    _formats = formats
-                } catch (error) {
-                    console.debug(error)
-                }
-            } else {
-                var ratingsMatch = ratingRegex.exec(lines[i])
-                if (ratingsMatch) {
-                    --want
-                    try {
-                        console.debug("JSON: " + ratingsMatch[1])
-                        var jsonObject = JSON.parse(ratingsMatch[1])
-
-                        // jsonObject.canVote seems to always be set to 1
+                    // jsonObject.canVote seems to always be set to 1
 //                        if (jsonObject.canVote) {
 //                            _canVote = true
 //                        } else {
 //                            _canVote = false
 //                        }
 
-                        //console.debug("canVote=" + _canVote)
+                    //console.debug("canVote=" + _canVote)
 
-                        // jsonObject.loggedIn appears to have login status
+                    // jsonObject.loggedIn appears to have login status
 
-                        if (jsonObject.isFavourite === 1) {
-                            _isFavorite = true
-                        } else {
-                            _isFavorite = false
-                        }
-
-                        console.debug("isFavorite=" + _isFavorite)
-
-                        _upVotes = jsonObject.currentUp
-                        _downVotes = jsonObject.currentDown
-                        console.debug("upVotes=" + _upVotes + " downVotes=" + _downVotes)
-
-                    } catch (error) {
-                        console.debug(error)
-                    }
-                } else {
-                    var tokenMatch = ratingTokenRegex.exec(lines[i])
-                    if (tokenMatch) {
-                        --want
-                        _ratingToken = tokenMatch[1]
-                        console.debug("rating token=" + _ratingToken)
+                    if (jsonObject.isFavourite === 1) {
+                        _isFavorite = true
                     } else {
-                        if (!hasFoundSessionInfo && window.updateSessionLine(lines[i])) {
-                            --want
-                            hasFoundSessionInfo = true
-                        }
-
-                        var modelMatch = modelRegex.exec(lines[i])
-                        if (modelMatch) {
-                            --want
-                            _modelUrl = modelMatch[1]
-                            _modelName = modelMatch[2]
-                            console.debug("model name=" + _modelName + " model url=" + _modelUrl)
-                        }
-
-                        var obfuscatedJsMatch = obfuscatedJsRegex.exec(lines[i])
-                        if (obfuscatedJsMatch) {
-                            var defs = {}
-                            var vars = obfuscatedJsMatch[0].split(";")
-                            for (var j = 0; j < vars.length; ++j) {
-//                                console.debug(vars[j])
-                                var stmt = vars[j].replace(jsCommentRegex, "")
-//                                if (stmt !== vars[j]) {
-//                                    console.debug(stmt)
-//                                }
-
-                                var jsVarDefinitionMatch = jsVarDefinitionRegex.exec(stmt)
-                                if (jsVarDefinitionMatch) {
-                                    defs[jsVarDefinitionMatch[1]] = jsVarDefinitionMatch[2]
-                                }
-                            }
-
-//                            console.debug("defs: " + JSON.stringify(defs))
-                            var quality_items_str = MiniJS.evaluate(defs, "qualityItems_" + videoId)
-//                            console.debug("qual items: " + quality_items_str)
-                            var quality_items = JSON.parse(quality_items_str)
-                            /*
-                              qual items: "[{\"id\":\"quality240p\",\"text\":\"240p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/240P_1000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=y1wwKnpaJZJU89ZIcwQsQkBDTuo%3D\",\"upgrade\":0,\"active\":0},{\"id\":\"quality480p\",\"text\":\"480p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/480P_2000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=FhuNgYx6Isa5tU2a6Zj%2FdMOOCvc%3D\",\"upgrade\":0,\"active\":0},{\"id\":\"quality720p\",\"text\":\"720p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/720P_4000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=VmII1AzNSQLobeYS%2BeVfCAkv1cs%3D\",\"upgrade\":0,\"active\":1},{\"id\":\"quality1080p\",\"text\":\"1080p\",\"url\":\"\",\"upgrade\":1,\"active\":0}]"
-                              */
-
-                            for (var j = 0; j < _formats.length; ++j) {
-                                var quality_item = quality_items[j]
-//                                console.debug("qual item: " + JSON.stringify(quality_item))
-                                _formats[j].format_url = quality_item.url
-                                _formats[j].format_quality = _parseVideoQuality(quality_item.text)
-                                // media_0 urls are poisoned
-//                                var varName = "media_" + j
-//                                var url = MiniJS.evaluate(defs, varName)
-//                                if (url && url !== varName) {
-//                                    console.debug("index=" + j + " url=" + url)
-////                                    _formats[j]["format_url"] = url
-//                                }
-                            }
-
-                            // remove formats without url
-                            for (var j = 0; j < _formats.length; ) {
-                                if (!_formats[j].format_url) {
-                                    console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
-                                    _formats.splice(j, 1)
-                                } else {
-                                    ++j
-                                }
-                            }
-                        }
+                        _isFavorite = false
                     }
+
+                    console.debug("isFavorite=" + _isFavorite)
+
+                    _upVotes = jsonObject.currentUp
+                    _downVotes = jsonObject.currentDown
+                    console.debug("upVotes=" + _upVotes + " downVotes=" + _downVotes)
+
+                } catch (error) {
+                    console.debug(error)
+                }
+            } else {
+                var tokenMatch = ratingTokenRegex.exec(lines[i])
+                if (tokenMatch) {
+                    --want
+                    _ratingToken = tokenMatch[1]
+                    console.debug("rating token=" + _ratingToken)
+                } else {
+                    if (!hasFoundSessionInfo && window.updateSessionLine(lines[i])) {
+                        --want
+                        hasFoundSessionInfo = true
+                    }
+
+                    var modelMatch = modelRegex.exec(lines[i])
+                    if (modelMatch) {
+                        --want
+                        _modelUrl = modelMatch[1]
+                        _modelName = modelMatch[2]
+                        console.debug("model name=" + _modelName + " model url=" + _modelUrl)
+                    }
+
+//                    var obfuscatedJsMatch = obfuscatedJsRegex.exec(lines[i])
+//                    if (obfuscatedJsMatch) {
+//                        var defs = {}
+//                        var vars = obfuscatedJsMatch[0].split(";")
+//                        for (var j = 0; j < vars.length; ++j) {
+////                                console.debug(vars[j])
+//                            var stmt = vars[j].replace(jsCommentRegex, "")
+////                                if (stmt !== vars[j]) {
+////                                    console.debug(stmt)
+////                                }
+
+//                            var jsVarDefinitionMatch = jsVarDefinitionRegex.exec(stmt)
+//                            if (jsVarDefinitionMatch) {
+//                                defs[jsVarDefinitionMatch[1]] = jsVarDefinitionMatch[2]
+//                            }
+//                        }
+
+//                        if (window.debugVideoPlayer) {
+//                            console.debug("defs: " + JSON.stringify(defs))
+//                        }
+//                        var quality_items_str = MiniJS.evaluate(defs, "qualityItems_" + videoId)
+//                        if (window.debugVideoPlayer) {
+//                            console.debug("qual items: " + quality_items_str)
+//                        }
+//                        var quality_items = JSON.parse(quality_items_str)
+//                        /*
+//                          qual items: "[{\"id\":\"quality240p\",\"text\":\"240p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/240P_1000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=y1wwKnpaJZJU89ZIcwQsQkBDTuo%3D\",\"upgrade\":0,\"active\":0},{\"id\":\"quality480p\",\"text\":\"480p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/480P_2000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=FhuNgYx6Isa5tU2a6Zj%2FdMOOCvc%3D\",\"upgrade\":0,\"active\":0},{\"id\":\"quality720p\",\"text\":\"720p\",\"url\":\"https:\\/\\/ev.phncdn.com\\/videos\\/202103\\/23\\/385573831\\/720P_4000K_385573831.mp4?validfrom=1618886001&validto=1618893201&rate=500k&burst=2000k&ip=156.146.55.241&hash=VmII1AzNSQLobeYS%2BeVfCAkv1cs%3D\",\"upgrade\":0,\"active\":1},{\"id\":\"quality1080p\",\"text\":\"1080p\",\"url\":\"\",\"upgrade\":1,\"active\":0}]"
+//                          */
+
+//                        for (var j = 0; j < _formats.length; ++j) {
+//                            var quality_item = quality_items[j]
+////                                console.debug("qual item: " + JSON.stringify(quality_item))
+//                            _formats[j].format_url = quality_item.url
+//                            _formats[j].format_quality = _parseVideoQuality(quality_item.text)
+//                            // media_0 urls are poisoned
+////                                var varName = "media_" + j
+////                                var url = MiniJS.evaluate(defs, varName)
+////                                if (url && url !== varName) {
+////                                    console.debug("index=" + j + " url=" + url)
+//////                                    _formats[j]["format_url"] = url
+////                                }
+//                        }
+
+//                        // remove formats without url
+//                        for (var j = 0; j < _formats.length; ) {
+//                            if (!_formats[j].format_url) {
+//                                console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
+//                                _formats.splice(j, 1)
+//                            } else {
+//                                ++j
+//                            }
+//                        }
+//                    }
                 }
             }
         }
 
-        if (window.isUserLoggedIn && !_ratingToken){
+        if (window.debugVideoPlayer || (window.isUserLoggedIn && !_ratingToken)){
             console.debug(data)
         }
     }
