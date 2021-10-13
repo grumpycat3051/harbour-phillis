@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019-2021 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -59,6 +59,7 @@ Page {
     readonly property int actionVoteUp: 0
     readonly property int actionVoteDown: 1
     readonly property int actionToggleFavorite: 2
+    readonly property int actionFetchVideoUrls: 3
 
     property string _modelUrl
     property string _modelName
@@ -87,6 +88,7 @@ Page {
     property bool _restartHttp: false
     property bool _playBestFormatOnResume: false
     property bool _videoControlGesturesEnabled: videoOutput.visible
+    property string _videoUrlFetchUrl
 
     Http {
         id: http
@@ -98,17 +100,33 @@ Page {
                 if (Http.ErrorNone === error) {
                     if (url === videoUrl) {
                         _parseVideoData(data)
-                        if (_formats.length) {
-                            if (_pauseCount) {
-                                _playBestFormatOnResume = true
-                            } else {
-                                _playBestFormat()
-                            }
+                        if (_videoUrlFetchUrl) {
+                            get(_videoUrlFetchUrl)
                         } else {
                             //% "No video urls found"
                             var message = qsTrId("ph-video-player-page-no-urls-found")
                             window.notify(message)
                             openControlPanel()
+                        }
+                    } else if (url === _videoUrlFetchUrl) {
+                        try {
+                            _parseVideoUrlFetchUrlData(data)
+
+                            if (_formats.length) {
+                                if (_pauseCount) {
+                                    _playBestFormatOnResume = true
+                                } else {
+                                    _playBestFormat()
+                                }
+                            } else {
+                                //% "No video urls found"
+                                var message = qsTrId("ph-video-player-page-no-urls-found")
+                                window.notify(message)
+                                openControlPanel()
+                            }
+                        } catch (error) {
+                            console.debug(error)
+                            console.debug(data)
                         }
                     } else {
                         console.debug(data)
@@ -120,7 +138,8 @@ Page {
                         case actionToggleFavorite:
                             try {
                                 // {"action":"add","message":"","url":"\/video\/favourite?id=214353492&amp;toggle=1&amp;token=MTU1NDQ3ODMxOTXQEC3kpv-AUEGZKXXNOK0EAV0Tp8CK310tStFa2rtBnRPufgQsNXVBzVmQ2o7jX8B0WD9ZtUnUH5kNLS5aQmU.","success":"true"}
-                                var jsonObject = JSON.parse(data)
+
+
                                 if (jsonObject.success === "true") {
                                     _isFavorite = jsonObject.action === "remove" // looks wrong, I know
                                 } else {
@@ -131,6 +150,8 @@ Page {
                                 console.debug(data)
                             }
                             break
+                        case actionFetchVideoUrls:
+
                         }
                     }
                 } else {
@@ -871,9 +892,9 @@ Page {
     }
 
     function _parseVideoData(data) {
-        var formats = []
+        var flashVarsVarName = "flashvars_" + videoId
         var emptyOrWhitespaceRegex = new RegExp("^\\s*$")
-        var flashVarsRegex = new RegExp("<script\\s+type=[\"']text/javascript[\"']\\s*>\\s*(var\\s+flashvars_" + videoId + "\\s*=.+?)\\s*</script>")
+        var flashVarsRegex = new RegExp("<script\\s+type=[\"']text/javascript[\"']\\s*>\\s*(var\\s+" + flashVarsVarName + "\\s*=.+?)\\s*</script>")
         var jsVarDefinitionRegex = new RegExp("^\\s*var\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*=\\s*(.+)\\s*$")
         //var jsLineCommentRegex = new RegExp("^(.*?)//.*$")
         var jsLineCommentRegex = new RegExp("^\\s*//.*$") // wrong but works for urls
@@ -933,6 +954,8 @@ Page {
         _categories = []
         _pornstars = []
         _tags = []
+        _formats = []
+        _videoUrlFetchUrl = ""
 
 
         var oneline = data.replace(new RegExp("\r|\n", "g"), "\v") // Qt doesn't have 's' flag to match newlines with .
@@ -1039,36 +1062,20 @@ Page {
                 console.debug("defs: " + JSON.stringify(defs))
             }
 
-            var quality_items = JSON.parse(defs["qualityItems_" + videoId])
+//            var flashvars_json = MiniJS.evaluate(defs, flashVarsVarName)
+//            if (window.debugVideoPlayer) {
+//                console.debug("flashvars_json: " + flashvars_json)
+//            }
 
-            for (var j = 0; j < quality_items.length; ++j) {
-                var quality_item = quality_items[j]
+//            var flashvars = JSON.parse(flashvars_json)
+//            //            if (window.debugVideoPlayer) {
+//                            console.debug("flashvars: " + flashvars)
+//            //            }
 
-                var upgrade = parseInt(quality_item.upgrade)
-                if (upgrade) {
-                    console.debug("quality=" + quality_item.text + " requires upgrade")
-                    break
-                }
-
-                var format = {
-                    format_quality: _parseVideoQuality(quality_item.text),
-                    format_url: quality_item.url
-                }
-
-                formats.push(format)
-                console.debug("added quality=" + format.format_quality + " url=" + format.format_url)
-            }
-
-            _formats = formats
-
-            // remove formats without url
-            for (var j = 0; j < _formats.length; ) {
-                if (!_formats[j].format_url) {
-                    console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
-                    _formats.splice(j, 1)
-                } else {
-                    ++j
-                }
+            var key = "media_0"
+            if (key in defs) {
+                _videoUrlFetchUrl = MiniJS.evaluate(defs, key)
+                console.debug("key=" + key + " url=" + _videoUrlFetchUrl)
             }
         }
 
@@ -1135,6 +1142,47 @@ Page {
 
         if (window.debugVideoPlayer || (window.isUserLoggedIn && !_ratingToken)){
             console.debug(data)
+        }
+    }
+
+    function _parseVideoUrlFetchUrlData(data) {
+        if (window.debugVideoPlayer) {
+            console.debug("url data=" + data)
+        }
+
+        var video_urls = JSON.parse(data)
+        var formats = []
+
+        for (var j = 0; j < video_urls.length; ++j) {
+            var item = video_urls[j]
+
+            if ("videoUrl" in item && "quality" in item) {
+                var quality = item["quality"]
+
+                if (Array.isArray(quality)) {
+                    continue
+                }
+
+                var format = {
+                    format_quality: _parseVideoQuality(quality),
+                    format_url: item["videoUrl"]
+                }
+
+                formats.push(format)
+                console.debug("added quality=" + format.format_quality + " url=" + format.format_url)
+            }
+        }
+
+        _formats = formats
+
+        // remove formats without url
+        for (var j = 0; j < _formats.length; ) {
+            if (!_formats[j].format_url) {
+                console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
+                _formats.splice(j, 1)
+            } else {
+                ++j
+            }
         }
     }
 

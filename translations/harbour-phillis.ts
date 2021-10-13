@@ -195,9 +195,9 @@
     </message>
     <message id="ph-about-page-credits-licenses-sources-text">
         <location filename="../qml/pages/AboutPage.qml" line="148"/>
-        <source>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
-        <oldsource>Copyright © 2019 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
-        <translation>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
+        <source>Copyright © 2019-2021 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</source>
+        <oldsource>Copyright © 2019, 2020 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</oldsource>
+        <translation>Copyright © 2019-2021 grumpycat&lt;br/&gt;&lt;br/&gt;This application is available under the MIT licence on &lt;a href=&apos;https://github.com/grumpycat3051/harbour-phillis/&apos;&gt;Github&lt;/a&gt;. %1 uses icons made by Smashicons from &lt;a href=&apos;https://www.flaticon.com/&apos;&gt;flaticon&lt;/a&gt;.</translation>
     </message>
     <message id="ph-about-privacy-header">
         <location filename="../qml/pages/AboutPage.qml" line="170"/>
@@ -444,23 +444,24 @@
         <translation>Login</translation>
     </message>
     <message id="ph-video-player-page-no-urls-found">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="109"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="107"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="123"/>
         <source>No video urls found</source>
         <translation>No video URLs found</translation>
     </message>
     <message id="ph-video-player-resource-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="267"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="288"/>
         <source>Resource error</source>
         <translation>Resource error</translation>
     </message>
     <message id="ph-video-player-network-error">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="277"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="298"/>
         <source>Network error</source>
         <translation>Network error</translation>
     </message>
     <message id="ph-model-videos-page-title">
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="670"/>
-        <location filename="../qml/pages/VideoPlayerPage.qml" line="688"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="691"/>
+        <location filename="../qml/pages/VideoPlayerPage.qml" line="709"/>
         <source>%1&apos;s Videos</source>
         <translation>%1&apos;s Videos</translation>
     </message>

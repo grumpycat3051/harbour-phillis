@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  *
- * Copyright (c) 2019, 2020 grumpycat <grumpycat3051@protonmail.com>
+ * Copyright (c) 2019-2021 grumpycat <grumpycat3051@protonmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -144,7 +144,7 @@ Page {
                 LinkedLabel {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
-                    //% "Copyright © 2019, 2020 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>."
+                    //% "Copyright © 2019-2021 grumpycat<br/><br/>This application is available under the MIT licence on <a href='https://github.com/grumpycat3051/harbour-phillis/'>Github</a>. %1 uses icons made by Smashicons from <a href='https://www.flaticon.com/'>flaticon</a>."
                     text: qsTrId("ph-about-page-credits-licenses-sources-text").arg(App.displayName)
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
