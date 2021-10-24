@@ -1068,14 +1068,24 @@ Page {
 //            }
 
 //            var flashvars = JSON.parse(flashvars_json)
-//            //            if (window.debugVideoPlayer) {
+            //            if (window.debugVideoPlayer) {
 //                            console.debug("flashvars: " + flashvars)
-//            //            }
+            //            }
 
-            var key = "media_0"
-            if (key in defs) {
-                _videoUrlFetchUrl = MiniJS.evaluate(defs, key)
-                console.debug("key=" + key + " url=" + _videoUrlFetchUrl)
+            for (var j = 0; ; ++j) {
+                var key = "media_" + j
+
+                if (key in defs) {
+                    var url = MiniJS.evaluate(defs, key)
+
+                    console.debug("key=" + key + " url=" + url)
+
+                    if (url.indexOf("/video/get_media?") >= 0) {
+                        _videoUrlFetchUrl = url
+                    }
+                } else {
+                    break
+                }
             }
         }
 
