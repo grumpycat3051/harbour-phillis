@@ -258,7 +258,7 @@ GridViewPage {
 
         var categoriesRegex = new RegExp("<li\\s+class=\"catPic\"\\s+data-category=\"(\\d+)\">(.+?)</li>", "g")
         // src contains some gif stuff sometimes
-        var categoryDataRegex = new RegExp("<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<span[^>]*>(.+?)</span>")
+        var categoryDataRegex = new RegExp("<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<var>(.+?)</var>")
         var junkRegex = new RegExp("\\(|\\)|,|\\.|<.+?>|\\s+", "g")
         var categories = []
         for (var category; (category = categoriesRegex.exec(data)) !== null; ) {
@@ -266,9 +266,13 @@ GridViewPage {
             var categoryHtml = category[0]
             var categoryId = parseInt(category[1])
             var categoryData = categoryDataRegex.exec(categoryHtml)
+
             if (categoryData) {
+                console.debug(categoryData)
                 var categoryThumbnail = categoryData[1]
                 var categoryName = categoryData[2]
+//                console.debug("count=" + categoryData[3])
+//                console.debug("count (cleaned)=" + categoryData[3].replace(junkRegex, ""))
                 var videos = parseInt(categoryData[3].replace(junkRegex, ""))
                 var name =
                 categories.push({
