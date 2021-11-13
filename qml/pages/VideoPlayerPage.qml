@@ -59,7 +59,6 @@ Page {
     readonly property int actionVoteUp: 0
     readonly property int actionVoteDown: 1
     readonly property int actionToggleFavorite: 2
-    readonly property int actionFetchVideoUrls: 3
 
     property string _modelUrl
     property string _modelName
@@ -138,7 +137,7 @@ Page {
                         case actionToggleFavorite:
                             try {
                                 // {"action":"add","message":"","url":"\/video\/favourite?id=214353492&amp;toggle=1&amp;token=MTU1NDQ3ODMxOTXQEC3kpv-AUEGZKXXNOK0EAV0Tp8CK310tStFa2rtBnRPufgQsNXVBzVmQ2o7jX8B0WD9ZtUnUH5kNLS5aQmU.","success":"true"}
-
+                                var jsonObject = JSON.parse(data)
 
                                 if (jsonObject.success === "true") {
                                     _isFavorite = jsonObject.action === "remove" // looks wrong, I know
@@ -150,8 +149,6 @@ Page {
                                 console.debug(data)
                             }
                             break
-                        case actionFetchVideoUrls:
-
                         }
                     }
                 } else {
