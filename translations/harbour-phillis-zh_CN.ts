@@ -36,7 +36,7 @@
     <message id="ph-settings-page-network-apply-proxy-settings">
         <location filename="../qml/pages/SettingsPage.qml" line="113"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>应用</translation>
     </message>
     <message id="ph-format-label">
         <location filename="../qml/pages/SettingsPage.qml" line="120"/>
@@ -86,7 +86,7 @@
     <message id="ph-settings-page-playback-video-reload-attempts">
         <location filename="../qml/pages/SettingsPage.qml" line="207"/>
         <source>Attempts to reload video on playback error</source>
-        <translation type="unfinished"></translation>
+        <translation>当播放错误时尝试重新加载内容</translation>
     </message>
     <message id="ph-settings-page-display">
         <location filename="../qml/pages/SettingsPage.qml" line="230"/>
@@ -96,7 +96,7 @@
     <message id="ph-settings-page-display-videos-per-grid-row">
         <location filename="../qml/pages/SettingsPage.qml" line="237"/>
         <source>Videos per row</source>
-        <translation type="unfinished"></translation>
+        <translation>每行视频</translation>
     </message>
     <message id="ph-settings-page-display-categories-per-grid-row">
         <location filename="../qml/pages/SettingsPage.qml" line="262"/>
@@ -111,7 +111,7 @@
     <message id="ph-settings-page-display-extra-landscape-column">
         <location filename="../qml/pages/SettingsPage.qml" line="310"/>
         <source>Add one extra column in landscape orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>横屏模式时多显示一列</translation>
     </message>
     <message id="ph-settings-page-access">
         <location filename="../qml/pages/SettingsPage.qml" line="320"/>
@@ -255,7 +255,7 @@
         <location filename="../qml/pages/VideosPage.qml" line="412"/>
         <source>No video URLs found</source>
         <oldsource>No video urls found</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>没有找到视频链接</translation>
     </message>
     <message id="ph-disclaimer-page-title">
         <location filename="../qml/pages/AdultContentDisclaimerPage.qml" line="58"/>
@@ -320,7 +320,7 @@
     <message id="ph-start-page-videos-newest">
         <location filename="../qml/pages/StartPage.qml" line="75"/>
         <source>Newest</source>
-        <translation type="unfinished"></translation>
+        <translation>最新</translation>
     </message>
     <message id="ph-start-page-categories-popular">
         <location filename="../qml/pages/StartPage.qml" line="85"/>
@@ -447,17 +447,17 @@
         <location filename="../qml/pages/VideoPlayerPage.qml" line="106"/>
         <location filename="../qml/pages/VideoPlayerPage.qml" line="122"/>
         <source>No video urls found</source>
-        <translation type="unfinished"></translation>
+        <translation>没有找到视频链接</translation>
     </message>
     <message id="ph-video-player-resource-error">
         <location filename="../qml/pages/VideoPlayerPage.qml" line="285"/>
         <source>Resource error</source>
-        <translation type="unfinished"></translation>
+        <translation>源错误</translation>
     </message>
     <message id="ph-video-player-network-error">
         <location filename="../qml/pages/VideoPlayerPage.qml" line="295"/>
         <source>Network error</source>
-        <translation type="unfinished"></translation>
+        <translation>网络错误</translation>
     </message>
     <message id="ph-model-videos-page-title">
         <location filename="../qml/pages/VideoPlayerPage.qml" line="688"/>
@@ -488,7 +488,7 @@
     <message id="ph-translations-page-finnish-label">
         <location filename="../qml/pages/TranslationsPage.qml" line="74"/>
         <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <translation>芬兰语</translation>
     </message>
     <message id="ph-login-succes-message">
         <location filename="../qml/harbour-phillis.qml" line="85"/>
@@ -513,42 +513,42 @@
     <message id="ph-proxy-combobox-type-label">
         <location filename="../qml/ProxyComboBox.qml" line="42"/>
         <source>Proxy type</source>
-        <translation type="unfinished"></translation>
+        <translation>代理类型</translation>
     </message>
     <message id="ph-proxy-combobox-system">
         <location filename="../qml/ProxyComboBox.qml" line="48"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>系统</translation>
     </message>
     <message id="ph-proxy-combobox-socks5">
         <location filename="../qml/ProxyComboBox.qml" line="52"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message id="ph-proxy-data-section-title">
         <location filename="../qml/ProxyComboBox.qml" line="95"/>
         <source>Proxy data</source>
-        <translation type="unfinished"></translation>
+        <translation>代理数据</translation>
     </message>
     <message id="ph-proxy-data-host-label">
         <location filename="../qml/ProxyComboBox.qml" line="104"/>
         <source>Host</source>
-        <translation type="unfinished"></translation>
+        <translation>主机</translation>
     </message>
     <message id="ph-proxy-data-port-label">
         <location filename="../qml/ProxyComboBox.qml" line="128"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>端口</translation>
     </message>
     <message id="ph-proxy-data-user-label">
         <location filename="../qml/ProxyComboBox.qml" line="152"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>用户</translation>
     </message>
     <message id="ph-proxy-data-password-label">
         <location filename="../qml/ProxyComboBox.qml" line="173"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密码</translation>
     </message>
 </context>
 </TS>
