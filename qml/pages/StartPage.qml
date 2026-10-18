@@ -205,7 +205,11 @@ Page {
                 title: qsTrId("ph-start-page-videos-recommended")
                 iconName: "idea.png"
 
-                onClicked: pageStack.push(Qt.resolvedUrl("RecommendedPage.qml"))
+                // the recommended page is a list of videos now
+                onClicked: pageStack.push(Qt.resolvedUrl("VideosPage.qml"), {
+                                              videosUrl: Constants.baseUrl + root.prefix + "/recommended",
+                                              title: title
+                                          })
             }
 
             ExpandingSectionGroup {

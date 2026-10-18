@@ -27,8 +27,8 @@ import QtGraphicalEffects 1.0
 import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
-import "../MiniJS.js" as MiniJS
 import "../StateMachine.js" as Stm
+import "../Scraper.js" as Scraper
 
 Page {
     id: page
@@ -88,74 +88,71 @@ Page {
     property bool _playBestFormatOnResume: false
     property bool _videoControlGesturesEnabled: videoOutput.visible
     property string _videoUrlFetchUrl
+    // streams listed on the video page itself (HLS), used when get_media gives no MP4 files
+    property var _streamFormats: []
 
     Http {
         id: http
 
         onStatusChanged: {
-            switch (status) {
-            case Http.StatusCompleted:
-                console.debug("completed error=" + error)
-                if (Http.ErrorNone === error) {
-                    if (url === videoUrl) {
-                        _parseVideoData(data)
-                        if (_videoUrlFetchUrl) {
-                            get(_videoUrlFetchUrl)
-                        } else {
-                            //% "No video urls found"
-                            var message = qsTrId("ph-video-player-page-no-urls-found")
-                            window.notify(message)
-                            openControlPanel()
-                        }
-                    } else if (url === _videoUrlFetchUrl) {
-                        try {
-                            _parseVideoUrlFetchUrlData(data)
-
-                            if (_formats.length) {
-                                if (_pauseCount) {
-                                    _playBestFormatOnResume = true
-                                } else {
-                                    _playBestFormat()
-                                }
-                            } else {
-                                //% "No video urls found"
-                                var message = qsTrId("ph-video-player-page-no-urls-found")
-                                window.notify(message)
-                                openControlPanel()
-                            }
-                        } catch (error) {
-                            console.debug(error)
-                            console.debug(data)
-                        }
-                    } else {
-                        console.debug(data)
-                        switch (_action) {
-                        case actionVoteUp:
-                            break
-                        case actionVoteDown:
-                            break
-                        case actionToggleFavorite:
-                            try {
-                                // {"action":"add","message":"","url":"\/video\/favourite?id=214353492&amp;toggle=1&amp;token=MTU1NDQ3ODMxOTXQEC3kpv-AUEGZKXXNOK0EAV0Tp8CK310tStFa2rtBnRPufgQsNXVBzVmQ2o7jX8B0WD9ZtUnUH5kNLS5aQmU.","success":"true"}
-                                var jsonObject = JSON.parse(data)
-
-                                if (jsonObject.success === "true") {
-                                    _isFavorite = jsonObject.action === "remove" // looks wrong, I know
-                                } else {
-                                    window.notify(jsonObject.message)
-                                }
-                            } catch (error) {
-                                console.debug(error)
-                                console.debug(data)
-                            }
-                            break
-                        }
-                    }
+            if (status !== Http.StatusCompleted) {
+                return
+            }
+            console.debug("completed error=" + error + " http status=" + httpStatusCode)
+            if (url === videoUrl) {
+                if (Http.ErrorNone !== error) {
+                    window.downloadError(url, error, window.problemMessage(data) || errorMessage)
+                    openControlPanel()
+                    return
+                }
+                var videoPage = _parseVideoData(data)
+                if (_videoUrlFetchUrl) {
+                    get(_videoUrlFetchUrl, {
+                            "Referer": videoUrl,
+                            "Accept": "application/json, text/javascript, */*; q=0.01",
+                            "X-Requested-With": "XMLHttpRequest",
+                        })
+                } else if (_streamFormats.length) {
+                    _setFormats(_streamFormats)
                 } else {
-                    window.downloadError(url, error, errorMessage)
+                    //% "No video urls found"
+                    window.notify(videoPage.unavailableMessage
+                                  || window.problemMessage(data)
+                                  || qsTrId("ph-video-player-page-no-urls-found"))
                     openControlPanel()
                 }
-                break
+            } else if (url === _videoUrlFetchUrl) {
+                var files = Http.ErrorNone === error ? Scraper.parseMediaList(data) : []
+                console.debug("get_media: " + files.length + " files, http status=" + httpStatusCode)
+                // MP4 files play best; the page's HLS streams are the fallback
+                _setFormats(files.length ? files : _streamFormats)
+            } else {
+                if (Http.ErrorNone !== error) {
+                    window.downloadError(url, error, errorMessage)
+                    return
+                }
+                console.debug(data)
+                switch (_action) {
+                case actionVoteUp:
+                    break
+                case actionVoteDown:
+                    break
+                case actionToggleFavorite:
+                    try {
+                        // {"action":"add","message":"","url":"\/video\/favourite?id=214353492&amp;toggle=1&amp;token=...","success":"true"}
+                        var jsonObject = JSON.parse(data)
+
+                        if (jsonObject.success === "true" || jsonObject.success === true) {
+                            _isFavorite = jsonObject.action === "remove" // looks wrong, I know
+                        } else {
+                            window.notify(jsonObject.message)
+                        }
+                    } catch (error) {
+                        console.debug(error)
+                        console.debug(data)
+                    }
+                    break
+                }
             }
         }
     }
@@ -197,7 +194,8 @@ Page {
 
     MediaPlayer {
         id: mediaplayer
-        autoPlay: true
+        // play() sets the request headers before playing (see there)
+        autoPlay: false
 
         onPositionChanged: {
             if (MediaPlayer.NoError === error &&
@@ -758,7 +756,10 @@ Page {
                                                                      id: videoId,
                                                                      toggle: (_isFavorite ? 0 : 1),
                                                                  })
-                                    http.post(Constants.baseUrl + "/video/favourite", postArgs)
+                                    http.post(Constants.baseUrl + "/video/favourite", {
+                                                  "X-Requested-With": "XMLHttpRequest",
+                                                  "Referer": videoUrl,
+                                              }, postArgs)
                                 }
                             }
                         }
@@ -807,7 +808,17 @@ Page {
 
     function play(url) {
         console.debug("play url=" + url)
+        // The video servers turn away requests without the site as Referer and Origin. The
+        // source property can't carry headers: set it (so the player counts the media as
+        // loaded), then give the player the same address with the headers.
         mediaplayer.source = url
+        if (!App.setMediaSource(mediaplayer, url, {
+                                    "User-Agent": http.userAgent,
+                                    "Referer": Constants.baseUrl + "/",
+                                    "Origin": Constants.baseUrl,
+                                })) {
+            console.warn("playing without the site's headers")
+        }
         mediaplayer.play()
         controlPanel.open = false
         _clickedToOpen = false
@@ -888,308 +899,58 @@ Page {
         mediaplayer.seek(position)
     }
 
+    // reads the video page; returns what Scraper.parseVideoPage found
     function _parseVideoData(data) {
-        var flashVarsVarName = "flashvars_" + videoId
-        var emptyOrWhitespaceRegex = new RegExp("^\\s*$")
-        var flashVarsRegex = new RegExp("<script\\s+type=[\"']text/javascript[\"']\\s*>\\s*(var\\s+" + flashVarsVarName + "\\s*=.+?)\\s*</script>")
-        var jsVarDefinitionRegex = new RegExp("^\\s*var\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*=\\s*(.+)\\s*$")
-        //var jsLineCommentRegex = new RegExp("^(.*?)//.*$")
-        var jsLineCommentRegex = new RegExp("^\\s*//.*$") // wrong but works for urls
-        var jsRangeCommentRegex = new RegExp("/\\*.*?\\*/", "g")
+        window.updateSessionHtml(data)
+        var videoPage = Scraper.parseVideoPage(data)
 
-
-        var ratingRegex = new RegExp("^\\s*var\\s+WIDGET_RATINGS_LIKE_FAV\\s*=\\s*(\\{(.+?)\\})\\s*;?\\s*$")
-        var ratingTokenRegex = new RegExp("^\\s*WIDGET_RATINGS_LIKE_FAV.token\\s*=\\s*\"(.+?)\"")
-        var modelRegex = new RegExp("<a\\s+.*?href=[\"']([^\"']+)[\"']\\s+class=[\"']bolded[\"'][^>]*>([^<]+)</a>")
-        /*class="bolded"
-                <div class="usernameWrap clearfix" data-type="user" data-userid="313532711" data-liu-user="0" data-json-url="/user/box?id=313532711&amp;token=MTU1OTQ5NzExMi0HQ8Bu2IQ-Df8mIbhL2eVzXWjtLcwn66zG4l5w1MOT7zo7-UuNfgcmdIgPrInEUHMYGsk-SQZ-WxR0KWR_KI4." data-disable-popover="0">
-                    <a rel="" href="/model/yummy-couple"  class="bolded">Yummy Couple</a>
-                <div class="avatarPosition"></div>
-
-                <a rel="" href="/pornstar/leolulu"  class="bolded">Leolulu</a>
-        */
-
-
-
-        var categoriesRegex = new RegExp("<div\\s+id=\"category-box\"\\s+class=\"suggest-mini-box\">(.+?)</ul>")
-        var categoryRegex = new RegExp("<li>\\s*<button\\s+.*?data-categoryid=\"(\\d+)\".*?>\\s*</button>\\s*<button\\s+.*?>\\s*</button>([^<]+)</li>", "g")
-
-//                <div class="pornstarsWrapper">
-//                    Pornstars:&nbsp;
-//                                                        <a class="pstar-list-btn js-mxp" data-mxptype="Pornstar" data-mxptext="Ada Sanchez" data-id="64801" data-login="1" href="/pornstar/ada-sanchez">Ada Sanchez				<span class="psbox-link-container display-none"></span>
-//                            </a>
-//                                        , 					<a class="pstar-list-btn js-mxp" data-mxptype="Pornstar" data-mxptext="Ralph Long" data-id="3401" data-login="1" href="/pornstar/ralph-long">Ralph Long				<span class="psbox-link-container display-none"></span>
-//                            </a>
-//                                                                <div class="tooltipTrig suggestBtn" data-title="Add a pornstar">
-//                            <a class="add-btn-small add-pornstar-btn-2" >+ <span>Suggest</span></a>
-//                        </div>
-
-        var pornstarsRegex = new RegExp("<div\\s+class=\"pornstarsWrapper\">(.*?)</div>")
-        var pornstarRegex = new RegExp("<a\\s+.*?data-mxptext=\"(.+?)\".+?href=\"(.+?)\".*?>.+?</a>", "g")
-
-
-//                <div class="tagsWrapper">
-//                               Tags:&nbsp;
-//                               <a href="/video?c=7">big dick</a>, <a href="/video?c=26">latina</a>, <a href="/video/search?search=teengonzo">teengonzo</a>, <a href="/categories/teen">teen</a>, <a href="/video/search?search=hispanic">hispanic</a>, <a href="/video/search?search=thick">thick</a>, <a href="/video/search?search=chubby">chubby</a>, <a href="/video?c=8">big tits</a>, <a href="/video/search?search=cumshot">cumshot</a>, <a href="/video/search?search=facial">facial</a>, <a href="/categories/teen">teenager</a>, <a href="/video/search?search=young">young</a>, <a href="/video/search?search=latin">latin</a>, <a href="/video/search?search=big+boobs">big boobs</a>, <a href="/video/search?search=busty">busty</a>, <a href="/video/search?search=shaved">shaved</a>                <div class="tooltipTrig suggestBtn" data-title="Suggest Tags" >
-//                                   <a id="tagLink" class="add-btn-small">+ <span>Suggest</span></a>
-//                               </div>
-//                           </div>
-
-        var tagsRegex = new RegExp("<div\\s+class=\"tagsWrapper\">(.*?)</div>")
-        var tagRegex = new RegExp("<a\\s+href=\"(.+?)\">([^<]+)</a>", "g")
-        /*
-          <li>                                         <button type="button" class="upVote" data-categoryid="7" data-suggestcategory-url="/video/rate_category?current=7&id=206039581&value=1&token=MTU1OTU5MDIzMIy2CCnncc2t9i9ewj0WDwtEEPYZdXWI7XWtzkSc7dPVbJ1_3cxidde9lAPjk7WVwvrP4KHt2iIRwcjlVC8Hy-o."></button>                                         <button type="button" class="downVote" data-categoryid="7" data-suggestcategory-url="/video/rate_category?current=7&id=206039581&value=0&token=MTU1OTU5MDIzMIy2CCnncc2t9i9ewj0WDwtEEPYZdXWI7XWtzkSc7dPVbJ1_3cxidde9lAPjk7WVwvrP4KHt2iIRwcjlVC8Hy-o."></button>                                         Big Dick                                    </li>
-          */
-        var hasFoundSessionInfo = false
-        // WIDGET_RATINGS_LIKE_FAV.token = "MTU1NDM4MTkwNB_j3wXL9yAhG4cE4CAfoYXshRU63e1Q14DWT8QqCmcgcRjqdwcmutv0HXoEuUowLgHVkxptmjxQ3Ep60i8qbYc." </script>
-        _ratingToken = ""
-        _isFavorite = false
-        _modelUrl = ""
-        _modelName = ""
-        _upVotes = -1
-        _downVotes = -1
-        _categories = []
-        _pornstars = []
-        _tags = []
+        _ratingToken = videoPage.ratingToken
+        _isFavorite = videoPage.isFavorite
+        _modelUrl = videoPage.model.url
+        _modelName = videoPage.model.name
+        _upVotes = videoPage.upVotes
+        _downVotes = videoPage.downVotes
+        _categories = videoPage.categories
+        _pornstars = videoPage.pornstars
+        _tags = videoPage.tags
         _formats = []
-        _videoUrlFetchUrl = ""
+        _streamFormats = videoPage.formats
+        _videoUrlFetchUrl = videoPage.getMediaUrls.length ? videoPage.getMediaUrls[0] : ""
 
-
-        var oneline = data.replace(new RegExp("\r|\n", "g"), "\v") // Qt doesn't have 's' flag to match newlines with .
-
-        var categoriesMatch = categoriesRegex.exec(oneline)
-        if (categoriesMatch) {
-            var categoriesData = categoriesMatch[1]
-//            console.debug(categoriesData)
-            for (var categoryMatch; (categoryMatch = categoryRegex.exec(categoriesData)) !== null; ) {
-                var categoryId = parseInt(categoryMatch[1])
-                var category = {
-                    category_id: categoryId,
-                    category_title: categoryMatch[2].trim(),
-                    category_url: Constants.baseUrl + "/video?c=" + categoryId,
-                }
-
-                _categories.push(category)
-                console.debug("adding category id=" + category.category_id)
-            }
-        }
-
-        var pornstarsMatch = pornstarsRegex.exec(oneline)
-        if (pornstarsMatch) {
-            var pornstarsData = pornstarsMatch[1]
-            for (var pornstarMatch; (pornstarMatch = pornstarRegex.exec(pornstarsData)) !== null; ) {
-                var pornstar = {
-                    pornstar_name: pornstarMatch[1],
-                    pornstar_url: Constants.baseUrl + pornstarMatch[2],
-                }
-
-                _pornstars.push(pornstar)
-                console.debug("adding pornstar name=" + pornstar.pornstar_name)
-            }
-        }
-
-        var tagsMatch = tagsRegex.exec(oneline)
-        if (tagsMatch) {
-            var tagsData = tagsMatch[1]
-            for (var tagMatch; (tagMatch = tagRegex.exec(tagsData)) !== null; ) {
-                var tag = {
-                    tag_name: tagMatch[2].trim(),
-                    tag_url: Constants.baseUrl + tagMatch[1],
-                }
-
-                _tags.push(tag)
-                console.debug("adding tag name=" + tag.tag_name)
-            }
-        }
-
-        var flashVarsMatch = flashVarsRegex.exec(oneline)
-        if (flashVarsMatch) {
-            var singleLineCode = flashVarsMatch[1]
-
-            var singleLineCodeRangeCommentsRemoved = singleLineCode.replace(jsRangeCommentRegex, "")
-            if (window.debugVideoPlayer) {
-                console.debug("single: " + singleLineCode)
-                console.debug("single w/o range comments: " + singleLineCodeRangeCommentsRemoved)
-            }
-//            var multiLineCode = singleLineCode.replace(new RegExp("\v", "g"), "\n") // Qt doesn't have 's' flag to match newlines with .
-//            console.debug("multi: " + multiLineCode)
-            singleLineCode = singleLineCodeRangeCommentsRemoved
-
-            var lines = singleLineCode.split("\v")
-            singleLineCode = ""
-            for (var j = 0; j < lines.length; ++j) {
-                var line = lines[j]
-                var lineCommentMatch = jsLineCommentRegex.exec(line)
-                if (lineCommentMatch) {
-                    if (window.debugVideoPlayer) {
-                        console.debug("line comment: " + lines[j])
-                    }
-                    continue
-                }
-
-                if (emptyOrWhitespaceRegex.exec(line)) {
-                    if (window.debugVideoPlayer) {
-                        console.debug("empty: " + lines[j])
-                    }
-                    continue
-                }
-
-                if (window.debugVideoPlayer) {
-                    console.debug("code: " + line)
-                }
-
-                singleLineCode += line + " "
-            }
-
-            var defs = {}
-            var stmts = singleLineCode.split(";")
-            for (var j = 0; j < stmts.length; ++j) {
-                var stmt = stmts[j]
-                if (window.debugVideoPlayer) {
-                    console.debug("stmt: " + stmt)
-                }
-
-                var jsVarDefinitionMatch = jsVarDefinitionRegex.exec(stmt)
-                if (jsVarDefinitionMatch) {
-                    defs[jsVarDefinitionMatch[1]] = jsVarDefinitionMatch[2]
-                }
-            }
-
-            if (window.debugVideoPlayer) {
-                console.debug("defs: " + JSON.stringify(defs))
-            }
-
-//            var flashvars_json = MiniJS.evaluate(defs, flashVarsVarName)
-//            if (window.debugVideoPlayer) {
-//                console.debug("flashvars_json: " + flashvars_json)
-//            }
-
-//            var flashvars = JSON.parse(flashvars_json)
-            //            if (window.debugVideoPlayer) {
-//                            console.debug("flashvars: " + flashvars)
-            //            }
-
-            for (var j = 0; ; ++j) {
-                var key = "media_" + j
-
-                if (key in defs) {
-                    var url = MiniJS.evaluate(defs, key)
-
-                    console.debug("key=" + key + " url=" + url)
-
-                    if (url.indexOf("/video/get_media?") >= 0) {
-                        _videoUrlFetchUrl = url
-                    }
-                } else {
-                    break
-                }
-            }
-        }
-
-//        console.debug(data)
-
-        var want = 4
-        var lines = data.split('\n');
-        for (var i = 0; i < lines.length && want > 0; ++i) {
-            var ratingsMatch = ratingRegex.exec(lines[i])
-            if (ratingsMatch) {
-                --want
-                try {
-                    console.debug("rating JSON: " + ratingsMatch[1])
-                    var jsonObject = JSON.parse(ratingsMatch[1])
-
-                    // jsonObject.canVote seems to always be set to 1
-//                        if (jsonObject.canVote) {
-//                            _canVote = true
-//                        } else {
-//                            _canVote = false
-//                        }
-
-                    //console.debug("canVote=" + _canVote)
-
-                    // jsonObject.loggedIn appears to have login status
-
-                    if (jsonObject.isFavourite === 1) {
-                        _isFavorite = true
-                    } else {
-                        _isFavorite = false
-                    }
-
-                    console.debug("isFavorite=" + _isFavorite)
-
-                    _upVotes = jsonObject.currentUp
-                    _downVotes = jsonObject.currentDown
-                    console.debug("upVotes=" + _upVotes + " downVotes=" + _downVotes)
-
-                } catch (error) {
-                    console.debug(error)
-                }
-            } else {
-                var tokenMatch = ratingTokenRegex.exec(lines[i])
-                if (tokenMatch) {
-                    --want
-                    _ratingToken = tokenMatch[1]
-                    console.debug("rating token=" + _ratingToken)
-                } else {
-                    if (!hasFoundSessionInfo && window.updateSessionLine(lines[i])) {
-                        --want
-                        hasFoundSessionInfo = true
-                    }
-
-                    var modelMatch = modelRegex.exec(lines[i])
-                    if (modelMatch) {
-                        --want
-                        _modelUrl = modelMatch[1]
-                        _modelName = modelMatch[2]
-                        console.debug("model name=" + _modelName + " model url=" + _modelUrl)
-                    }
-                }
-            }
-        }
-
-        if (window.debugVideoPlayer || (window.isUserLoggedIn && !_ratingToken)){
+        console.debug("video page: " + videoPage.formats.length + " streams, get_media=" + !!_videoUrlFetchUrl
+                      + ", model=" + _modelName + ", votes=" + _upVotes + "/" + _downVotes
+                      + ", categories=" + _categories.length + ", tags=" + _tags.length)
+        if (window.debugVideoPlayer) {
             console.debug(data)
         }
+        return videoPage
     }
 
-    function _parseVideoUrlFetchUrlData(data) {
-        if (window.debugVideoPlayer) {
-            console.debug("url data=" + data)
-        }
-
-        var video_urls = JSON.parse(data)
+    // plays the best of files ([{ format, quality, url }]) for the connection
+    function _setFormats(files) {
         var formats = []
-
-        for (var j = 0; j < video_urls.length; ++j) {
-            var item = video_urls[j]
-
-            if ("videoUrl" in item && "quality" in item) {
-                var quality = item["quality"]
-
-                if (Array.isArray(quality)) {
-                    continue
-                }
-
-                var format = {
-                    format_quality: _parseVideoQuality(quality),
-                    format_url: item["videoUrl"]
-                }
-
-                formats.push(format)
-                console.debug("added quality=" + format.format_quality + " url=" + format.format_url)
+        for (var i = 0; i < files.length; ++i) {
+            if (files[i].url) {
+                formats.push({
+                    format_quality: files[i].quality >= 0 ? files[i].quality : Constants.formatUnknown,
+                    format_url: files[i].url,
+                    format_kind: files[i].format,
+                })
+                console.debug("added " + files[i].format + " quality=" + files[i].quality)
             }
         }
-
         _formats = formats
 
-        // remove formats without url
-        for (var j = 0; j < _formats.length; ) {
-            if (!_formats[j].format_url) {
-                console.debug("removing format w/o url at index=" + j + " quality=" + _formats[j].format_quality)
-                _formats.splice(j, 1)
+        if (_formats.length) {
+            if (_pauseCount) {
+                _playBestFormatOnResume = true
             } else {
-                ++j
+                _playBestFormat()
             }
+        } else {
+            //% "No video urls found"
+            window.notify(qsTrId("ph-video-player-page-no-urls-found"))
+            openControlPanel()
         }
     }
 
@@ -1455,17 +1216,6 @@ Page {
         } else {
             window.notify(str)
             openControlPanel()
-        }
-    }
-
-    function _parseVideoQuality(obj) {
-        switch (typeof(obj)) {
-        case "number":
-            return Math.floor(obj)
-        case "string":
-            return parseInt(obj)
-        default:
-            return Constants.formatUnknown
         }
     }
 }

@@ -26,6 +26,7 @@ import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
 import "."
+import "../Scraper.js" as Scraper
 
 GridViewPage {
     id: root
@@ -230,61 +231,9 @@ GridViewPage {
     }
 
     function _parseCategories(data, storeInCache) {
-        /* <li class="catPic" data-category="27">
-                    <div class="category-wrapper ">
-                        <a href="/video?c=27" alt="Lesbian" class="js-mxp" data-mxptype="Category" data-mxptext="Lesbian">
-                            <img
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                data-thumb_url="https://ci.phncdn.com/is-static/images/categories/(m=q41656TbetZD8zjadOf)(mh=4dqQygrsXSKDpore)roku_27.jpg"
-                                alt="Lesbian"
-                            />
-                                                    </a>
-                        <h5>
-                            <a href="/video?c=27" class="js-mxp subCategoryActive" data-mxptype="Category" data-mxptext="Lesbian"><strong>Lesbian</strong>
-                                <span class="videoCount">
-                                    (<var>74,930</var>)
-                                </span>
-                            </a>
-                            <span class="arrowWrapper js-openSubCatsImage"><span class="categories_arrow catArrowIE7 js-categories_arrow"></span></span>						</h5>
-                                                    <div class="subcatsNoScroll">
-                                <ul>
-                                    <li><a href="/video/incategories/amateur/lesbian">Amateur<span>313,848</span></a></li><li><a href="/video/incategories/anal/lesbian">Anal<span>132,143</span></a></li><li><a href="/video/incategories/big-tits/lesbian">Big Tits<span>282,607</span></a></li><li><a href="/video/incategories/hentai/lesbian">Hentai<span>18,338</span></a></li><li><a href="/video/incategories/lesbian/milf">MILF<span>150,627</span></a></li><li><a href="/video/incategories/lesbian/popular-with-women">Popular With Women<span>16,573</span></a></li><li><a href="/video?c=532">Scissoring <span>5,434</span> </a></li><li><a href="/video/incategories/lesbian/teen">Teen<span>274,255</span></a></li>								</ul>
-                            </div>
-                                            </div>
-                </li>
- */
-        data = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
         window.updateSessionHtml(data)
-
-        var categoriesRegex = new RegExp("<li\\s+class=\"catPic\"\\s+data-category=\"(\\d+)\">(.+?)</li>", "g")
-        // src contains some gif stuff sometimes
-        var categoryDataRegex = new RegExp("<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\"\\s+.*?alt\\s*=\\s*\"(.+?)\".*?/>.*?<var>(.+?)</var>")
-        var junkRegex = new RegExp("\\(|\\)|,|\\.|<.+?>|\\s+", "g")
-        var categories = []
-        for (var category; (category = categoriesRegex.exec(data)) !== null; ) {
-//            console.debug(category)
-            var categoryHtml = category[0]
-            var categoryId = parseInt(category[1])
-            var categoryData = categoryDataRegex.exec(categoryHtml)
-
-            if (categoryData) {
-                console.debug(categoryData)
-                var categoryThumbnail = categoryData[1]
-                var categoryName = categoryData[2]
-//                console.debug("count=" + categoryData[3])
-//                console.debug("count (cleaned)=" + categoryData[3].replace(junkRegex, ""))
-                var videos = parseInt(categoryData[3].replace(junkRegex, ""))
-                var name =
-                categories.push({
-                                    category_id: categoryId,
-                                    category_url: Constants.baseUrl + root.prefix + "/video?c=" + categoryId,
-                                    category_name: App.replaceHtmlEntities(categoryName),
-                                    category_videos: videos,
-                                    category_thumbnail: App.replaceHtmlEntities(categoryThumbnail),
-                                })
-
-            }
-        }
+        var categories = Scraper.parseCategories(data, root.prefix)
+        console.debug("found " + categories.length + " categories")
 
         _categories = categories
 
@@ -294,9 +243,15 @@ GridViewPage {
                 DownloadCache.store(categoriesUrl, data, 3600)
             }
 
-            thumbnailSizeDetector.source = categories[0].category_thumbnail
+            for (var i = 0; i < categories.length; ++i) {
+                if (categories[i].category_thumbnail) {
+                    thumbnailSizeDetector.source = categories[i].category_thumbnail
+                    break
+                }
+            }
         } else {
-            console.debug("data=" + data)
+            //% "No categories found"
+            window.notify(window.problemMessage(data) || qsTrId("ph-categories-page-none-found"))
         }
 
         _applyFilter()

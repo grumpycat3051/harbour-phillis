@@ -1,0 +1,102 @@
+# Tests the page parser and builds the harbour-phillis RPM with the community Sailfish SDK
+# Docker images (https://github.com/CODeRUS/docker-sailfishos-platform-sdk).
+#
+# The default target is Sailfish OS 5.1.0.11 on armv7hl, the latest release for the Sony
+# Xperia XA2 and the other 32-bit devices. Match RELEASE to the version shown in
+# Settings > About product on the phone. 64-bit devices (Xperia 10 II and newer, Jolla C2)
+# need ARCH aarch64.
+#
+# The finished RPM is attached to the workflow run as an artifact (a zip file).
+
+name: Build Sailfish OS RPM
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Sailfish OS SDK target, e.g. 5.1.0.11 or 5.0.0.43'
+        required: true
+        default: '5.1.0.11'
+      arch:
+        description: 'armv7hl (32-bit phones) or aarch64 (64-bit phones)'
+        required: true
+        default: 'armv7hl'
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Test the page parser
+        run: node tests/scraper.test.js
+
+  build:
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      RELEASE: ${{ inputs.release || '5.1.0.11' }}
+      ARCH: ${{ inputs.arch || 'armv7hl' }}
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      # The SDK image is several GB; make room for it.
+      - name: Free disk space
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+
+      - name: Build on SailfishOS-${{ env.RELEASE }}-${{ env.ARCH }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+          exec > >(tee build.log) 2>&1
+          # The image runs as 'mersdk', so build in a copy of the checkout and make the
+          # output folder writable for that user.
+          mkdir -p output && chmod a+w output
+          # -X keeps the version from the spec instead of deriving it from git tags.
+          docker run --rm -v "$PWD":/share "coderus/sailfishos-platform-sdk-$ARCH:$RELEASE" /bin/bash -xec '
+            mkdir -p "$HOME/build" && cd "$HOME/build"
+            cp -r /share/. .
+            mb2 -X -t "SailfishOS-$1-$2" build
+            cp -r RPMS/. /share/output/
+          ' build-phillis "$RELEASE" "$ARCH"
+          ls -l output
+          ls output/harbour-phillis-[0-9]*."$ARCH".rpm
+
+      # Put the end of the build log into the run summary and an annotation, so a failure
+      # can be read without downloading the full log.
+      - name: Show why the build failed
+        if: failure()
+        shell: bash
+        run: |
+          {
+            echo '### Build failed, last 60 lines of the log'
+            echo '```'
+            tail -n 60 build.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          # annotations are short, so only send the error lines, cut to 300 characters each
+          errors=$(grep -E -i -m 40 'error|fatal|undefined reference|no such file|nothing provides|not found' build.log \
+                   | grep -v -E '^\+ |Werror|-Wformat' | cut -c1-300 || true)
+          [ -n "$errors" ] || errors=$(tail -n 15 build.log | cut -c1-300)
+          msg=$(printf '%s\n' "$errors" | sed -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::error title=Build failed::${msg}"
+
+      - name: Upload the RPM
+        uses: actions/upload-artifact@v4
+        with:
+          name: harbour-phillis-${{ env.ARCH }}-SFOS-${{ env.RELEASE }}
+          # the app itself; the debuginfo/debugsource packages aren't needed on the phone
+          path: output/harbour-phillis-[0-9]*.rpm
+          if-no-files-found: error

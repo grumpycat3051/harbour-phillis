@@ -64,6 +64,10 @@ public:
     Q_INVOKABLE bool isDir(const QString& str) const;
     Q_INVOKABLE QString replaceHtmlEntities(const QString& input);
     Q_INVOKABLE QString urlEncode(const QVariantMap& kv);
+    // Gives a QML MediaPlayer the address url with extra request headers (the site's video
+    // servers want a Referer and Origin), which its source property can't carry. Set the
+    // player's source to the same address first, so the QML side counts the media as loaded.
+    Q_INVOKABLE bool setMediaSource(QObject* mediaPlayer, const QString& url, const QVariantMap& headers);
 
 signals:
     void isOnBroadbandChanged();

@@ -1,3 +1,6 @@
 *.user
 *.svg
 *.html
+
+# test pages (the rule above is for files Qt Creator leaves behind)
+!tests/fixtures/*.html

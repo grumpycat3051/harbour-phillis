@@ -2,8 +2,8 @@ TARGET = harbour-phillis
 
 # known to qmake
 VER_MAJ = 0
-VER_MIN = 4
-VER_PAT = 5
+VER_MIN = 5
+VER_PAT = 0
 
 VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}
 
@@ -18,6 +18,7 @@ DEFINES += PHILLIS_DATADIR="/usr/share/$${TARGET}"
 
 
 CONFIG += sailfishapp
+QT += multimedia
 
 
 HEADERS += \
@@ -68,9 +69,9 @@ DISTFILES += \
     qml/pages/PornstarsPage.qml \
     qml/pages/AdultContentDisclaimerPage.qml \
     qml/pages/LockScreenPage.qml \
-    qml/pages/RecommendedPage.qml \
+    qml/Scraper.js \
+    qml/pages/SiteCheckPage.qml \
     qml/pages/TranslationsPage.qml \
-    qml/MiniJS.js \
 
 
 
