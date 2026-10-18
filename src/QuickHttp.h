@@ -24,6 +24,7 @@
 #pragma once
 
 #include <QObject>
+#include <QVariantMap>
 
 class QNetworkAccessManager;
 class QNetworkReply;
@@ -39,6 +40,10 @@ class QuickHttp : public QObject
     Q_PROPERTY(QString url READ url /*WRITE setUrl */NOTIFY urlChanged)
     Q_PROPERTY(QNetworkAccessManager* networkAccessManager READ networkAccessManager WRITE setNetworkAccessManager NOTIFY networkAccessManagerChanged)
     Q_PROPERTY(int httpStatusCode READ httpStatusCode NOTIFY httpStatusCodeChanged)
+    // address of the last answer, after redirections
+    Q_PROPERTY(QString finalUrl READ finalUrl NOTIFY finalUrlChanged)
+    // extra request headers sent with every request of this object
+    Q_PROPERTY(QVariantMap headers READ headers WRITE setHeaders NOTIFY headersChanged)
 
 public:
     enum Status
@@ -67,7 +72,11 @@ public:
     static void SetUserAgent(const QString& value) { ms_UserAgent = value; }
     static QNetworkAccessManager* NetworkAccessManager() { return ms_NetworkAccessManager; }
     static void SetNetworkAccessManager(QNetworkAccessManager* value) { ms_NetworkAccessManager = value; }
+    // headers sent with every request of every object, before the object's own
+    static void SetDefaultHeaders(const QVariantMap& value) { ms_DefaultHeaders = value; }
     Q_INVOKABLE void get(const QString& url = QString());
+    // a request with extra headers for just this request (kept for its redirections)
+    Q_INVOKABLE void get(const QString& url, const QVariantMap& requestHeaders);
     Status status() const { return m_Status; }
     Error error() const { return m_Error; }
     QString errorMessage() const { return m_ErrorMessage; }
@@ -78,6 +87,9 @@ public:
     void setNetworkAccessManager(QNetworkAccessManager* value);
     QString url() const { return m_Url; }
     int httpStatusCode() const { return m_HttpStatusCode; }
+    QString finalUrl() const { return m_FinalUrl; }
+    QVariantMap headers() const { return m_Headers; }
+    void setHeaders(const QVariantMap& value);
 
     Q_INVOKABLE void post(const QString& url, const QString& urlEncodedPostData = QString());
     Q_INVOKABLE void post(const QString& url, const QVariantMap& customHeaders, const QString& urlEncodedPostData = QString());
@@ -91,6 +103,8 @@ signals:
     void userAgentChanged();
     void networkAccessManagerChanged();
     void httpStatusCodeChanged();
+    void finalUrlChanged();
+    void headersChanged();
 
 private slots:
     void requestFinished();
@@ -103,7 +117,9 @@ private: // methods
     void setError(Error value);
     void setErrorMessage(const QString& value);
     void setHttpStatusCode(int value);
+    void setFinalUrl(const QString& value);
     QNetworkRequest makeRequest(const QUrl& url);
+    void finish(Error error, const QString& errorMessage);
 
 private: // member vars
     QNetworkAccessManager* m_NetworkAccessManager;
@@ -115,10 +131,15 @@ private: // member vars
     QString m_UserAgent;
     QString m_Url;
     QString m_ErrorMessage;
+    QString m_FinalUrl;
+    QVariantMap m_Headers;
+    QVariantMap m_RequestHeaders;
+    int m_Redirects;
 
 private:
     static QString ms_UserAgent;
     static QNetworkAccessManager* ms_NetworkAccessManager;
+    static QVariantMap ms_DefaultHeaders;
 };
 
 

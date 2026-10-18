@@ -27,6 +27,7 @@ import Nemo.DBus 2.0
 import Nemo.Notifications 1.0
 import grumpycat 1.0
 import "."
+import "Scraper.js" as Scraper
 
 ApplicationWindow
 {
@@ -43,89 +44,86 @@ ApplicationWindow
     property string logoutToken
     readonly property string username: _username
     property string _username
-    readonly property var logoutTokenRegex: new RegExp("href=[\"']/user/logout\\?token=([^\"']+)[\"']")
-    readonly property var loginTokenRegex: new RegExp("<input\\s+type=[\"']hidden[\"']\\s+name=[\"']token[\"']\\s+value=[\"']([^\"']+)[\"']\\s*/>")
-    readonly property var usernameRegex: new RegExp("<li\\s+.*?class=[\"']profile[\"'].*?>\\s*<a\\s+.*?href=[\"']/users/([^\"']+)(/[^\"']*)?[\"'].*?>")
+    // hidden fields of the site's login form (token, redirect, ...)
+    property var _loginFields: ({})
     readonly property bool isUserLoggedIn: _userIsLoggedIn
     property bool _userIsLoggedIn: false
     readonly property bool restrictAccess: settingAccessRestrict.value && settingLockScreenPin.value
-    readonly property bool hasLoginData: settingAccountUsername.value && settingAccountPassword.value && loginToken
+    readonly property bool hasLoginData: !!settingAccountUsername.value && !!settingAccountPassword.value
     readonly property bool canAutoLogin: settingAccountLoginOnAppStart.value && hasLoginData
+    property bool _autoLoginTried: false
 
     property int _action: -1
     readonly property int actionInit: 0
     readonly property int actionLogin: 1
     readonly property int actionLogout: 2
+    readonly property int actionLoginPage: 3
 
     property bool debugVideoPlayer: false
 
     Http {
         id: http
         onStatusChanged: {
-            switch (status) {
-            case Http.StatusCompleted:
-                console.debug("completed error=" + error)
+            if (status !== Http.StatusCompleted) {
+                return
+            }
+            console.debug("completed error=" + error + " http status=" + httpStatusCode)
+            switch (_action) {
+            case actionLoginPage:
+                // a fresh token for the login form, even if the page itself failed
+                updateSessionHtml(data)
+                if (isUserLoggedIn) {
+                    _action = -1
+                } else {
+                    _sendLogin()
+                }
+                break
+            case actionLogin:
+                _action = -1
+                var result = Scraper.parseLoginResponse(data)
+                if (Http.ErrorNone === error && result.success) {
+                    _userIsLoggedIn = true
+                    console.debug("login success")
+                    //% "Login success"
+                    window.notify(qsTrId("ph-login-succes-message"))
+
+                    // load a page to have logout token for menu
+                    // weirdly this doens't work if using the base page
+                    _action = actionInit
+                    http.get(Constants.baseUrl + "/categories")
+                } else {
+                    _userIsLoggedIn = false
+                    //% "Login failed"
+                    window.notify(result.message || window.problemMessage(data) || qsTrId("ph-login-failed-message"))
+                }
+                break
+            case actionLogout:
+                _action = -1
+                _userIsLoggedIn = false
+                logoutToken = ""
+                _username = ""
+                updateSessionHtml(data)
+                break
+            case actionInit:
+                _action = -1
                 if (Http.ErrorNone === error) {
-                    cookieJar.dump()
-                    switch (_action) {
-                    case actionLogout:
-                        _userIsLoggedIn = false
-                        loginToken = ""
-                        _username = ""
-                        var line = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
-                        scanForLoginTokenInLine(line)
-                        break
-                    case actionLogin:
-                        try {
-                            var jsonObject = JSON.parse(data)
-                            if (jsonObject.success === "1") {
-                                _userIsLoggedIn = true
-                                console.debug("login success")
-                                //% "Login success"
-                                window.notify(qsTrId("ph-login-succes-message"))
-
-                                // load a page to have logout token for menu
-                                // weirdly this doens't work if using the base page
-                                _action = actionInit
-                                http.get(Constants.baseUrl + "/categories")
-                            } else {
-                                _userIsLoggedIn = false
-                                window.notify(jsonObject.message)
-                            }
-                        } catch (error) {
-                            console.debug("response data")
-                            console.debug(data)
-                            _userIsLoggedIn = false
-                        }
-                        break
-                    case actionInit: {
-                        var line = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
-                        updateSessionHtml(line)
-                        if (isUserLoggedIn && !logoutToken) {
-                            console.debug(data)
-                        }
-
-                        if (!isUserLoggedIn && canAutoLogin) {
-                            login()
-                        }
-                    } break
+                    updateSessionHtml(data)
+                    var problem = window.problemMessage(data)
+                    if (problem) {
+                        window.notify(problem)
+                    } else if (!isUserLoggedIn && canAutoLogin && !_autoLoginTried) {
+                        _autoLoginTried = true
+                        login()
                     }
                 } else {
-                    switch (_action) {
-                    case actionLogin:
-                    case actionLogout:
-                        console.debug("response data")
-                        console.debug(data)
-                        break
-                    case actionInit:
-                        //% "Initial loading of website failed"
-                        var str = qsTrId("ph-error-message-initial-request-failed")
-                        downloadError(url, error, str)
-                        break
-                    default:
-                        downloadError(url, error, errorMessage)
-                        break
-                    }
+                    //% "Initial loading of website failed"
+                    var str = window.problemMessage(data) || qsTrId("ph-error-message-initial-request-failed")
+                    downloadError(url, error, str)
+                }
+                break
+            default:
+                if (Http.ErrorNone !== error) {
+                    downloadError(url, error, errorMessage)
                 }
                 break
             }
@@ -383,108 +381,85 @@ expire_timeout should be -1 to let the notification manager choose an appropriat
         notification.publish()
     }
 
-    function scanForLogoutTokenInLine(line, callback) {
-        var logoutTokenMatch = logoutTokenRegex.exec(line)
-        if (logoutTokenMatch) {
-            logoutToken = logoutTokenMatch[1]
-            if (callback) {
-                callback(logoutToken)
-            }
-            return true
+    // what to tell the user if a page isn't the one asked for (blocked for the country, a
+    // check the app can't pass); "" for ordinary pages
+    function problemMessage(html) {
+        switch (Scraper.pageProblem(html)) {
+        case "geo":
+            //% "Pornhub isn't available in your country"
+            return qsTrId("ph-error-geo-blocked")
+        case "challenge":
+            //% "Pornhub asked for a browser check this app can't do. Try again later."
+            return qsTrId("ph-error-browser-check")
+        default:
+            return ""
         }
-
-        return false
-    }
-
-    function scanForLoginTokenInLine(line, callback) {
-        var match = loginTokenRegex.exec(line)
-        if (match) {
-            loginToken = match[1]
-            if (callback) {
-                callback(loginToken)
-            }
-            return true
-        }
-
-        return false
-    }
-
-    function scanForUsernameInLine(line) {
-        var usernameMatch = usernameRegex.exec(line)
-        if (usernameMatch) {
-            _username = usernameMatch[1]
-            return true
-        }
-
-        return false
     }
 
     function logout() {
         _action = actionLogout
-        cookieJar.dump()
-        http.get(Constants.baseUrl + "/user/logout?token=" + logoutToken)
+        http.get(Constants.baseUrl + "/user/logout?token=" + encodeURIComponent(logoutToken))
     }
 
+    // fetches the login page for a fresh form token, then sends the account
     function login() {
+        if (http.status === Http.StatusRunning) {
+            console.debug("login: busy")
+            return
+        }
+        _action = actionLoginPage
+        http.get(Constants.baseUrl + "/login")
+    }
+
+    function _sendLogin() {
+        if (!_loginFields.token) {
+            console.debug("no login token on the login page")
+        }
         _action = actionLogin
-        cookieJar.dump()
-        var postData = App.urlEncode({
-                                         username: settingAccountUsername.value,
-                                         password: settingAccountPassword.value,
-                                         remember_me: 1,
-                                         token: loginToken,
-                                     })
-        http.post(Constants.baseUrl + "/front/authenticate", postData)
+        var headers = {
+            "X-Requested-With": "XMLHttpRequest",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "Origin": Constants.baseUrl,
+            "Referer": Constants.baseUrl + "/login",
+        }
+        http.post(Constants.baseUrl + "/front/authenticate", headers,
+                  Scraper.loginBody(_loginFields, settingAccountUsername.value, settingAccountPassword.value))
     }
 
     function init() {
         cookieJar.clear()
-        var tomorrow = new Date()
-        tomorrow.setDate(tomorrow.getDate() + 1)
-        //cookieJar.addCookie(".pornhub.com", "/", "accessAgeDisclaimerPH", "1", tomorrow.getTime(), false)
-        cookieJar.addCookie(".pornhub.com", "/", "age_verified", "1", tomorrow.getTime(), false)
+        var nextYear = new Date()
+        nextYear.setFullYear(nextYear.getFullYear() + 1)
+        // the answer to the site's "I am 18 or older" question, given on the disclaimer page
+        cookieJar.addCookie(".pornhub.com", "/", "age_verified", "1", nextYear.getTime(), false)
+        cookieJar.addCookie(".pornhub.com", "/", "accessAgeDisclaimerPH", "2", nextYear.getTime(), false)
+        _autoLoginTried = false
 
         reload()
     }
 
-    function updateSessionHtml(htmlLine) {
-        if (isUserLoggedIn) {
-            if (scanForLogoutTokenInLine(htmlLine)) {
-                console.debug("logout token=" + logoutToken)
-            } else {
-                console.debug("logout token not found despite being logged in")
+    // reads the login state from any page of the site
+    function updateSessionHtml(html) {
+        if (!html) {
+            return
+        }
+        if (Scraper.isLoggedIn(html)) {
+            _userIsLoggedIn = true
+            var token = Scraper.logoutToken(html)
+            if (token) {
+                logoutToken = token
             }
-
             if (!_username) {
-                if (scanForUsernameInLine(htmlLine)) {
-                    console.debug("username=" + _username)
-                } else {
-                    console.debug("username not found despite being logged in")
-                }
+                _username = Scraper.username(html)
+                console.debug("username=" + _username)
             }
-        } else {
-            if (scanForLoginTokenInLine(htmlLine)) {
-                console.debug("login token=" + loginToken)
-            } else {
-                console.debug("login token not found despite being logged out")
+        } else if (!isUserLoggedIn) {
+            var fields = Scraper.loginFields(html)
+            if (fields.token) {
+                _loginFields = fields
+                loginToken = fields.token
             }
         }
-    }
-
-    function updateSessionLine(htmlLine) {
-        if (isUserLoggedIn) {
-            if (scanForLogoutTokenInLine(htmlLine)) {
-                console.debug("logout token=" + logoutToken)
-                return true
-            }
-        } else {
-            if (scanForLoginTokenInLine(htmlLine)) {
-                console.debug("login token=" + loginToken)
-                return true
-            }
-        }
-
-        return false
     }
 
     function reload() {

@@ -34,6 +34,9 @@
 #include <QUrlQuery>
 #include <QNetworkProxy>
 #include <QSettings>
+#include <QMediaPlayer>
+#include <QMediaContent>
+#include <QNetworkRequest>
 
 namespace
 {
@@ -182,12 +185,12 @@ QString QuickApp::replaceHtmlEntities(const QString& input)
         if (match[1] == QLatin1Char('#')) {
             // &#0*60 -> <
             auto code = match.mid(2, match.size() - 3).toInt();
-            result += QLatin1Char(code);
+            result += QChar(code);
         } else {
             result += htmlEntityReplacements.value(match);
         }
 
-        start += end + match.size();
+        start = end + match.size();
     }
 
     end = input.size();
@@ -209,6 +212,24 @@ QString QuickApp::urlEncode(const QVariantMap& kv)
     }
 
     return q.toString(QUrl::FullyEncoded);
+}
+
+bool QuickApp::setMediaSource(QObject* mediaPlayer, const QString& url, const QVariantMap& headers)
+{
+    // QML's MediaPlayer hands out its QMediaPlayer only to C++ (property not scriptable)
+    auto player = mediaPlayer ? qobject_cast<QMediaPlayer*>(mediaPlayer->property("mediaObject").value<QObject*>()) : nullptr;
+    if (!player) {
+        qWarning() << "setMediaSource: not a media player" << mediaPlayer;
+        return false;
+    }
+
+    QNetworkRequest request{QUrl(url)};
+    for (auto it = headers.cbegin(); it != headers.cend(); ++it) {
+        request.setRawHeader(it.key().toUtf8(), it.value().toString().toUtf8());
+    }
+    // the GStreamer backend passes these to its HTTP source as extra-headers
+    player->setMedia(QMediaContent(request));
+    return true;
 }
 
 void QuickApp::loadProxy()

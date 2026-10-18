@@ -26,6 +26,7 @@ import Sailfish.Silica 1.0
 import grumpycat 1.0
 import ".."
 import "."
+import "../Scraper.js" as Scraper
 
 GridViewPage {
     id: root
@@ -37,7 +38,8 @@ GridViewPage {
     property string title
     property bool _reload: false
     property int _page: 0
-    readonly property int videosToSkip: 4
+    property bool _triedFallback: false
+    property var _seen: ({})
     property bool cache: false
     property bool isSearch: false
     readonly property real overlayOpacity: 0.68
@@ -59,7 +61,12 @@ GridViewPage {
                 } else {
                     switch (httpStatusCode) {
                     case 404:
-                        if (!isSearch) {
+                        // some performers' video lists are only on their main page
+                        if (_page === 0 && !_triedFallback && /\/videos$/.test(videosUrl)) {
+                            _triedFallback = true
+                            videosUrl = videosUrl.replace(/\/videos$/, "")
+                            load()
+                        } else if (!isSearch) {
                             window.downloadError(url, error, errorMessage)
                         }
                         break
@@ -169,13 +176,14 @@ GridViewPage {
                             }
 
                             Image {
+                                visible: video_rating >= 0
                                 width: Theme.iconSizeExtraSmall
                                 height: Theme.iconSizeExtraSmall
                                 source: "file://" + App.appDir + "/media/" + (video_rating >= 50 ? "thumbs-up-filled-green.png" : "thumbs-down-filled-red.png")
                             }
 
                             Label {
-                                text: video_rating + "% " + video_length
+                                text: (video_rating >= 0 ? video_rating + "% " : "") + video_length
                                 font.pixelSize: Theme.fontSizeExtraSmall
                                 font.bold: true
                                 anchors.verticalCenter: parent.verticalCenter
@@ -261,6 +269,7 @@ GridViewPage {
 
     function load() {
         _page = 0
+        _seen = {}
         var url = videosUrl
         if (_reload) {
             http.get(url)
@@ -275,142 +284,40 @@ GridViewPage {
     }
 
     function _parseVideos(data, url, storeInCache) {
-
-        /*
- <li class="pcVideoListItem js-pop videoblock videoBox"
-                    id="v363214972"
-        data-video-id="363214972"
-    data-video-vkey="ph5f9280abe0e56"
-    data-id="363214972"
-    data-segment="straight"
-    data-entrycode="VidPg-premVid"
->
-    <div class="wrap">
-                <div class="phimage"
-
-        >
-
-                                        <div class="preloadLine"></div>
-                                                            <a href="/view_video.php?viewkey=ph5f9280abe0e56" title="Hot babe tries fuck machine at college party"                        class="fade fadeUp videoPreviewBg linkVideoThumb js-linkVideoThumb img "
-                        data-related-url="/video/ajax_related_video?vkey=ph5f9280abe0e56"
-                                                >
-
-                                                                                <img
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    data-thumb_url = "https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eafTGgaaaa)(mh=r75FaeXOiGECS4fS)7.jpg"
-                    alt="Hot babe tries fuck machine at college party"
-                                            data-src = "https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eafTGgaaaa)(mh=r75FaeXOiGECS4fS)7.jpg"
-                                                        data-mediumthumb="https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eafTGgaaaa)(mh=r75FaeXOiGECS4fS)7.jpg"
-                                                                    data-mediabook="https://cw.phncdn.com/videos/202010/23/363214972/180P_225K_363214972.webm?JekHkGwbwo9OsSkj789u3sHyoqvwyOPB6B_N6vVDX7VFsJ-BAiIS9HFJUVIqq0Nk5X5bLBQ2U4IFthfd1RJVYajpCI9CPzwHapToAXRkSoSO4DA007AYPjQWSvdM7vtwPWYhXlFJeUGGogRHD2_b3Hnv-Q1p_UR-tlwD1u91wukix7Vv39ZXEaO0ynzgZy65CSoIf0KJo9U"
-                                class="js-pop js-videoThumb js-videoThumbFlip thumb js-videoPreview lazy"
-                width="150"
-                 class="rotating" data-video-id="363214972" data-thumbs="16" data-path="https://ci.phncdn.com/videos/202010/23/363214972/original/(m=eWdTGgaaaa)(mh=kPwtPieqWzeLk_oC){index}.jpg"                    title="Hot babe tries fuck machine at college party" />
-
-                                                                                                <div class="marker-overlays js-noFade">
-                        <var class="duration">1:00</var>
-                                                    <span class="hd-thumbnail">HD</span>
-                                                                                                                                            </div>
-                </a>
-                            </div>
-                                                        <div class="add-to-playlist-icon display-none">
-                    <button type="button" data-title="Add to a Playlist" class="tooltipTrig open-playlist-link playlist-trigger" onclick="return false;" data-video-id="363214972"></button>
-                </div>
-                                        <div class="thumbnail-info-wrapper clearfix">
-                <span class="title">
-                                                                        <a href="/view_video.php?viewkey=ph5f9280abe0e56" title="Hot babe tries fuck machine at college party" class=""                                                                        >
-                                Hot babe tries fuck machine at college party                            </a>
-                                                            </span>
-                                    <div class="videoUploaderBlock clearfix">
-
-                        <div class="usernameWrap">
-                                                            <a rel="nofollow" href="/users/zolanicole76"  title="zolanicole76">zolanicole76</a>                                                    </div>
-                    </div>
-                                <div class="videoDetailsBlock">
-                                            <span class="views"><var>2.8K</var> views</span>
-                        <div class="rating-container neutral">
-                            <div class="main-sprite icon"></div>
-                            <div class="value">82%</div>
-                        </div>
-
-
-                    <var class="added">22 hours ago</var>
-                </div>
-
-                            </div>
-                    </div>
-
-    </li>
-            */
-
-        // next page link <li class="page_next"><a href="/video?c=111&amp;page=2" class="orangeButton">Next <img class="pagination_arrow_right" src="https://di.phncdn.com/www-static/images/rightArrow.png"></a></li>
-
-
-
-
-        data = data.replace(new RegExp("\r|\n", "g"), " ") // Qt doesn't have 's' flag to match newlines with .
-
         window.updateSessionHtml(data)
 
-        var videos = []
-        var videosRegex = new RegExp("<li\\s+.*?data-video-vkey=\"(.+?)\"\\s+.*?data-id=\"(.+?)\".*?>(.*?)</li>", "g")
-        var videoDataRegex = new RegExp("<a\\s+.*?title\\s*=\\s*\"(.+?)\".*?>.*?<img\\s+.*?data-thumb_url\\s*=\\s*\"(.+?)\".*?/>.*?<var\\s+class\\s*=\\s*\"duration\".*?>(.+?)</var>.*?<span class=\"views\">\\s*<var>(.+?)</var>.*?</span>.*?<div class=\"value\">(.+?)</div>.*?<var class=\"added\">(.+?)</var>")
-        var nextRegex = new RegExp("<li\\s+class=\"page_next\">\\s*<a href=\"(.+?)\".*?>.*?</li>")
-        for (var videoMatch; (videoMatch = videosRegex.exec(data)) !== null; ) {
-            var videoViewKey = videoMatch[1]
-            var videoId = videoMatch[2]
-            var videoDataHtml = videoMatch[3]
-
-            var match = videoDataRegex.exec(videoDataHtml)
-            if (match) {
-//                console.debug(match)
-                var video = {
-                    video_url: Constants.baseUrl + "/view_video.php?viewkey=" + videoViewKey,
-                    video_viewkey: videoViewKey,
-                    video_id: videoId,
-                    video_title: App.replaceHtmlEntities(match[1]),
-                    video_thumbnail: App.replaceHtmlEntities(match[2]),
-                    video_length: match[3],
-                    video_views: match[4],
-                    video_rating: parseInt(match[5]),
-                    video_added: match[6],
-                }
-
-                videos.push(video)
-                console.debug("adding id=" + video.video_id)
+        var list = Scraper.parseVideoList(data)
+        var added = 0
+        for (var i = 0; i < list.videos.length; ++i) {
+            var video = list.videos[i]
+            if (!_seen[video.video_viewkey]) {
+                _seen[video.video_viewkey] = true
+                model.append(video)
+                ++added
             }
         }
+        console.debug("found " + list.videos.length + " videos (" + added + " new) in " + (list.container || "the whole page") + ", next page: " + list.hasNextPage)
 
-        var nextUrl = ""
-        var nextMatch = nextRegex.exec(data)
-        if (nextMatch) {
-            nextUrl = Constants.baseUrl + nextMatch[1]
-        }
-
-
-        if (videos.length > videosToSkip) {
-
+        if (list.videos.length > 0) {
             if (storeInCache) {
                 DownloadCache.store(url, data, 300)
             }
 
             ++_page
 
-            if (!nextUrl) {
+            if (!list.hasNextPage || !added) {
                 _reload = false
                 _page = -1
             }
-
-            console.debug("adding " + (videos.length-videosToSkip) + " videos")
-
-            for (var i = videosToSkip; i < videos.length; ++i) {
-                var item = videos[i]
-                model.append(item)
-            }
         } else {
-            console.debug(data)
-            //% "No video URLs found"
-            var message = qsTrId("ph-videos-page-no-urls-found")
-            window.notify(message)
+            _page = -1
+            var message = window.problemMessage(data)
+            if (message) {
+                window.notify(message)
+            } else if (!isSearch && model.count === 0) {
+                //% "No video URLs found"
+                window.notify(qsTrId("ph-videos-page-no-urls-found"))
+            }
         }
     }
 

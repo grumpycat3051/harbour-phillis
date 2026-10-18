@@ -32,6 +32,12 @@
 
 QString QuickHttp::ms_UserAgent;
 QNetworkAccessManager* QuickHttp::ms_NetworkAccessManager;
+QVariantMap QuickHttp::ms_DefaultHeaders;
+
+namespace
+{
+const int MaxRedirects = 10;
+}
 
 QuickHttp::~QuickHttp()
 {
@@ -47,11 +53,17 @@ QuickHttp::QuickHttp(QObject* parent)
     , m_Status(StatusNone)
     , m_Error(ErrorNone)
     , m_HttpStatusCode(0)
+    , m_Redirects(0)
 {
 
 }
 
 void QuickHttp::get(const QString& url)
+{
+    get(url, QVariantMap());
+}
+
+void QuickHttp::get(const QString& url, const QVariantMap& requestHeaders)
 {
     switch (m_Status) {
     case StatusRunning:
@@ -63,26 +75,27 @@ void QuickHttp::get(const QString& url)
 
     setUrl(url);
     setHttpStatusCode(-1);
+    m_RequestHeaders = requestHeaders;
+    m_Redirects = 0;
 
     if (m_Url.isEmpty()) {
         qWarning() << "empty url";
-        setError(ErrorUrlEmpty);
-        setStatus(StatusCompleted);
+        finish(ErrorUrlEmpty, QString());
         return;
     }
 
     auto mgr = networkAccessManager();
     if (!mgr) {
         qWarning() << "network access manager not set";
-        setError(ErrorRequestFailed);
-        setStatus(StatusCompleted);
+        finish(ErrorRequestFailed, QString());
         return;
     }
 
     setError(ErrorNone);
     setErrorMessage(QString());
+    setData(QString());
     setStatus(StatusRunning);
-    m_Reply = mgr->get(makeRequest(m_Url));
+    m_Reply = mgr->get(makeRequest(QUrl(m_Url)));
     connect(m_Reply, &QNetworkReply::finished, this, &QuickHttp::requestFinished);
     qDebug() << "start download of" << m_Url;
 }
@@ -105,6 +118,14 @@ void QuickHttp::setUserAgent(const QString& value)
     if (m_UserAgent != value) {
         m_UserAgent = value;
         emit userAgentChanged();
+    }
+}
+
+void QuickHttp::setHeaders(const QVariantMap& value)
+{
+    if (m_Headers != value) {
+        m_Headers = value;
+        emit headersChanged();
     }
 }
 
@@ -153,12 +174,28 @@ void QuickHttp::setHttpStatusCode(int value)
     }
 }
 
+void QuickHttp::setFinalUrl(const QString& value)
+{
+    if (m_FinalUrl != value) {
+        m_FinalUrl = value;
+        emit finalUrlChanged();
+    }
+}
+
 void QuickHttp::setErrorMessage(const QString& value)
 {
     if (m_ErrorMessage != value) {
         m_ErrorMessage = value;
         emit errorMessageChanged();
     }
+}
+
+void QuickHttp::finish(Error error, const QString& errorMessage)
+{
+    setError(error);
+    setErrorMessage(errorMessage);
+    // status last: QML handlers react to it and read the rest
+    setStatus(StatusCompleted);
 }
 
 void QuickHttp::requestFinished()
@@ -170,18 +207,18 @@ void QuickHttp::requestFinished()
 
     int httpStatusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     setHttpStatusCode(httpStatusCode);
+    setFinalUrl(reply->url().toString());
 
     switch (reply->error()) {
     case QNetworkReply::OperationCanceledError:
-        setError(ErrorCanceled);
-        setStatus(StatusCompleted);
+        finish(ErrorCanceled, QString());
         break;
     case QNetworkReply::NoError: {
         // Get the http status code
         if (httpStatusCode >= 200 && httpStatusCode < 300) { // success
             // Here we got the final reply
             setData(QString::fromUtf8(reply->readAll()));
-            setStatus(StatusCompleted);
+            finish(ErrorNone, QString());
         } else if (httpStatusCode >= 300 && httpStatusCode < 400) { // redirection
             // Get the redirection url
             auto newUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
@@ -190,25 +227,26 @@ void QuickHttp::requestFinished()
             newUrl = reply->url().resolved(newUrl);
             auto mgr = networkAccessManager();
             Q_ASSERT(mgr);
-            if (mgr) {
+            if (!mgr || newUrl.isEmpty()) {
+                finish(ErrorRequestFailed, reply->errorString());
+            } else if (++m_Redirects > MaxRedirects) {
+                qDebug() << "too many redirections";
+                finish(ErrorRequestFailed, tr("Too many redirections"));
+            } else {
                 m_Reply = mgr->get(makeRequest(newUrl));
                 connect(m_Reply, &QNetworkReply::finished, this, &QuickHttp::requestFinished);
-            } else {
-                setError(ErrorRequestFailed);
-                setStatus(StatusCompleted);
             }
         } else  {
             qDebug() << "http status code:" << httpStatusCode;
-            setError(ErrorRequestFailed);
-            setErrorMessage(reply->errorString());
-            setStatus(StatusCompleted);
+            setData(QString::fromUtf8(reply->readAll()));
+            finish(ErrorRequestFailed, reply->errorString());
         }
     } break;
     default: {
         qDebug() << "request failed: " << httpStatusCode << reply->errorString() << reply->url();
-        setError(ErrorRequestFailed);
-        setErrorMessage(reply->errorString());
-        setStatus(StatusCompleted);
+        // the body of an error page can tell why (blocked, removed, ...)
+        setData(QString::fromUtf8(reply->readAll()));
+        finish(ErrorRequestFailed, reply->errorString());
     } break;
     }
 }
@@ -218,6 +256,13 @@ QNetworkRequest QuickHttp::makeRequest(const QUrl& url)
     QNetworkRequest request;
     request.setUrl(url);
     request.setRawHeader("User-Agent", userAgent().toUtf8()); // must be set else no reply
+
+    const QVariantMap* maps[] = { &ms_DefaultHeaders, &m_Headers, &m_RequestHeaders };
+    for (const auto* map : maps) {
+        for (auto it = map->cbegin(); it != map->cend(); ++it) {
+            request.setRawHeader(it.key().toUtf8(), it.value().toString().toUtf8());
+        }
+    }
 
     return request;
 }
@@ -238,43 +283,37 @@ void QuickHttp::post(const QString& url, const QVariantMap& customHeaders, const
     }
 
     setUrl(url);
+    setHttpStatusCode(-1);
+    m_RequestHeaders = customHeaders;
+    m_Redirects = 0;
 
     if (m_Url.isEmpty()) {
         qWarning() << "empty url";
-        setError(ErrorUrlEmpty);
-        setStatus(StatusCompleted);
+        finish(ErrorUrlEmpty, QString());
         return;
     }
 
     auto mgr = networkAccessManager();
     if (!mgr) {
         qWarning() << "network access manager not set";
-        setError(ErrorRequestFailed);
-        setStatus(StatusCompleted);
+        finish(ErrorRequestFailed, QString());
         return;
     }
 
     setError(ErrorNone);
     setErrorMessage(QString());
+    setData(QString());
     setStatus(StatusRunning);
 
-
-    auto req = makeRequest(m_Url);
-
     // custom headers
-    const auto beg = customHeaders.cbegin();
-    const auto end = customHeaders.cend();
-    for (auto it = beg; it != end; ++it) {
-        req.setRawHeader(it.key().toUtf8(), it.value().toString().toUtf8());
-    }
-
+    auto req = makeRequest(QUrl(m_Url));
 
     if (urlEncodedPostData.isEmpty()) {
         req.setHeader(QNetworkRequest::ContentLengthHeader, 0);
-        m_Reply = networkAccessManager()->sendCustomRequest(req, "POST");
+        m_Reply = mgr->sendCustomRequest(req, "POST");
     } else {
         req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded; charset=UTF-8");
-        m_Reply = networkAccessManager()->post(req, urlEncodedPostData.toUtf8());
+        m_Reply = mgr->post(req, urlEncodedPostData.toUtf8());
     }
     connect(m_Reply, &QNetworkReply::finished, this, &QuickHttp::requestFinished);
 }

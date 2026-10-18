@@ -38,6 +38,14 @@ Page {
 
         VerticalScrollDecorator {}
 
+        PullDownMenu {
+            MenuItem {
+                //% "Check the website"
+                text: qsTrId("ph-settings-page-site-check")
+                onClicked: pageStack.push(Qt.resolvedUrl("SiteCheckPage.qml"))
+            }
+        }
+
         Column {
             id: column
             width: parent.width
@@ -378,25 +386,21 @@ Page {
                 label: qsTrId("ph-settings-page-account-username")
                 placeholderText: label
                 width: parent.width
+                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: {
-                    passwordField.focus = true
-                    settingAccountUsername.value = text
-                }
-
-                text: settingAccountUsername.value
+                EnterKey.onClicked: passwordField.focus = true
+                // saved as typed: leaving the page without pressing Enter used to lose it
+                onTextChanged: settingAccountUsername.value = text.trim()
+                Component.onCompleted: text = settingAccountUsername.value
             }
 
             PasswordField {
                 id: passwordField
                 width: parent.width
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
-                EnterKey.onClicked: {
-                    passwordField.focus = false
-                    settingAccountPassword.value = text
-                }
-
-                text: settingAccountPassword.value
+                EnterKey.onClicked: passwordField.focus = false
+                onTextChanged: settingAccountPassword.value = text
+                Component.onCompleted: text = settingAccountPassword.value
             }
 
             TextSwitch {

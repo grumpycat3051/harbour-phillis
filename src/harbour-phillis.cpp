@@ -68,8 +68,13 @@ int main(int argc, char *argv[])
     QSettings settings;
 
     QuickHttp::SetNetworkAccessManager(&nam);
-//    QuickHttp::SetUserAgent("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0");
-    QuickHttp::SetUserAgent(QStringLiteral("PHillis " QT_STRINGIFY(PHILLIS_VERSION_MAJOR) "." QT_STRINGIFY(PHILLIS_VERSION_MINOR)));
+    // The site answers requests that don't look like they come from a desktop browser with
+    // other pages (or not at all), and the pages are read as the desktop site lays them out.
+    QuickHttp::SetUserAgent(QStringLiteral("Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0"));
+    QVariantMap defaultHeaders;
+    defaultHeaders.insert(QStringLiteral("Accept"), QStringLiteral("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"));
+    defaultHeaders.insert(QStringLiteral("Accept-Language"), QStringLiteral("en-US,en;q=0.5"));
+    QuickHttp::SetDefaultHeaders(defaultHeaders);
     QuickCookieJar cookieJar;
     nam.setCookieJar(&cookieJar);
     // clear owner, else QNetworkAccessManager will delete
